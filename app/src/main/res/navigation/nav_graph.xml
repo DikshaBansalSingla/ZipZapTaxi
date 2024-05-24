@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.zipzaptaxi.live.home.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_homeFragment_to_walletFragment"
+            app:destination="@id/walletFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_bookingsFragment"
+            app:destination="@id/bookingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_cabFreeActivity"
+            app:destination="@id/cabFreeActivity" />
+        <action
+            android:id="@+id/action_homeFragment_to_bookingDetail"
+            app:destination="@id/bookingDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.zipzaptaxi.live.home.home.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addHomeCityFragment"
+        android:name="com.zipzaptaxi.live.home.home.AddHomeCityFragment"
+        android:label="fragment_add_home_city"
+        tools:layout="@layout/fragment_add_home_city" />
+    <fragment
+        android:id="@+id/vehicleListFragment"
+        android:name="com.zipzaptaxi.live.home.home.VehicleListFragment"
+        android:label="fragment_vehicle_list"
+        tools:layout="@layout/fragment_vehicle_list" >
+        <action
+            android:id="@+id/action_vehicleListFragment_to_carDetailFragment"
+            app:destination="@id/carDetailFragment" />
+        <action
+            android:id="@+id/action_vehicleListFragment_to_carDetailActivity"
+            app:destination="@id/carDetailActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/driverListFragment"
+        android:name="com.zipzaptaxi.live.driver.DriverListFragment"
+        android:label="fragment_driver_list"
+        tools:layout="@layout/fragment_driver_list" >
+        <action
+            android:id="@+id/action_driverListFragment_to_driverDetailActivity"
+            app:destination="@id/driverDetailActivity" />
+        <action
+            android:id="@+id/action_driverListFragment_to_addDriverFragment2"
+            app:destination="@id/addDriverFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.zipzaptaxi.live.home.home.SettingsFragment"
+        android:label="SettingsFragment" >
+        <action
+            android:id="@+id/action_settingsFragment_to_bankDetailFragment"
+            app:destination="@id/bankDetailFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_termsCondFragment"
+            app:destination="@id/termsCondFragment"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/bookingsFragment"
+        android:name="com.zipzaptaxi.live.home.home.BookingsFragment"
+        android:label="BookingsFragment" >
+        <action
+            android:id="@+id/action_bookingsFragment_to_bookingDetail"
+            app:destination="@id/bookingDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/walletFragment"
+        android:name="com.zipzaptaxi.live.wallet.WalletFragment"
+        android:label="fragment_wallet"
+        tools:layout="@layout/fragment_wallet" >
+
+        <action
+            android:id="@+id/action_walletFragment_to_paidAmtActivity2"
+            app:destination="@id/paidAmtActivity2" />
+        <action
+            android:id="@+id/action_walletFragment_to_addMoneyActivity"
+            app:destination="@id/addMoneyActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/uploadDocumentsFragment"
+        android:name="com.zipzaptaxi.live.home.home.UploadDocumentsFragment"
+        android:label="UploadDocumentsFragment" >
+        <action
+            android:id="@+id/action_uploadDocumentsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.zipzaptaxi.live.home.home.NotificationFragment"
+        android:label="NotificationFragment" >
+        <action
+            android:id="@+id/action_notificationFragment_to_bookingDetail"
+            app:destination="@id/bookingDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/supportFragment"
+        android:name="com.zipzaptaxi.live.home.home.SupportFragment"
+        android:label="SupportFragment" />
+    <fragment
+        android:id="@+id/cabFreeActivity"
+        android:name="com.zipzaptaxi.live.CabFreeActivity"
+        android:label="activity_cab_free"
+        tools:layout="@layout/activity_cab_free" >
+        <action
+            android:id="@+id/action_cabFreeActivity_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bankDetailFragment"
+        android:name="com.zipzaptaxi.live.home.home.BankDetailFragment"
+        android:label="BankDetailFragment" >
+        <action
+            android:id="@+id/action_bankDetailFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_bankDetailFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookingDetail"
+        android:name="com.zipzaptaxi.live.bookings.BookingDetail"
+        android:label="activity_booking_detail"
+        tools:layout="@layout/activity_booking_detail" >
+        <action
+            android:id="@+id/action_bookingDetail_to_uploadDocumentsFragment"
+            app:destination="@id/uploadDocumentsFragment" />
+        <action
+            android:id="@+id/action_bookingDetail_to_addMoneyActivity"
+            app:destination="@id/addMoneyActivity" />
+        <action
+            android:id="@+id/action_bookingDetail_to_addHomeCityFragment"
+            app:destination="@id/addHomeCityFragment" />
+        <action
+            android:id="@+id/action_bookingDetail_to_bookingsFragment"
+            app:destination="@id/bookingsFragment" />
+        <action
+            android:id="@+id/action_bookingDetail_to_homeFragment"
+            app:destination="@id/homeFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/termsCondFragment"
+        android:name="com.zipzaptaxi.live.home.home.TermsCondFragment"
+        android:label="fragment_terms_cond"
+        tools:layout="@layout/fragment_terms_cond" >
+        <action
+            android:id="@+id/action_termsCondFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/carDetailFragment"
+        android:name="com.zipzaptaxi.live.home.home.CarDetailFragment"
+        android:label="CarDetailFragment" />
+    <activity
+        android:id="@+id/carDetailActivity"
+        android:name="com.zipzaptaxi.live.home.CarDetailActivity"
+        android:label="CarDetailActivity" />
+    <fragment
+        android:id="@+id/driverDetailActivity"
+        android:name="com.zipzaptaxi.live.driver.DriverDetailActivity"
+        android:label="activity_driver_detail"
+        tools:layout="@layout/activity_driver_detail" >
+        <action
+            android:id="@+id/action_driverDetailActivity_to_driverListFragment"
+            app:destination="@id/driverListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addDriverFragment2"
+        android:name="com.zipzaptaxi.live.driver.AddDriverFragment"
+        android:label="fragment_add_driver"
+        tools:layout="@layout/fragment_add_driver" >
+        <action
+            android:id="@+id/action_addDriverFragment2_to_driverListFragment"
+            app:destination="@id/driverListFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/addMoneyActivity"
+        android:name="com.zipzaptaxi.live.wallet.AddMoneyActivity"
+        android:label="activity_add_money"
+        tools:layout="@layout/activity_add_money">
+    </activity>
+    <activity
+        android:id="@+id/bookingHistoryActivity"
+        android:name="com.zipzaptaxi.live.bookings.BookingHistoryActivity"
+        android:label="activity_paid_amount"
+        tools:layout="@layout/activity_paid_amount" />
+    <fragment
+        android:id="@+id/paidAmtActivity2"
+        android:name="com.zipzaptaxi.live.wallet.PaidAmtActivity"
+        android:label="PaidAmtActivity" >
+        <action
+            android:id="@+id/action_paidAmtActivity2_to_walletFragment"
+            app:destination="@id/walletFragment" />
+    </fragment>
+
+
+</navigation>

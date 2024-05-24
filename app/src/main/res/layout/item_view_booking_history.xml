@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/_10sdp"
+    app:cardElevation="@dimen/_6sdp"
+    app:strokeColor="@color/colorPrimary"
+    app:strokeWidth="@dimen/_1sdp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/llMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_6sdp">
+
+        <TextView
+            android:id="@id/tvTripId"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvStatus"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:textColor="@color/md_grey_800"
+            android:text="Trip ID: 65446554589"
+            android:fontFamily="@font/poppins_medium"/>
+
+        <TextView
+            android:id="@id/tvStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/tvTripId"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textAlignment="textEnd"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:text="Cancelled"
+            android:textColor="@color/red_color"
+            android:textSize="16dp"
+            android:fontFamily="@font/poppins_semibold"/>
+
+        <TextView
+            android:id="@+id/tvFrom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvStatus"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:drawablePadding="@dimen/_6sdp"
+            android:text="Chandigarh"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/black"
+            app:drawableStartCompat="@drawable/pick_up_location" />
+
+        <TextView
+            android:id="@+id/tvDrop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFrom"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:drawablePadding="@dimen/_6sdp"
+            android:text="Delhmhvkjdfhkjfhgjhgvjdfvhdfi"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/black"
+            app:drawableStartCompat="@drawable/drop_location" />
+
+        <TextView
+            android:id="@+id/txtStartDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDrop"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Pickup Date and Time:"
+            android:textAlignment="center"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvStartDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvCarModel"
+            app:layout_constraintTop_toBottomOf="@+id/txtStartDate"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:text="20 Oct 2024 11:15 PM"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/black" />
+
+
+        <TextView
+            android:id="@+id/txtDropDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvStartDate"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Drop Date and Time:"
+            android:textAlignment="center"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvDropDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtDropDate"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:text="20 Oct 2024 11:15 PM"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/txtCarModel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDrop"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:text="Car Model"
+
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="@dimen/_10ssp"
+            />
+
+        <TextView
+            android:id="@+id/tvCarModel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@+id/txtCarModel"
+            android:text="Hyundai Toyota"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/_2sdp"
+
+            />
+
+        <TextView
+            android:id="@+id/txtCost"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCarModel"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:text="Cost"
+            android:fontFamily="@font/poppins_bold"
+            android:textAlignment="textEnd"
+            android:textSize="@dimen/_10ssp"
+            />
+
+        <TextView
+            android:id="@+id/tvAmount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtCost"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:text="₹ 700"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/black"
+            android:textAlignment="textEnd"/>
+
+        <TextView
+            android:id="@+id/txtCancelDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDropDate"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Cancellation Date: "
+            android:textAlignment="center"
+            android:visibility="gone"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvCancelDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtCancelDate"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:text="20 Oct 2024 11:15 PM"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="@dimen/_10ssp"
+            android:visibility="gone"
+            android:textColor="@color/black" />
+
+
+
+        <TextView
+            android:id="@+id/txtPenalty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAmount"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:text="Penalty"
+            android:fontFamily="@font/poppins_bold"
+            android:textAlignment="textEnd"
+            android:visibility="gone"
+            android:textSize="@dimen/_10ssp"
+            />
+
+        <TextView
+            android:id="@+id/tvPenalty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtPenalty"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:text="₹ 700"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/black"
+            android:visibility="gone"
+            android:textAlignment="textEnd"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clCompleted"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/md_blue_grey_50"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
+            app:layout_constraintTop_toBottomOf="@+id/tvDropDate">
+
+            <TextView
+                android:id="@+id/txtExtraKm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Extra KM"
+                android:textColor="@color/quantum_grey900"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/view1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvExtraKm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_1sdp"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Include"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11sdp"
+                app:layout_constraintStart_toStartOf="@id/txtExtraKm"
+                app:layout_constraintTop_toBottomOf="@+id/txtExtraKm"
+
+                />
+            <View
+                android:id="@+id/view1"
+                android:layout_width="@dimen/_1sdp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toEndOf="@+id/txtExtraKm"
+                app:layout_constraintEnd_toStartOf="@+id/txtExtraPrice"
+                android:background="@color/quantum_grey700"
+                app:layout_constraintHeight_percent="0.2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/tvExtraKm"
+                />
+
+            <TextView
+                android:id="@+id/txtExtraPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Extra Price"
+                android:textColor="@color/quantum_grey900"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintEnd_toStartOf="@+id/view2"
+                app:layout_constraintStart_toEndOf="@+id/view1"
+                app:layout_constraintTop_toTopOf="parent"  />
+
+            <TextView
+                android:id="@+id/tvExtraPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_1sdp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="100"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11sdp"
+                app:layout_constraintStart_toStartOf="@+id/txtExtraPrice"
+                app:layout_constraintEnd_toEndOf="@+id/txtExtraPrice"
+                app:layout_constraintTop_toBottomOf="@+id/txtExtraPrice"
+
+                />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="@dimen/_1sdp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toEndOf="@+id/txtExtraPrice"
+                app:layout_constraintEnd_toStartOf="@+id/txtTotalPrice"
+                android:background="@color/quantum_grey700"
+                app:layout_constraintHeight_percent="0.2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/tvExtraPrice"
+                />
+
+
+            <TextView
+                android:id="@+id/txtTotalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Total Price"
+                android:textColor="@color/quantum_grey900"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view2"
+                app:layout_constraintTop_toTopOf="parent"  />
+
+            <TextView
+                android:id="@+id/tvTotalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_1sdp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Include"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11sdp"
+                app:layout_constraintStart_toStartOf="@+id/txtTotalPrice"
+                app:layout_constraintEnd_toEndOf="@+id/txtTotalPrice"
+                app:layout_constraintTop_toBottomOf="@+id/txtTotalPrice"
+
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

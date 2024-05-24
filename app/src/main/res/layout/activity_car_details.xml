@@ -1,0 +1,1043 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:id="@+id/llMain">
+
+    <include layout="@layout/layout_toolbar"
+        android:id="@+id/appToolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appToolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvUploadDoc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/car_details"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_22ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/txtPlateNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/plate_number"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvUploadDoc" />
+
+            <EditText
+                android:id="@+id/etVehicleNo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:fontFamily="@font/poppins_medium"
+                android:inputType="textCapCharacters"
+                android:minHeight="@dimen/_30sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                android:maxLines="1"
+                android:hint="HR072246"
+                android:importantForAutofill="no"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+                app:layout_constraintEnd_toStartOf="@id/rlCabsColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtPlateNo" />
+
+
+            <TextView
+                android:id="@+id/txtVehicleColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/color"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toEndOf="@+id/etVehicleNo"
+                app:layout_constraintTop_toBottomOf="@+id/tvUploadDoc" />
+
+            <RelativeLayout
+                android:id="@+id/rlCabsColor"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@drawable/rounded_edittext_bg"
+                app:layout_constraintStart_toEndOf="@+id/etVehicleNo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtVehicleColor"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_6sdp">
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spCabsColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:padding="@dimen/_4sdp"
+                    android:minHeight="@dimen/_30sdp"
+                    android:prompt="@string/dropdown"
+                    android:text="@string/select_cab"
+                    />
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/txtModel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/vehicle_model"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rlCabsColor" />
+
+            <EditText
+                android:id="@+id/etModel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:fontFamily="@font/poppins_medium"
+                android:inputType="text"
+                android:maxLines="1"
+                android:minHeight="@dimen/_30sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                android:hint="Swift DZire"
+                app:layout_constraintEnd_toStartOf="@id/etYear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtModel" />
+
+
+            <TextView
+                android:id="@+id/txtYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/vehicle_year"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toEndOf="@+id/etVehicleNo"
+                app:layout_constraintTop_toBottomOf="@+id/rlCabsColor" />
+
+            <EditText
+                android:id="@+id/etYear"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:fontFamily="@font/poppins_medium"
+                android:inputType="number"
+
+                android:maxLength="4"
+                android:minHeight="@dimen/_30sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                android:hint="2024"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/etModel"
+                app:layout_constraintTop_toBottomOf="@id/txtYear" />
+
+            <TextView
+                android:id="@+id/txtPass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Passengers"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etYear" />
+
+            <EditText
+                android:id="@+id/etPass"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:fontFamily="@font/poppins_medium"
+                android:inputType="number|textWebEditText"
+                android:numeric="integer"
+                android:minHeight="@dimen/_30sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                android:hint="4+1"
+                android:digits="0123456789+"
+                app:layout_constraintEnd_toStartOf="@id/rlCabType"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtPass" />
+
+
+            <TextView
+                android:id="@+id/txtCabType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Cab Type"
+                android:visibility="visible"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toEndOf="@+id/etPass"
+                app:layout_constraintTop_toBottomOf="@+id/etYear" />
+
+            <RelativeLayout
+                android:id="@+id/rlCabType"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@drawable/rounded_edittext_bg"
+                app:layout_constraintStart_toEndOf="@+id/etPass"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtCabType"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_6sdp">
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spCabType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:padding="@dimen/_4sdp"
+                    android:minHeight="@dimen/_30sdp"
+                    android:prompt="@string/dropdown"
+                    android:text="@string/select_cab" />
+            </RelativeLayout>
+
+
+            <CheckBox
+                android:id="@+id/cbIsCng"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:button="@drawable/checkbox_selector"
+                android:fontFamily="@font/poppins_semibold"
+                android:padding="@dimen/_6sdp"
+                android:text="@string/is_cng"
+                android:layout_marginStart="@dimen/_2sdp"
+                app:layout_constraintStart_toStartOf="@id/etPass"
+                app:layout_constraintEnd_toEndOf="@id/etPass"
+                app:layout_constraintTop_toBottomOf="@+id/etPass" />
+
+            <CheckBox
+                android:id="@+id/cbIsPetrol"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:button="@drawable/checkbox_selector"
+                android:fontFamily="@font/poppins_semibold"
+                android:padding="@dimen/_6sdp"
+                android:text="@string/is_petrol"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@id/etYear"
+                app:layout_constraintStart_toStartOf="@+id/etYear"
+                app:layout_constraintTop_toBottomOf="@+id/etPass" />
+
+            <CheckBox
+                android:id="@+id/cbIsDiesel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/poppins_semibold"
+                android:padding="@dimen/_6sdp"
+                android:textAlignment="textStart"
+                android:text="@string/is_diesel"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="@id/etYear"
+                app:layout_constraintStart_toStartOf="@+id/etYear"
+                app:layout_constraintTop_toBottomOf="@+id/etPass"
+
+                />
+
+            <CheckBox
+                android:id="@+id/cbIsElectric"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/poppins_semibold"
+                android:padding="@dimen/_6sdp"
+                android:text="@string/is_electric"
+                app:layout_constraintStart_toStartOf="@id/etPass"
+                app:layout_constraintEnd_toEndOf="@id/etPass"
+
+                app:layout_constraintTop_toBottomOf="@+id/cbIsCng" />
+
+            <CheckBox
+                android:id="@+id/cbIsRoofTop"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:fontFamily="@font/poppins_semibold"
+                android:padding="@dimen/_6sdp"
+                android:text="@string/has_roof_top_carrier"
+                app:layout_constraintEnd_toEndOf="@id/etYear"
+                app:layout_constraintStart_toStartOf="@+id/etYear"
+                app:layout_constraintTop_toBottomOf="@+id/cbIsCng" />
+
+
+            <TextView
+                android:id="@+id/txtPlatePic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/car_with_number_plate_picture"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cbIsRoofTop" />
+
+            <TextView
+                android:id="@+id/tvLicFront"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/front"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintEnd_toEndOf="@id/ivLicFront"
+                app:layout_constraintStart_toStartOf="@id/ivLicFront"
+                app:layout_constraintTop_toBottomOf="@+id/txtPlatePic" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivLicFront"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:clipToOutline="true"
+                android:fitsSystemWindows="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/placeholder"
+                app:layout_constraintEnd_toStartOf="@id/ivLicBack"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvLicFront"
+                app:layout_constraintWidth_percent="0.3"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Avatar" />
+
+
+            <TextView
+                android:id="@+id/tvLicBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/back"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintEnd_toEndOf="@id/ivLicBack"
+                app:layout_constraintStart_toStartOf="@id/ivLicBack"
+                app:layout_constraintTop_toBottomOf="@+id/txtPlatePic" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivLicBack"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:clipToOutline="true"
+                android:fitsSystemWindows="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivLicFront"
+                app:layout_constraintTop_toBottomOf="@id/tvLicBack"
+                app:layout_constraintWidth_percent="0.3"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Avatar" />
+
+
+            <TextView
+                android:id="@+id/tvCarLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/left_optional"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintEnd_toEndOf="@id/ivLicFront"
+                app:layout_constraintStart_toStartOf="@id/ivLicFront"
+                app:layout_constraintTop_toBottomOf="@+id/ivLicBack" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivCarLeft"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:clipToOutline="true"
+                android:fitsSystemWindows="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/placeholder"
+                app:layout_constraintEnd_toStartOf="@id/ivLicBack"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvCarLeft"
+                app:layout_constraintWidth_percent="0.3"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Avatar" />
+
+
+            <TextView
+                android:id="@+id/tvCarRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/right_optional"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintEnd_toEndOf="@id/ivLicBack"
+                app:layout_constraintStart_toStartOf="@id/ivLicBack"
+                app:layout_constraintTop_toBottomOf="@+id/ivLicBack" />
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivCarRight"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:clipToOutline="true"
+                android:fitsSystemWindows="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivLicFront"
+                app:layout_constraintTop_toBottomOf="@id/tvCarRight"
+                app:layout_constraintWidth_percent="0.3"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Avatar" />
+
+
+            <TextView
+                android:id="@+id/tvRCInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/rc_information"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivCarRight"
+
+                />
+
+
+            <TextView
+                android:id="@+id/tvOwnerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_16sdp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/vehicle_owner_name"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvRCInfo" />
+
+            <EditText
+                android:id="@+id/etName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/enter_name"
+                android:inputType="text"
+                android:maxLength="30"
+                android:minHeight="@dimen/_30sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvOwnerName"
+                app:layout_constraintWidth_percent="0.9" />
+
+            <TextView
+                android:id="@+id/tvSirName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_16sdp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/vehicle_owner_s_surname"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etName" />
+
+
+            <EditText
+                android:id="@+id/etSirName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/hint_enter_surname"
+                android:inputType="text"
+                android:minHeight="@dimen/_30sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                android:maxLength="30"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvSirName"
+                app:layout_constraintWidth_percent="0.9" />
+
+            <TextView
+                android:id="@+id/txtRegStartDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/registration_start_date"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etSirName" />
+
+            <EditText
+                android:id="@+id/etRegStartDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:focusable="false"
+                android:fontFamily="@font/poppins_medium"
+                android:inputType="date"
+                android:minHeight="@dimen/_30sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                android:hint="29-04-2024"
+                app:layout_constraintEnd_toStartOf="@id/etRegEndDate"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtRegStartDate" />
+
+
+            <TextView
+                android:id="@+id/txtRegEndDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/registration_end_date"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toEndOf="@+id/etRegStartDate"
+                app:layout_constraintTop_toBottomOf="@+id/etSirName" />
+
+            <EditText
+                android:id="@+id/etRegEndDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:focusable="false"
+                android:fontFamily="@font/poppins_medium"
+                android:inputType="date"
+                android:minHeight="@dimen/_30sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                android:hint="29-04-2024"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/etRegStartDate"
+                app:layout_constraintTop_toBottomOf="@id/txtRegEndDate" />
+
+
+            <TextView
+                android:id="@+id/txtTaxDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/tax_paid_until_date"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etRegStartDate" />
+
+            <EditText
+                android:id="@+id/etTaxDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:focusable="false"
+                android:fontFamily="@font/poppins_medium"
+                android:inputType="date"
+                android:minHeight="@dimen/_30sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                android:hint="29-04-2024"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtTaxDate" />
+
+
+            <TextView
+                android:id="@+id/tvRcFront"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/rc_front"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintEnd_toEndOf="@id/ivRcFront"
+                app:layout_constraintStart_toStartOf="@id/ivRcFront"
+                app:layout_constraintTop_toBottomOf="@+id/etTaxDate"
+
+                />
+
+            <TextView
+                android:id="@+id/tvRcBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/rc_back"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintEnd_toEndOf="@id/ivRcBack"
+                app:layout_constraintStart_toStartOf="@id/ivRcBack"
+                app:layout_constraintTop_toBottomOf="@+id/etTaxDate" />
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivRcFront"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:clipToOutline="true"
+                android:fitsSystemWindows="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/placeholder"
+                app:layout_constraintEnd_toStartOf="@id/ivRcBack"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvRcFront"
+                app:layout_constraintWidth_percent="0.3"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Avatar" />
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivRcBack"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:clipToOutline="true"
+                android:fitsSystemWindows="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivRcFront"
+                app:layout_constraintTop_toBottomOf="@id/tvRcBack"
+                app:layout_constraintWidth_percent="0.3"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Avatar" />
+
+
+            <TextView
+                android:id="@+id/txtInsCert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/insurance"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivRcBack" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivInsCert"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:clipToOutline="true"
+                android:fitsSystemWindows="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtInsCert"
+                app:layout_constraintWidth_percent="0.3"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Avatar" />
+
+
+            <TextView
+                android:id="@+id/txtInsEndDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/insurance_expiry_date"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtInsCert" />
+
+            <EditText
+                android:id="@+id/etInsEndDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:focusable="false"
+                android:fontFamily="@font/poppins_medium"
+                android:inputType="date"
+                android:minHeight="@dimen/_30sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                android:hint="29-04-2024"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtInsEndDate"
+                app:layout_constraintWidth_percent="0.4" />
+
+            <TextView
+                android:id="@+id/txtBPermitCert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/permit"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivInsCert" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivWhiteCert"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:clipToOutline="true"
+                android:fitsSystemWindows="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtBPermitCert"
+                app:layout_constraintWidth_percent="0.3"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Avatar" />
+
+
+            <TextView
+                android:id="@+id/txtBPermitEndDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/permit_expiry_date"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtBPermitCert" />
+
+            <EditText
+                android:id="@+id/etWPermitEndDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:focusable="false"
+                android:fontFamily="@font/poppins_medium"
+                android:inputType="date"
+                android:minHeight="@dimen/_30sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                android:hint="29-04-2024"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtBPermitEndDate"
+                app:layout_constraintWidth_percent="0.4" />
+
+
+            <!-- <TextView
+                android:id="@+id/txtPPermitCert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/pink_permit"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivWhiteCert" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivPPermitCert"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:clipToOutline="true"
+                android:fitsSystemWindows="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtPPermitCert"
+                app:layout_constraintWidth_percent="0.3"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Avatar" />
+
+
+            <TextView
+                android:id="@+id/txtPPermitEndDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/permit_expiry_date"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                android:layout_marginStart="@dimen/_16sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtPPermitCert" />
+
+            <EditText
+                android:id="@+id/etPPermitEndDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:fontFamily="@font/poppins_medium"
+                android:minHeight="@dimen/_30sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:editable="false"
+                android:focusable="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtPPermitEndDate"
+                app:layout_constraintWidth_percent="0.4" />
+-->
+
+            <TextView
+                android:id="@+id/txtFitCert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/fitness"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivWhiteCert" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivFitCert"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:clipToOutline="true"
+                android:fitsSystemWindows="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtFitCert"
+                app:layout_constraintWidth_percent="0.3"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Avatar" />
+
+
+            <TextView
+                android:id="@+id/txtFitEndDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/fitness_expiry_date"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtFitCert" />
+
+            <EditText
+                android:id="@+id/etFitEndDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:focusable="false"
+                android:fontFamily="@font/poppins_medium"
+                android:inputType="date"
+                android:minHeight="@dimen/_30sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                android:hint="29-04-2024"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtFitEndDate"
+                app:layout_constraintWidth_percent="0.4" />
+
+
+            <TextView
+                android:id="@+id/txtPucCert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/pollution_puc_information"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivFitCert" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivPucCert"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:clipToOutline="true"
+                android:fitsSystemWindows="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtPucCert"
+                app:layout_constraintWidth_percent="0.3"
+                app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
+                app:layout_constraintVertical_bias="0.0"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Avatar" />
+
+
+            <TextView
+                android:id="@+id/txtPucEndDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/puc_expiry_date"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtPucCert" />
+
+            <EditText
+                android:id="@+id/etPucEndDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:focusable="false"
+                android:fontFamily="@font/poppins_medium"
+                android:inputType="date"
+                android:minHeight="@dimen/_30sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                android:hint="29-04-2024"
+                android:layout_marginBottom="@dimen/_10sdp"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtPucEndDate"
+                app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintWidth_percent="0.4" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSubmit"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:background="@drawable/button_bg_rounded"
+                android:backgroundTint="@color/colorPrimary"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/submit"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivPucCert"
+                app:layout_constraintWidth_percent="0.9" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

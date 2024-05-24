@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/_10sdp"
+    app:cardElevation="@dimen/_4sdp"
+    app:cardUseCompatPadding="true"
+    app:strokeColor="@color/colorPrimary"
+    app:strokeWidth="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/llMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_6sdp"
+        android:layout_margin="@dimen/_6sdp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+
+            android:id="@+id/ivCab"
+            android:layout_width="0dp"
+            android:layout_height="140dp"
+            android:fitsSystemWindows="true"
+            android:scaleType="fitXY"
+            android:padding="@dimen/_10sdp"
+            android:src="@drawable/cab_side_photo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.6"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Avatar" />
+
+
+        <TextView
+            android:id="@+id/tvVehicleNo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Vehicle No.: HR07 446667"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintEnd_toStartOf="@+id/ivDelete"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivCab" />
+
+        <TextView
+            android:id="@+id/tvVehicleModel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Model: Hyundai Toyota"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintEnd_toStartOf="@+id/ivDelete"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvVehicleNo" />
+
+        <ImageView
+            android:id="@+id/ivEdit"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:padding="@dimen/_4sdp"
+            android:src="@drawable/editing"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            app:tint="@color/colorPrimary"
+            app:layout_constraintTop_toBottomOf="@id/ivCab"
+            app:layout_constraintBottom_toTopOf="@+id/ivDelete"/>
+
+        <ImageView
+            android:id="@+id/ivDelete"
+            android:layout_width="@dimen/_28sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:padding="@dimen/_4sdp"
+            android:src="@drawable/trash"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintTop_toBottomOf="@id/ivEdit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tint="@color/red" />
+
+
+        <TextView
+            android:id="@+id/txtVerify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Verification: "
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvVehicleModel" />
+
+        <TextView
+            android:id="@+id/tvtVerify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Verified"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtVerify"
+            app:layout_constraintTop_toBottomOf="@id/tvVehicleModel" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

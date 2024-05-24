@@ -1,0 +1,170 @@
+<resources>
+    <string name="app_name">Zipzap Taxi</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="map_key" translatable="false">AIzaSyCcTmELSehXo7fqusqkvu4FKYtkQM_5--8</string>
+
+    <string name="welcome">"Welcome !"</string>
+    <string name="success">Success!</string>
+    <string name="error_">Error!</string>
+    <string name="otp">OTP</string>
+    <string name="otp_expired_in">OTP expired in:</string>
+    <string name="didn_t_receive_an_otp">Didn\'t receive an OTP?</string>
+    <string name="resend_otp"><u>Resend OTP</u></string>
+    <string name="please_enter_the_otp_sent_to_your_mobile_number">Please enter the OTP sent to your Email Id</string>
+    <string name="submit">Submit</string>
+    <string name="home">Home</string>
+    <string name="documents">Documents</string>
+    <string name="car_detail">Car Details</string>
+    <string name="booking_detail">Booking Details</string>
+    <string name="profile">Profile</string>
+    <string name="are_you_sure_you_want_to_logout">Are you sure you want to Logout?</string>
+
+
+    <string name="alert">Alert</string>
+    <string name="permissionRequired">Permission Required</string>
+    <string name="ok">OK</string>
+    <string name="openSettings">Open Settings</string>
+    <string name="select_photo">Select Photo</string>
+    <string name="open_camera">Camera</string>
+    <string name="pick_from_gallery">Gallery</string>
+    <string name="cancel">Cancel</string>
+    <string name="upload_personal_documents">Upload Personal Documents</string>
+    <string name="aadhaar_card">Aadhaar Card</string>
+    <string name="front">Front</string>
+    <string name="back">Back</string>
+    <string name="pan_card">Pan Card</string>
+    <string name="driving_license">Driving License</string>
+    <string name="next">Next</string>
+    <string name="car_details">Car Details</string>
+    <string name="plate_number">Plate Number</string>
+    <string name="color">Color</string>
+    <string name="vehicle_model">Vehicle Model</string>
+    <string name="vehicle_year">Vehicle Year</string>
+    <string name="is_cng">CNG/Petrol</string>
+    <string name="is_petrol">Petrol</string>
+    <string name="is_diesel">Diesel</string>
+    <string name="is_electric">Electric</string>
+    <string name="car_with_number_plate_picture">Car Image With Number Plate</string>
+    <string name="has_roof_top_carrier">Roof Top Carrier</string>
+    <string name="left_optional">Left(Optional)</string>
+    <string name="right_optional">Right(Optional)</string>
+    <string name="rc_information">RC Information</string>
+    <string name="vehicle_owner_name">Vehicle Owner Name</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="enter_aadhar_no">Enter Aadhar No</string>
+    <string name="vehicle_owner_s_surname">Vehicle Owner\'s Surname</string>
+    <string name="hint_enter_surname">Enter Surname</string>
+    <string name="registration_end_date">Registration End Date</string>
+    <string name="registration_start_date">Registration Start Date</string>
+    <string name="tax_paid_until_date">Tax Paid Until Date</string>
+    <string name="rc_front">RC Front</string>
+    <string name="rc_back">RC Back</string>
+    <string name="insurance">Insurance</string>
+    <string name="insurance_expiry_date">Insurance Expiry Date</string>
+    <string name="permit">Permit</string>
+    <string name="permit_expiry_date">Permit Expiry Date</string>
+    <string name="fitness">Fitness</string>
+    <string name="fitness_expiry_date">Fitness Expiry Date</string>
+    <string name="pollution_puc_information">Pollution(PUC) Information</string>
+    <string name="puc_expiry_date">PUC Expiry Date</string>
+    <string name="signup">Register</string>
+    <string name="enter_your_basic_details_for_registration">Enter your basic details for registration</string>
+    <string name="name">Name</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="enter_mobile_number">Enter Mobile Number</string>
+    <string name="email">Email</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="already_have_an_account">Already have an account ?</string>
+    <string name="signin">Login</string>
+    <string name="we_need_to_sent_an_otp_to_authenticate_your_number">We need to sent an OTP to authenticate your account</string>
+    <string name="or">OR</string>
+    <string name="sign_in_with_google">Sign In with Google</string>
+    <string name="don_t_have_an_account">Don\'t have an account ?</string>
+    <string name="no_internet">Please check your internet connection.</string>
+    <string name="error_name">Please enter your name</string>
+    <string name="error_bank_name">Please enter your bank name</string>
+    <string name="error_ifsc_code">Please enter your IFSC code</string>
+    <string name="error_phone">Please enter your mobile number</string>
+    <string name="error_valid_phone">Please enter valid mobile number</string>
+    <string name="terms_conditions">To create an account you must accept our</string>
+    <string name="error_email">Please enter your email</string>
+    <string name="error_validemail">Please enter valid email</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="add_driver">Add Driver</string>
+    <string name="enter_license_number">Enter License Number</string>
+    <string name="add">Add</string>
+    <string name="driver_list">Driver List</string>
+    <string name="vehicle_list">Vehicle List</string>
+    <string name="driver_detail">Driver Detail</string>
+    <string name="valid_otp">Please enter valid otp</string>
+    <string name="error_terms_conditions">Please accept the terms and conditions</string>
+    <string name="address">Address</string>
+    <string name="update">Update</string>
+    <string name="error_aadhar">Please enter your aadhar no</string>
+    <string name="error_lic_no">Please enter your license no</string>
+    <string name="upload_documents">Please upload all the documents</string>
+    <string name="something_went_wrong_while_getting_locations">Something went wrong while fetching the location!!</string>
+    <string name="wallet">Wallet</string>
+    <string name="paid_amt">Paid Amount</string>
+    <string name="add_money">Add Money</string>
+    <string name="shareApp">Share App</string>
+    <string name="police_verification_certificate_optional">Police Verification Certificate(Optional)</string>
+    <string name="dropdown">Select Cab</string>
+    <string name="select_cab">Select Cab</string>
+    <string name="cab_free">Cab Free</string>
+    <string name="documents_verified">Documents Verified</string>
+    <string name="documents_verification_is_pending">Documents Verification is pending</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="settings">Settings</string>
+    <string name="permission_rationale">Location permission required for core features</string>
+    <string name="permission_denied_explanation">The permission has been denied, but is required for basic functionality.</string>
+    <string name="gps_required">GPS is required, you must be turned on</string>
+    <string name="end_trip">End Trip</string>
+    <string name="terms_and_conditions">Terms &amp; conditions</string>
+    <string name="support">Support</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="please_upload_odometer_img">Please upload Odometer image</string>
+    <string name="my_bookings">My Bookings</string>
+    <string name="rejected">Your documents are rejected please re-upload all the docs</string>
+    <string name="no_bookings_found">No Bookings found!!</string>
+    <string name="on_the_way">On the Way</string>
+    <string name="arrived">Arrived</string>
+    <string name="enter_odometer_reading">Enter Odometer Reading</string>
+    <string name="please_enter_odometer_reading">Please enter odometer reading</string>
+    <string name="notifications">Notifications</string>
+
+
+    <string-array name="Select_car_color">
+        <item>-Select Color-</item>
+        <item>White</item>
+        <item>Black</item>
+        <item>Grey</item>
+        <item>Red</item>
+        <item>Blue</item>
+        <item>Brown</item>
+        <item>Blue</item>
+    </string-array>
+
+    <string-array name="Select_car_type">
+        <item>-Select Cab Type-</item>
+        <item>SUV</item>
+        <item>Sedan</item>
+        <item>Tempo Traveller</item>
+        <item>Others</item>
+
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="save">Save</string>
+    <string name="add_home_city">Add Home City</string>
+    <string name="permission_to_show_notifications_is_not_granted">No permission is granted to show notifications</string>
+    <string name="notification_rationale">Notification consent is required for core functionality</string>
+    <string name="bank_name">Bank Name</string>
+    <string name="account_holder_name">Account Holder Name</string>
+    <string name="bank_account_number">Bank Account Number</string>
+    <string name="ifsc_code">IFSC Code</string>
+    <string name="please_enter_your_account_number">Please enter your account number</string>
+    <string name="account_number_is_not_valid">Account number is not valid</string>
+    <string name="valid_ifsc_code">Please enter valid IFSC Code</string>
+    <string name="bank_details">Bank Details</string>
+</resources>
