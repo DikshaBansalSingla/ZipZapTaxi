@@ -83,7 +83,6 @@ class UploadDocumentsFragment : ImagePickerFragment(), Observer<RestObservable> 
             uploadDocApi(bodyimage)
             Glide.with(this).load(imagePath).error(R.drawable.placeholder).into(binding.ivAadhaarFront)
 
-
         }else if (imagePath != null && code==1) {
             mAadharBPath = imagePath
             bodyimage = prepareMultiPart("image", File(mAadharFPath))
@@ -167,17 +166,10 @@ class UploadDocumentsFragment : ImagePickerFragment(), Observer<RestObservable> 
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mValidationClass= ValidationsClass.getInstance()
         setToolbar()
-
-//        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-//
-//            (activity as? MainActivity)?.replaceFragment(HomeFragment(), true)
-//        }
-
         Log.i("token====", getToken(requireContext())!!)
         getAllDocs()
         setOnClicks()
@@ -326,7 +318,6 @@ class UploadDocumentsFragment : ImagePickerFragment(), Observer<RestObservable> 
                         }
                     }else{
                         showErrorAlert(requireActivity(), data.message)
-
                     }
                 }
 

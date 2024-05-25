@@ -43,7 +43,6 @@ import com.zipzaptaxi.live.utils.helper.AppConstant
 import com.zipzaptaxi.live.viewmodel.BookingViewModel
 import com.zipzaptaxi.live.wallet.WalletFragment
 
-
 class HomeFragment : Fragment(), Observer<RestObservable> {
 
     private val viewModel: BookingViewModel
@@ -177,37 +176,6 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
         }
     }
 
-
-    private fun requestLocationPermission() {
-        if (ActivityCompat.checkSelfPermission(
-
-                requireContext(),
-                android.Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED &&
-            ActivityCompat.checkSelfPermission(
-                requireContext(),
-                android.Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            locationPermissionLauncher.launch(
-                android.Manifest.permission.ACCESS_FINE_LOCATION
-            )
-        } else {
-            getLastKnownLocation()
-        }
-    }
-
-   /* private fun requestCameraPermission() {
-        // Request camera permission
-        if (ContextCompat.checkSelfPermission(
-                requireContext(),
-                android.Manifest.permission.CAMERA
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            cameraPermissionLauncher.launch(android.Manifest.permission.CAMERA)
-        }
-    }*/
-
     private fun fetchData() {
         // Perform your data fetching operation here
         // This method will be called when user swipes to refresh
@@ -216,38 +184,6 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
         binding.swipeRefreshLayout.isRefreshing = false
     }
 
-    private fun askNotificationPermission() {
-        // This is only necessary for API level >= 33 (TIRAMISU)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(
-                    requireContext(),
-                    Manifest.permission.POST_NOTIFICATIONS
-                ) ==
-                PackageManager.PERMISSION_GRANTED
-            ) {
-                Log.d(ContentValues.TAG, "askNotificationPermission: .. has permission")
-            } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
-                Log.d(ContentValues.TAG, "askNotificationPermission: .. show rationale")
-                Log.e(ContentValues.TAG, "Permissions Denied")
-                Snackbar.make(
-                    requireActivity().findViewById(android.R.id.content),
-                    R.string.notification_rationale,
-                    Snackbar.LENGTH_LONG
-                )
-                    .setAction(R.string.ok) {
-                        // Request permission
-                        ActivityCompat.requestPermissions(
-                            requireActivity(),
-                            arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-                            102
-                        )
-                    }.show()
-            } else {
-                // Directly ask for the permission
-                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-            }
-        }
-    }
 
     private fun setOnClicks() {
         binding.tvWalletBal.setOnClickListener {
@@ -336,11 +272,9 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
     }
 
     private fun getLastKnownLocation() {
-        if (ActivityCompat.checkSelfPermission(
-                requireContext(),
+        if (ActivityCompat.checkSelfPermission(requireContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                requireContext(),
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(requireContext(),
                 android.Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {

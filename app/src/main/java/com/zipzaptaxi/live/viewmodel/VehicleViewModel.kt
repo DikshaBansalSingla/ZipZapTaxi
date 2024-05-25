@@ -12,7 +12,7 @@ import io.reactivex.schedulers.Schedulers
 
 @SuppressLint("CheckResult")
 class VehicleViewModel: ViewModel() {
-    private val restApiInterface = AppController.getnstance().provideAuthservice()
+    private val restApiInterface = AppController.getInstance().provideAuthService()
     var mResponse: MutableLiveData<RestObservable> = MutableLiveData()
 
     fun vehicleListApi(

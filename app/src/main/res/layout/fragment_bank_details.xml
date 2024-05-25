@@ -156,7 +156,6 @@
                 android:paddingVertical="10dp"
                 android:text=""
                 android:hint="123456789@payutm"
-                android:maxLength="11"
                 android:textColor="@color/black"
                 android:background="@drawable/rounded_edittext_bg"
                 android:fontFamily="@font/poppins_medium"

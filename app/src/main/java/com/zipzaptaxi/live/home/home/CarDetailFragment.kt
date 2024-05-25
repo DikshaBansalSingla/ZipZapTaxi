@@ -32,12 +32,10 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
 
-
 class CarDetailFragment : ImagePickerFragment(), Observer<RestObservable>,
     AdapterView.OnItemSelectedListener {
     private lateinit var binding: ActivityCarDetailsBinding
     private lateinit var toolbarBinding: LayoutToolbarBinding
-
 
     lateinit var mValidationClass: ValidationsClass
     private val hashMap = HashMap<String, RequestBody>()
@@ -61,7 +59,6 @@ class CarDetailFragment : ImagePickerFragment(), Observer<RestObservable>,
     private var mPucPath = ""
     private var mCabColor = ""
     private var mCabType = ""
-
 
     override fun selectedImage(imagePath: String?, code: Int) {
         var bodyimage: MultipartBody.Part? = null
@@ -141,7 +138,6 @@ class CarDetailFragment : ImagePickerFragment(), Observer<RestObservable>,
             uploadDocApi(bodyimage)
         }
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -251,27 +247,7 @@ class CarDetailFragment : ImagePickerFragment(), Observer<RestObservable>,
             Log.d("Touch", "EditText clicked")
             getDate(binding.etPucEndDate, requireContext())
             return@setOnTouchListener false // Consume the _
-
         }
-        /* binding.etRegEndDate.setOnClickListener {
-             getDate(binding.etRegEndDate, requireContext())
-         }
-         binding.etTaxDate.setOnClickListener {
-             getDate(binding.etTaxDate, requireContext())
-         }
-         binding.etInsEndDate.setOnClickListener {
-             getDate(binding.etInsEndDate, requireContext())
-         }
-         binding.etWPermitEndDate.setOnClickListener {
-             getDate(binding.etWPermitEndDate, requireContext())
-         }
-
-         binding.etFitEndDate.setOnClickListener {
-             getDate(binding.etFitEndDate, requireContext())
-         }
-         binding.etPucEndDate.setOnClickListener {
-             getDate(binding.etPucEndDate, requireContext())
-         }*/
         binding.ivLicFront.setOnClickListener {
 
             getImage(requireActivity(), 0, false)
@@ -334,7 +310,6 @@ class CarDetailFragment : ImagePickerFragment(), Observer<RestObservable>,
                 } else {
                     finalMap["is_diesel"] = "0"
                 }
-
                 if (binding.cbIsElectric.isChecked) {
                     binding.cbIsCng.isChecked = false
                     binding.cbIsDiesel.isChecked = false
@@ -355,7 +330,6 @@ class CarDetailFragment : ImagePickerFragment(), Observer<RestObservable>,
             }
         }
     }
-
 
     private fun isValid(): Boolean {
         var check = false
@@ -410,7 +384,6 @@ class CarDetailFragment : ImagePickerFragment(), Observer<RestObservable>,
         toolbarBinding.toolbar.setNavigationIcon(R.drawable.baseline_arrow_back_24)
 
         toolbarBinding.toolbar.setNavigationOnClickListener {
-
             (requireActivity()).supportFragmentManager.popBackStackImmediate()
         }
         toolbarBinding.toolbarTitle.text = getString(R.string.car_detail)
@@ -436,10 +409,8 @@ class CarDetailFragment : ImagePickerFragment(), Observer<RestObservable>,
                             requireActivity(),
                             "Car added Successfully"
                         )
-
                     }
                 }
-
             }
 
             Status.ERROR -> {

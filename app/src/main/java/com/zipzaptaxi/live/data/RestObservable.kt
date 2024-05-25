@@ -98,7 +98,7 @@ class RestObservable(
 
                 if (errorResponse.code == AppConstant.errorCode) {
 
-                        AppController.getnstance()
+                        AppController.getInstance()
                             .clearData()
                         AppController.mInstance.clearData()
                         SharedPrefUtil.getInstance().clear()

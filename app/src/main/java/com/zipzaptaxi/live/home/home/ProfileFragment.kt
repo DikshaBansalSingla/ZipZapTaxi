@@ -8,9 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -26,14 +24,12 @@ import com.zipzaptaxi.live.data.Status
 import com.zipzaptaxi.live.databinding.FragmentProfileBinding
 import com.zipzaptaxi.live.databinding.LayoutToolbarBinding
 import com.zipzaptaxi.live.home.MainActivity
-import com.zipzaptaxi.live.model.BaseResponseModel
 import com.zipzaptaxi.live.model.FileUploadResponse
 import com.zipzaptaxi.live.model.LoginResponseModel
 import com.zipzaptaxi.live.utils.ImagePickerFragment
 import com.zipzaptaxi.live.utils.ValidationsClass
 import com.zipzaptaxi.live.utils.extensionfunctions.prepareMultiPart
 import com.zipzaptaxi.live.utils.extensionfunctions.showToast
-import com.zipzaptaxi.live.utils.extensionfunctions.toast
 import com.zipzaptaxi.live.utils.helper.AppConstant
 import com.zipzaptaxi.live.utils.helper.AppUtils
 import com.zipzaptaxi.live.viewmodel.AuthViewModel
@@ -148,11 +144,11 @@ class ProfileFragment : ImagePickerFragment(), Observer<RestObservable> {
             Glide.with(this).load(imagePath).error(R.drawable.placeholder).into(binding.img)
         }
     }
+
     private fun uploadDocApi(bodyImage: MultipartBody.Part) {
         viewModel.fileUploadApi(requireActivity(),true,map,bodyImage)
         viewModel.mResponse.observe(this, this)
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

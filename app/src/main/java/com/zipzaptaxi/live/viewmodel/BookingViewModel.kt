@@ -11,7 +11,7 @@ import io.reactivex.schedulers.Schedulers
 
 @SuppressLint("CheckResult")
 class BookingViewModel: ViewModel() {
-    private val restApiInterface = AppController.getnstance().provideAuthservice()
+    private val restApiInterface = AppController.getInstance().provideAuthService()
     var mResponse: MutableLiveData<RestObservable> = MutableLiveData()
 
     fun bookingListApi(

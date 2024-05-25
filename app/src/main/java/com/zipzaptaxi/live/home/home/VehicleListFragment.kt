@@ -146,10 +146,8 @@ class VehicleListFragment : Fragment(), Observer<RestObservable> {
                          vehicleListAdapter.notifyDataSetChanged()
                      }else{
                          AppUtils.showErrorAlert(requireActivity(), data.message)
-
                      }
                  }
-
             }
             Status.ERROR -> {
                 if (value.data != null) {

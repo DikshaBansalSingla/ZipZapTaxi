@@ -105,8 +105,6 @@ class BankDetailFragment() : Fragment(), Observer<RestObservable> {
 
         }
         toolbarBinding.toolbarTitle.text= getString(R.string.bank_details)
-
-
     }
 
     override fun onChanged(value: RestObservable) {

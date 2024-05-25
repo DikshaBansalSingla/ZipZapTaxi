@@ -114,8 +114,8 @@ class AddHomeCityFragment : Fragment(), Observer<RestObservable> {
                 Place.Field.ADDRESS_COMPONENTS,
                 Place.Field.ADDRESS
             )
-            val countryList = ArrayList<String>()
-                countryList.add("IN")
+            val countryList : ArrayList<String> = ArrayList()
+            countryList.add("IN")
 
             val intent = Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields)
                 .setCountries(countryList)
@@ -132,7 +132,6 @@ class AddHomeCityFragment : Fragment(), Observer<RestObservable> {
                 map["user_type"] = getUser(requireContext()).user_type!!
                 viewModel.addDeleteHomeCityApi(requireActivity(), true, map)
             }
-
         }
     }
 

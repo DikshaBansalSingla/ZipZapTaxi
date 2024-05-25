@@ -16,7 +16,7 @@ import okhttp3.RequestBody
 
 @SuppressLint("CheckResult")
 class AuthViewModel: ViewModel() {
-    private val restApiInterface = AppController.getnstance().provideAuthservice()
+    private val restApiInterface = AppController.getInstance().provideAuthService()
     var mResponse: MutableLiveData<RestObservable> = MutableLiveData()
 
 

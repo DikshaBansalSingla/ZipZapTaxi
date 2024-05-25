@@ -53,7 +53,6 @@ class NotificationFragment : Fragment(), Observer<RestObservable> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setToolbar()
-        setOnClicks()
         setAdapter()
         getData()
     }
@@ -72,10 +71,6 @@ class NotificationFragment : Fragment(), Observer<RestObservable> {
             bundle.putInt("id", arrayList[it].booking_id.toInt())
             findNavController().navigate(R.id.action_notificationFragment_to_bookingDetail, bundle)
         }
-    }
-
-    private fun setOnClicks() {
-
     }
 
     private fun setToolbar() {
@@ -110,7 +105,6 @@ class NotificationFragment : Fragment(), Observer<RestObservable> {
                         AppUtils.showErrorAlert(requireActivity(), data.message)
                     }
                 }
-
             }
 
             Status.ERROR -> {

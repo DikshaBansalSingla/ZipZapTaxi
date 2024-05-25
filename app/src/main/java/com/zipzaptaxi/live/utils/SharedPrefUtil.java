@@ -59,7 +59,7 @@ public class SharedPrefUtil {
 
     public static SharedPrefUtil getInstance() {
         if (instance == null) {
-            instance = new SharedPrefUtil(AppController.Companion.getnstance());
+            instance = new SharedPrefUtil(AppController.Companion.getInstance());
         }
         return instance;
     }

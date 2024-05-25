@@ -35,7 +35,6 @@ class SettingsFragment : Fragment(), Observer<RestObservable> {
     private val authViewModel: AuthViewModel by lazy {
         AuthViewModel()
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -58,12 +57,12 @@ class SettingsFragment : Fragment(), Observer<RestObservable> {
         binding.relTermMain.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("type", "1")
-            findNavController().navigate(R.id.action_settingsFragment_to_termsCondFragment)
+            findNavController().navigate(R.id.action_settingsFragment_to_termsCondFragment,bundle)
         }
         binding.relMyPolicy.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("type", "2")
-            findNavController().navigate(R.id.action_settingsFragment_to_termsCondFragment)
+            findNavController().navigate(R.id.action_settingsFragment_to_termsCondFragment,bundle)
 
         }
         binding.relMyBank.setOnClickListener {
@@ -73,13 +72,10 @@ class SettingsFragment : Fragment(), Observer<RestObservable> {
             showCustomAlertWithCancel(requireContext(),
                 resources.getString(R.string.are_you_sure_you_want_to_logout),
                 getString(R.string.ok),
-                getString(R.string.cancel),
-                {
+                getString(R.string.cancel), {
                     authViewModel.logoutAppApi(requireActivity(), true)
                     authViewModel.mResponse.observe(viewLifecycleOwner, this)
-
-                },
-                {})
+                }, {})
         }
     }
 
@@ -99,10 +95,7 @@ class SettingsFragment : Fragment(), Observer<RestObservable> {
                 if (value.data is BaseResponseModel) {
                     val data: BaseResponseModel = value.data
                     if (data.code == AppConstant.success_code) {
-                        val googleSignInClient = GoogleSignIn.getClient(
-                            requireContext(),
-                            GoogleSignInOptions.DEFAULT_SIGN_IN
-                        )
+                        val googleSignInClient = GoogleSignIn.getClient(requireContext(), GoogleSignInOptions.DEFAULT_SIGN_IN)
                         signOut(googleSignInClient)
                         revokeAccess(googleSignInClient)
                         clearAllData(requireContext())

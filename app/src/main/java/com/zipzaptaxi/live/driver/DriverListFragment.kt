@@ -24,8 +24,7 @@ import com.zipzaptaxi.live.utils.showCustomAlertWithCancel
 import com.zipzaptaxi.live.viewmodel.DriverViewModel
 
 
-class DriverListFragment : Fragment(),
-    Observer<RestObservable> {
+class DriverListFragment : Fragment(), Observer<RestObservable> {
 
     private lateinit var binding:FragmentDriverListBinding
     private lateinit var toolbarBinding:LayoutToolbarBinding
@@ -62,7 +61,6 @@ class DriverListFragment : Fragment(),
         super.onResume()
         getDriverListApi()
     }
-
     private fun getDriverListApi() {
         viewModel.driverListApi(requireActivity(),true)
         viewModel.mResponse.observe(viewLifecycleOwner,this)
@@ -74,7 +72,6 @@ class DriverListFragment : Fragment(),
         driverListAdapter.onItemClick ={
             val bundle = Bundle()
             bundle.putInt("id", arrayList[it].id)
-
             findNavController().navigate(R.id.action_driverListFragment_to_driverDetailActivity,bundle)
 
         }

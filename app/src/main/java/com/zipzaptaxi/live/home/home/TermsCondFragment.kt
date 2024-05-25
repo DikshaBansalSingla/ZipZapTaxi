@@ -43,9 +43,10 @@ class TermsCondFragment() : Fragment(), Observer<RestObservable> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setToolbar()
+
         val bundle= arguments
         type= bundle?.getString("type")!!
+        setToolbar()
         getData()
 
     }

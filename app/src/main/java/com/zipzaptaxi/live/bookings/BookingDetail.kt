@@ -84,7 +84,6 @@ class BookingDetail : Fragment(), Observer<RestObservable> {
         booking_id = bundle?.getInt("id")!!
         getData(booking_id)
         setOnClicks()
-
         setSpinners()
 
     }
@@ -98,19 +97,11 @@ class BookingDetail : Fragment(), Observer<RestObservable> {
                 id: Long
             ) {
                 if (position != 0) {
-                    (view as? TextView)?.setTextColor(
-                        ContextCompat.getColor(
-                            requireContext(), R.color.black
-                        )
-                    )
+                    (view as? TextView)?.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
                     val cabs = jsonData!!.cabs[binding.spCabs.selectedItemPosition - 1]
                     cab_id = cabs.id.toString()
                 } else {
-                    (view as? TextView)?.setTextColor(
-                        ContextCompat.getColor(
-                            requireContext(), R.color.black
-                        )
-                    )
+                    (view as? TextView)?.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
                 }
             }
 
@@ -127,19 +118,11 @@ class BookingDetail : Fragment(), Observer<RestObservable> {
                 id: Long
             ) {
                 if (position != 0) {
-                    (view as? TextView)?.setTextColor(
-                        ContextCompat.getColor(
-                            requireContext(), R.color.black
-                        )
-                    )
+                    (view as? TextView)?.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
                     val cabs = jsonData!!.drivers[binding.spDrivers.selectedItemPosition - 1]
                     driver_id = cabs.id.toString()
                 } else {
-                    (view as? TextView)?.setTextColor(
-                        ContextCompat.getColor(
-                            requireContext(), R.color.black
-                        )
-                    )
+                    (view as? TextView)?.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
                 }
             }
 

@@ -28,7 +28,6 @@ import com.zipzaptaxi.live.utils.extensionfunctions.showToast
 import com.zipzaptaxi.live.utils.helper.AppConstant
 import com.zipzaptaxi.live.viewmodel.BookingViewModel
 
-
 class BookingsFragment : Fragment(), Observer<RestObservable> {
 
     private val viewModel: BookingViewModel
@@ -146,7 +145,6 @@ class BookingsFragment : Fragment(), Observer<RestObservable> {
                     if (data.code == AppConstant.success_code) {
                         arrayList.clear()
                         compArrayList.clear()
-
 
                         if (status == "active") {
                             arrayList.addAll(data.data)

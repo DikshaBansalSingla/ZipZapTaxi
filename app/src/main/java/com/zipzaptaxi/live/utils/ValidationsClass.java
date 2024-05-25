@@ -131,7 +131,7 @@ public class ValidationsClass {
     }
 
     public boolean isNetworkConnected() {
-        ConnectivityManager cm = (ConnectivityManager) AppController.Companion.getnstance().getApplicationContext()
+        ConnectivityManager cm = (ConnectivityManager) AppController.Companion.getInstance().getApplicationContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = null;
         if (cm != null)
