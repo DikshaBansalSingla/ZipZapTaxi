@@ -23,6 +23,17 @@
             android:layout_marginHorizontal="25dp"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/tvNote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red_color"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textStyle="italic"
+                android:visibility="gone"
+                android:text="Note: If you want to edit in bank details then contact to Admin."/>
+
 
             <TextView
                 android:id="@+id/tvName"
@@ -69,7 +80,7 @@
                 android:inputType="number"
                 android:text=""
                 android:hint="000000000000"
-                android:maxLength="14"
+                android:maxLength="16"
                 android:textColor="@color/black"
                 android:background="@drawable/rounded_edittext_bg"
                 android:fontFamily="@font/poppins_medium"
@@ -143,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="UPI Id/ Google Pay/ Paytm"
+                android:text="@string/upi_id_google_pay_paytm"
                 android:textColor="@color/black"
                 android:textSize="14dp" />
 
@@ -162,6 +173,77 @@
                 android:textSize="14dp"/>
 
 
+            <!-- Horizontal Layout for PAN card and Bank Details with Text -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_10sdp">
+
+                <!-- PAN Card Section -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <!-- PAN Card Text -->
+                    <TextView
+                        android:id="@+id/tvPanCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="@string/pan_card"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <!-- PAN Card Image -->
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/ivPanFront"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_80sdp"
+                        android:clipToOutline="true"
+                        android:fitsSystemWindows="true"
+                        android:scaleType="fitXY"
+                        android:layout_marginEnd="@dimen/_6sdp"
+                        android:src="@drawable/placeholder"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Avatar" />
+                </LinearLayout>
+
+                <!-- Bank Details Section -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <!-- Bank Detail Text -->
+                    <TextView
+                        android:id="@+id/tvBankDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Bank Details"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <!-- Bank Detail Image -->
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/ivBankDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_80sdp"
+                        android:clipToOutline="true"
+                        android:fitsSystemWindows="true"
+                        android:scaleType="fitXY"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:src="@drawable/placeholder"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Avatar" />
+                </LinearLayout>
+
+            </LinearLayout>
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnUpdate"
                 android:layout_width="match_parent"
@@ -175,10 +257,6 @@
                 android:textAlignment="center"
                 android:background="@drawable/button_bg_rounded_primary"
                 android:layout_marginBottom="50dp" />
-
         </LinearLayout>
-
     </ScrollView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

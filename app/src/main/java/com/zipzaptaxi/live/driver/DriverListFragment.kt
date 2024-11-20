@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.zipzaptaxi.live.R
 import com.zipzaptaxi.live.adapter.DriverListAdapter
+import com.zipzaptaxi.live.cache.CacheConstants
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
 import com.zipzaptaxi.live.databinding.FragmentDriverListBinding
@@ -53,6 +54,7 @@ class DriverListFragment : Fragment(), Observer<RestObservable> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        CacheConstants.Current = "driverList"
         setToolbar()
         setAdapter()
     }
@@ -77,7 +79,9 @@ class DriverListFragment : Fragment(), Observer<RestObservable> {
         }
 
         driverListAdapter.onDeleteClick ={
-            showCustomAlertWithCancel(requireContext(),"Are you sure you want to delete the driver?","Yes","No",{
+            showCustomAlertWithCancel(requireContext(),
+                getString(R.string.are_you_sure_you_want_to_delete_the_driver),
+                getString(R.string.yes), getString(R.string.no),{
                 position=it
                 viewModel.deleteDriverApi(requireActivity(),true,arrayList[it].id.toString())
 

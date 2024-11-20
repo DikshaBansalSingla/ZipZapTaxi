@@ -2,72 +2,65 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-    <item
-        android:id="@+id/home"
-        android:title="@string/home"
-        android:icon="@drawable/home"
-        />
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/home"
+            android:title="@string/home" />
 
-    <item
-        android:id="@+id/profile"
-        android:title="@string/profile"
-        android:icon="@drawable/user"
-        />
-    <item
-        android:id="@+id/addHomeCity"
-        android:title="@string/add_home_city"
-        android:icon="@drawable/baseline_add_circle_24"
-        />
-    <item
-        android:id="@+id/bookings"
-        android:title="@string/my_bookings"
-        android:icon="@drawable/vehicle_list"
-        />
-    <item
-        android:id="@+id/wallet"
-        android:title="@string/wallet"
-        android:icon="@drawable/wallet"
-        />
+        <item
+            android:id="@+id/profile"
+            android:icon="@drawable/user"
+            android:title="@string/profile" />
+        <item
+            android:id="@+id/addHomeCity"
+            android:icon="@drawable/baseline_add_circle_24"
+            android:title="@string/add_home_city" />
+        <item
+            android:id="@+id/bookings"
+            android:icon="@drawable/vehicle_list"
+            android:title="@string/my_bookings" />
+        <item
+            android:id="@+id/wallet"
+            android:icon="@drawable/wallet"
+            android:title="@string/wallet" />
 
-    <item
-        android:id="@+id/documents"
-        android:title="@string/documents"
-        android:icon="@drawable/documents"
-        />
+        <item
+            android:id="@+id/bankDetails"
+            android:icon="@drawable/specification"
+            android:title="@string/bank_details" />
 
-    <item
-        android:id="@+id/vehicleList"
-        android:title="@string/vehicle_list"
-        android:icon="@drawable/vehicle_list"
-        />
+        <item
+            android:id="@+id/documents"
+            android:icon="@drawable/documents"
+            android:title="@string/documents" />
 
-    <item
-        android:id="@+id/driverList"
-        android:title="@string/driver_list"
-        android:icon="@drawable/add_user"
-        />
- <item
-        android:id="@+id/notifications"
-        android:title="@string/notifications"
-        android:icon="@drawable/notification"
-        />
+        <item
+            android:id="@+id/vehicleList"
+            android:icon="@drawable/vehicle_list"
+            android:title="@string/vehicle_list" />
 
-    <item
-        android:id="@+id/settings"
-        android:title="@string/settings"
-        android:icon="@drawable/add_user"
-        />
+        <item
+            android:id="@+id/driverList"
+            android:icon="@drawable/add_user"
+            android:title="@string/driver_list" />
+        <item
+            android:id="@+id/notifications"
+            android:icon="@drawable/notification"
+            android:title="@string/notifications" />
 
-    <item
-        android:id="@+id/support"
-        android:title="@string/support"
-        android:icon="@drawable/baseline_contact_support_24"
-        />
-    <item
-        android:id="@+id/shareApp"
-        android:title="@string/shareApp"
-        android:icon="@drawable/shared"
-        />
+        <item
+            android:id="@+id/settings"
+            android:icon="@drawable/add_user"
+            android:title="@string/settings" />
+
+        <item
+            android:id="@+id/support"
+            android:icon="@drawable/baseline_contact_support_24"
+            android:title="@string/support" />
+        <item
+            android:id="@+id/shareApp"
+            android:icon="@drawable/shared"
+            android:title="@string/shareApp" />
 
     </group>
 

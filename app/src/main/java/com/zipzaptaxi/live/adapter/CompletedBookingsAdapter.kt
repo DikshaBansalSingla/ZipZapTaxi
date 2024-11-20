@@ -12,17 +12,15 @@ class CompletedBookingsAdapter(val context: Context): RecyclerView.Adapter<Compl
 
     var onItemClick: ((id: Int) -> Unit)? = null
 
-    var list= ArrayList<BookingListResponse.Data>()
-
+    var list= ArrayList<MyBookingsResponse.Data>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CompletedBookingsHolder {
         val view = ItemViewHomeBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return CompletedBookingsHolder(view)
     }
 
-
     inner class CompletedBookingsHolder(val binding: ItemViewHomeBinding): RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: BookingListResponse.Data) {
+        fun onBind(data: MyBookingsResponse.Data) {
             binding.btnAccept.isGone()
 
             if(data.trip=="oneway"){

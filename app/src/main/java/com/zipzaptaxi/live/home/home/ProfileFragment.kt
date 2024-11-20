@@ -17,6 +17,7 @@ import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.zipzaptaxi.live.R
+import com.zipzaptaxi.live.cache.CacheConstants
 import com.zipzaptaxi.live.cache.getUser
 import com.zipzaptaxi.live.cache.saveUser
 import com.zipzaptaxi.live.data.RestObservable
@@ -72,6 +73,7 @@ class ProfileFragment : ImagePickerFragment(), Observer<RestObservable> {
         if (!Places.isInitialized()) {
             Places.initialize(requireContext(), getString(R.string.map_key))
         }
+        CacheConstants.Current = "profile"
         data= getUser(requireContext())
         setToolbar()
         mValidationClass= ValidationsClass.getInstance()
@@ -117,6 +119,7 @@ class ProfileFragment : ImagePickerFragment(), Observer<RestObservable> {
             }else{
                 imageMap["address"]= binding.etAddress.text.toString()
                 imageMap["complete_address"]= binding.etCompAddress.text.toString()
+                imageMap["user_type"]= getUser(requireContext()).user_type.toString()
                 viewModel.updateProfileApi(requireActivity(),true,imageMap)
             }
         }
@@ -216,16 +219,11 @@ class ProfileFragment : ImagePickerFragment(), Observer<RestObservable> {
 
             Log.d("Place: ", place.name!!.toString() + " " + place.address)
             Log.d(ContentValues.TAG, "locationGet: " + place.name)
-
             Log.d(ContentValues.TAG, "locationGet: ${place.plusCode}")
 
                 binding.etAddress.setText(place.address)
-
-
         } else {
             println(resources.getString(R.string.something_went_wrong_while_getting_locations))
         }
     }
-
-
 }

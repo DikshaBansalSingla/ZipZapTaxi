@@ -5,7 +5,6 @@ object AppConstant {
 
 
     const val BASE_URL = "https://zipzaptaxi.com/api/"
-    const val BASE_URL_File_Upload = "https://app.gooutfrance.com/common_api/"
 
     val success_code = 200
     val errorCode = 401
@@ -51,6 +50,8 @@ object AppConstant {
     const val AddBankAcc = BASE_URL + "vendor/add-update-bank-details"
     const val GetBankDetails = BASE_URL + "vendor/bank-details"
     const val GetTransactions = BASE_URL + "vendor/get-transactions"
+    const val SendRequest = BASE_URL + "vendor/request-money"
+    const val TdsData = BASE_URL + "vendor/tds-data"
     const val RazorPayOrder = "https://api.razorpay.com/" + "v1/orders"
 
 

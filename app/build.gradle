@@ -19,7 +19,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -51,6 +51,8 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
 
 
     ////////////for views///////////////
@@ -89,7 +91,7 @@ dependencies {
 // Add the Firebase SDK for Crashlytics.
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
-    implementation 'com.google.android.gms:play-services-location:17.1.0'
+    implementation 'com.google.android.gms:play-services-location:21.3.0'
 
     //Toast
     implementation 'com.github.GrenderG:Toasty:1.5.2'

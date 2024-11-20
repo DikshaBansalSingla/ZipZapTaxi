@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -23,27 +22,23 @@ import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.zipzaptaxi.live.adapter.CategoryCommercialAdapter
 import com.zipzaptaxi.live.adapter.CategoryDriversAdapter
 import com.zipzaptaxi.live.adapter.TimeAdapter
+import com.zipzaptaxi.live.cache.CacheConstants
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
 import com.zipzaptaxi.live.databinding.ActivityCabFreeBinding
-import com.zipzaptaxi.live.databinding.FragmentProfileBinding
 import com.zipzaptaxi.live.databinding.LayoutToolbarBinding
 import com.zipzaptaxi.live.model.BaseResponseModel
-import com.zipzaptaxi.live.model.BookingDetailResponse
 import com.zipzaptaxi.live.model.CabFreeData
 import com.zipzaptaxi.live.model.CabsList
 import com.zipzaptaxi.live.model.DriverList
-import com.zipzaptaxi.live.model.FileUploadResponse
-import com.zipzaptaxi.live.model.LoginReqModel
 import com.zipzaptaxi.live.model.TimeList
 import com.zipzaptaxi.live.utils.ValidationsClass
 import com.zipzaptaxi.live.utils.extensionfunctions.showToast
 import com.zipzaptaxi.live.utils.extensionfunctions.toast
-import com.zipzaptaxi.live.utils.getDate
+import com.zipzaptaxi.live.utils.getCurrentMinDate
 import com.zipzaptaxi.live.utils.helper.AppConstant
 import com.zipzaptaxi.live.utils.helper.AppUtils
 import com.zipzaptaxi.live.viewmodel.CabFreeViewModel
-import java.sql.Time
 
 class CabFreeActivity : Fragment(), Observer<RestObservable> {
 
@@ -55,7 +50,6 @@ class CabFreeActivity : Fragment(), Observer<RestObservable> {
 
     private val listD: ArrayList<DriverList> = ArrayList()
     private val listT: ArrayList<TimeList> = ArrayList()
-
 
     lateinit var binding: ActivityCabFreeBinding
     private lateinit var toolbarBinding: LayoutToolbarBinding
@@ -81,6 +75,7 @@ class CabFreeActivity : Fragment(), Observer<RestObservable> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        CacheConstants.Current = "cabFree"
         if (!Places.isInitialized()) {
             Places.initialize(requireContext(), getString(R.string.map_key))
         }
@@ -170,15 +165,11 @@ class CabFreeActivity : Fragment(), Observer<RestObservable> {
                     )
                 }
             }
-
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
         }
     }
-
-
-
 
     private fun getData() {
         viewModel.getCabFreeApi(requireActivity(),true)
@@ -190,13 +181,13 @@ class CabFreeActivity : Fragment(), Observer<RestObservable> {
 
         binding.etFromDate.setOnTouchListener { _, event ->
             Log.d("Touch", "EditText clicked")
-            getDate(binding.etFromDate, requireContext())
+            getCurrentMinDate(binding.etFromDate, requireContext())
             return@setOnTouchListener false // Consume the event
         }
 
         binding.etToDate.setOnTouchListener { view, event ->
             Log.d("Touch", "EditText clicked")
-            getDate(binding.etToDate, requireContext())
+            getCurrentMinDate(binding.etToDate, requireContext())
             return@setOnTouchListener false // Consume the event
 
         }
@@ -225,22 +216,12 @@ class CabFreeActivity : Fragment(), Observer<RestObservable> {
                 .build(requireContext())
             locationLauncher.launch(intent)
         }
-        /*
-        "driver_id":19,
-    "cab_id":15,
-    "from":"chandigarh",
-    "to":"delhi",
-    "from_date":"16",
-    "to_date":"17",
-    "pick_time":"67",
-    "amount":7000
-         */
 
         binding.btnSubmit.setOnClickListener {
             if(isValid()){
                 val data= HashMap<String,String>()
                 data["driver_id"]=driver_id
-                data["cab_id"]=driver_id
+                data["cab_id"]=cab_id
                 data["from"]=binding.etFrom.text.toString()
                 data["to"]=binding.etCityTo.text.toString()
                 data["from_date"]=binding.etFromDate.text.toString()
@@ -302,9 +283,6 @@ class CabFreeActivity : Fragment(), Observer<RestObservable> {
 
             Log.d(ContentValues.TAG, "locationGet: ${place.plusCode}")
 
-
-            //val countryShortName = getCountryShortName(addressComponentsList)
-
             if(click==0){
                 binding.etFrom.setText(place.address)
             }else{
@@ -312,7 +290,7 @@ class CabFreeActivity : Fragment(), Observer<RestObservable> {
             }
 
         } else {
-            toast(resources?.getString(R.string.something_went_wrong_while_getting_locations)!!)
+            print(resources?.getString(R.string.something_went_wrong_while_getting_locations)!!)
         }
     }
 
@@ -330,7 +308,8 @@ class CabFreeActivity : Fragment(), Observer<RestObservable> {
                 }else if (value.data is BaseResponseModel) {
                     val data: BaseResponseModel = value.data
                     if (data.code == AppConstant.success_code) {
-                       AppUtils.showSuccessAlert(requireActivity(),data.message)
+                        toast(data.message)
+                     //  AppUtils.showSuccessAlert(requireActivity(),data.message)
                         findNavController().navigate(R.id.action_cabFreeActivity_to_homeFragment)
 
                     }else{
@@ -370,7 +349,6 @@ class CabFreeActivity : Fragment(), Observer<RestObservable> {
         val cabListt = CategoryCommercialAdapter(requireActivity(), "Select Cab", listC)
         binding.spCabs.adapter = cabListt
 
-
         listD.clear()
         listD.add(DriverList(0, "Select Driver", ""))
         if (data.drivers.isNotEmpty()) {
@@ -387,19 +365,14 @@ class CabFreeActivity : Fragment(), Observer<RestObservable> {
         val driverListt = CategoryDriversAdapter(requireActivity(), "Select Driver", listD)
         binding.spDrivers.adapter = driverListt
 
-
         val cabListT = CategoryCommercialAdapter(requireActivity(), "Select Cab", listC)
         binding.spCabs.adapter = cabListT
-
 
         listT.clear()
         listT.add(TimeList("Select Time"))
         if (data.time.isNotEmpty()) {
-            for (i in 0 until data.drivers.size) {
-                listT.add(
-                   TimeList (
-                        data.time[i].toString()
-                    )
+            for (i in 0 until data.time.size) {
+                listT.add(TimeList (data.time[i].toString())
                 )
             }
         }

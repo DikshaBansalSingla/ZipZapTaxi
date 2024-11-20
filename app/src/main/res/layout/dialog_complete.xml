@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_green_50"
+    android:orientation="vertical">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_220sdp"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        android:background="@drawable/button_gray"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTitleDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:gravity="center"
+            android:text="Your trip has been completed!!"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            android:fontFamily="@font/poppins_medium"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/txtBalance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:drawablePadding="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Cash Collect:"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleDialog" />
+
+        <TextView
+            android:id="@+id/tvBalAmount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:drawablePadding="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:text=""
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleDialog" />
+
+
+        <TextView
+            android:id="@+id/txtExtraKm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:drawablePadding="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Extra KM Driven()"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtBalance" />
+
+        <TextView
+            android:id="@+id/tvExtraKm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:drawablePadding="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtBalance" />
+
+        <TextView
+            android:id="@+id/txtExtraMin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:drawablePadding="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Extra Minutes:"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtExtraKm" />
+
+        <TextView
+            android:id="@+id/tvExtraMin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:drawablePadding="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtExtraKm" />
+
+
+        <TextView
+            android:id="@+id/txtOtherCharges"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:drawablePadding="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Other Charges:"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtExtraMin" />
+
+        <TextView
+            android:id="@+id/tvOtherCharges"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:drawablePadding="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtExtraMin" />
+
+
+
+        <TextView
+            android:id="@+id/txtTotalPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:drawablePadding="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Total Price:"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtOtherCharges" />
+
+        <TextView
+            android:id="@+id/tvTotalPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:drawablePadding="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtOtherCharges" />
+
+
+        <Button
+            android:id="@+id/btnYes"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:textAllCaps="false"
+            android:background="@drawable/button_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:text="@string/ok"
+            android:textSize="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTotalPrice" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

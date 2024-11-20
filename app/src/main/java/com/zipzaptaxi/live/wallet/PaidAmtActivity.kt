@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.zipzaptaxi.live.R
 import com.zipzaptaxi.live.adapter.PaidAmtAdapter
+import com.zipzaptaxi.live.cache.CacheConstants
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
 import com.zipzaptaxi.live.databinding.ActivityPaidAmountBinding
@@ -36,7 +37,6 @@ class PaidAmtActivity : Fragment(), Observer<RestObservable> {
         WalletViewModel()
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,6 +50,7 @@ class PaidAmtActivity : Fragment(), Observer<RestObservable> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        CacheConstants.Current = "paidAmt"
         setToolbar()
         setAdapter()
         getData()

@@ -19,6 +19,8 @@ import com.zipzaptaxi.live.utils.helper.AppConstant
 import com.zipzaptaxi.live.utils.helper.AppUtils
 import com.zipzaptaxi.live.viewmodel.WalletViewModel
 import androidx.navigation.fragment.findNavController
+import com.zipzaptaxi.live.cache.CacheConstants
+import com.zipzaptaxi.live.cache.getUser
 
 import java.util.ArrayList
 
@@ -28,7 +30,7 @@ class WalletFragment : Fragment(), Observer<RestObservable> {
     private lateinit var toolbarBinding: LayoutToolbarBinding
 
     private val adapter:BookingHistoryAdapter by lazy {
-        BookingHistoryAdapter()
+        BookingHistoryAdapter(requireContext())
     }
 
     private val viewModel: WalletViewModel by lazy {
@@ -36,7 +38,6 @@ class WalletFragment : Fragment(), Observer<RestObservable> {
     }
 
     private val arrayList= ArrayList<GetWalletModel.Data.Booking>()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +52,7 @@ class WalletFragment : Fragment(), Observer<RestObservable> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        CacheConstants.Current = "wallet"
         setToolbar()
         setOnClicks()
         setAdapter()
@@ -64,13 +66,18 @@ class WalletFragment : Fragment(), Observer<RestObservable> {
     }
 
     private fun getWalletData() {
-        viewModel.getWalletDataApi(requireActivity(),true)
+        viewModel.getWalletDataApi(requireActivity(),true, getUser(requireContext()).user_type.toString())
         viewModel.mResponse.observe(viewLifecycleOwner,this)
     }
 
     private fun setAdapter() {
         binding.rvBookings.adapter= adapter
         adapter.list= arrayList
+        adapter.onItemClick = {
+            val bundle = Bundle()
+            bundle.putInt("id", arrayList[it].booking_id)
+            findNavController().navigate(R.id.action_walletFragment_to_bookingDetail,bundle)
+        }
     }
 
     private fun setOnClicks() {
@@ -78,18 +85,22 @@ class WalletFragment : Fragment(), Observer<RestObservable> {
             findNavController().navigate(R.id.action_walletFragment_to_paidAmtActivity2)
         }
 
-        binding.tvAddMoney.setOnClickListener {
-            findNavController().navigate(R.id.action_walletFragment_to_addMoneyActivity)
+        binding.tvReqMoney.setOnClickListener {
+            findNavController().navigate(R.id.action_walletFragment_to_tripAmtFragment)
+        }
+
+        if(getUser(requireContext()).user_type!="driver"){
+            binding.tvAddMoney.setOnClickListener {
+                findNavController().navigate(R.id.action_walletFragment_to_addMoneyActivity)
+            }
         }
     }
 
     private fun setToolbar() {
         toolbarBinding.toolbar.setNavigationIcon(R.drawable.ic_baseline_menu_24)
-
         toolbarBinding.toolbar.setNavigationOnClickListener {
             (activity as MainActivity).openCloseDrawer()
         }
-
         toolbarBinding.toolbarTitle.text= getString(R.string.wallet)
     }
 
@@ -100,7 +111,6 @@ class WalletFragment : Fragment(), Observer<RestObservable> {
                     val data: GetWalletModel = value.data
                     if (data.code == AppConstant.success_code) {
                             setData(data.data)
-
                     } else {
                         AppUtils.showErrorAlert(requireActivity(), data.message)
                     }
@@ -117,7 +127,6 @@ class WalletFragment : Fragment(), Observer<RestObservable> {
             }
 
             Status.LOADING -> {
-
             }
 
             else -> {}
@@ -130,7 +139,7 @@ class WalletFragment : Fragment(), Observer<RestObservable> {
         binding.tvPaidAmt.text="Paid" +"\n₹" +data.paid
         binding.tvPenalty.text="Penalty"+"\n₹" +data.panelty
         binding.tvTotalBal.text="Balance"+"\n₹" + data.balance
-        binding.tvNote.text="Note*: "+data.balance+" is non refundable but will remain in your wallet"
+        binding.tvNote.text="Note*: "+"₹"+data.note_balance+" is non refundable but will remain in your wallet"
         arrayList.clear()
         if(data.bookings.size!=0){
             arrayList.addAll(data.bookings)

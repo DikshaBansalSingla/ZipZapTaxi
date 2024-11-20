@@ -186,6 +186,68 @@
 
 
 
+    <TextView
+        android:id="@+id/tvExtraMins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/etExtraMins"
+        app:layout_constraintBottom_toBottomOf="@id/etExtraMins"
+        android:text="Extra Waiting Minutes:"
+        android:textColor="@color/black"
+        android:textSize="14dp" />
+
+    <EditText
+        android:id="@+id/etExtraMins"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="10dp"
+        android:inputType="number"
+        android:text=""
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:layout_marginStart="@dimen/_12sdp"
+        app:layout_constraintStart_toEndOf="@id/tvExtraMins"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etReading"
+        android:background="@drawable/rounded_edittext_bg"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="14dp"/>
+
+
+    <TextView
+        android:id="@+id/tvOtherCharges"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/etOtherCharges"
+        app:layout_constraintBottom_toBottomOf="@+id/etOtherCharges"
+        android:text="Other Charges:"
+        android:textColor="@color/black"
+        android:textSize="14dp" />
+
+    <EditText
+        android:id="@+id/etOtherCharges"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="10dp"
+        android:inputType="number"
+        android:text=""
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/etExtraMins"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etExtraMins"
+        android:background="@drawable/rounded_edittext_bg"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="14dp"/>
+
+
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnStart"
         android:layout_width="match_parent"
@@ -193,7 +255,7 @@
         app:cornerRadius="16dp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etReading"
+        app:layout_constraintTop_toBottomOf="@+id/etOtherCharges"
         android:fontFamily="@font/poppins_medium"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_30sdp"

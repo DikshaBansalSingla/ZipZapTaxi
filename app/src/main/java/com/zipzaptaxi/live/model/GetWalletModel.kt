@@ -8,6 +8,7 @@ data class GetWalletModel(
 ) {
     data class Data(
         val balance: String,
+        val note_balance: String,
         val bookings: ArrayList<Booking>,
         val collect_amount: String,
         val paid: String,
@@ -17,12 +18,13 @@ data class GetWalletModel(
         data class Booking(
             val airport_charge: String,
             val alternate_no: String,
-            val assigned_cab: String,
-            val assigned_driver: String,
+            val assigned_cab: Int,
+            val assigned_driver: Int,
             val assigned_to_me: Int,
             val assigned_to_other: Int,
+            val booking_id: Int,
             val bags: String,
-            val balance: Int,
+            val balance: String,
             val booking_status: String,
             val booking_unique_id: String,
             val cab_image: String,
@@ -40,7 +42,7 @@ data class GetWalletModel(
             val extra_time_charge: String,
             val get_otp: Int,
             val gst_no: String,
-            val id: String,
+            val id: Int,
             val mobile: String,
             val name: String,
             val night_charges: String,
@@ -62,12 +64,16 @@ data class GetWalletModel(
             val source: String,
             val state_tax: String,
             val status: String,
-            val stops: String,
+            val stops: Stops,
             val time_to_cover: String,
             val toll_tax: String,
             val total_price_with_extra_km: Int,
             val trip: String,
-            val vendor_amount: Int
-        )
+            val vendor_amount: String
+        ) {
+            data class Stops(
+                val `0`: String
+            )
+        }
     }
 }

@@ -3,6 +3,9 @@ package com.zipzaptaxi.live.utils.extensionfunctions
 import android.app.Activity
 import android.content.Context
 import android.net.ConnectivityManager
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.style.RelativeSizeSpan
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -171,6 +174,19 @@ fun View.isVisible() {
     visibility = View.VISIBLE
 }
 
+fun Double.toRupeeWithBigSymbol(): SpannableStringBuilder {
+    val rupeeSymbol = "₹"
+    val amount = "%.2f".format(this)
+
+    val spannable = SpannableStringBuilder(rupeeSymbol + amount)
+    spannable.setSpan(RelativeSizeSpan(1.5f), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE) // Make the rupee symbol 1.5x larger
+
+    return spannable
+}
+
+fun Int.toRupeeWithBigSymbol(): SpannableStringBuilder {
+    return this.toDouble().toRupeeWithBigSymbol()
+}
 fun View.isGone() {
     visibility = View.GONE
 }

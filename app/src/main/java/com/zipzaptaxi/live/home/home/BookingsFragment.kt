@@ -1,6 +1,7 @@
 package com.zipzaptaxi.live.home.home
 
 import BookingListResponse
+import MyBookingsResponse
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +18,7 @@ import com.zipzaptaxi.live.R
 import com.zipzaptaxi.live.adapter.ActiveBookingsAdapter
 import com.zipzaptaxi.live.adapter.CompletedBookingsAdapter
 import com.zipzaptaxi.live.bookings.BookingDetail
+import com.zipzaptaxi.live.cache.CacheConstants
 import com.zipzaptaxi.live.cache.getUser
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
@@ -43,8 +45,8 @@ class BookingsFragment : Fragment(), Observer<RestObservable> {
 
     private var status="active"
 
-    private var arrayList = ArrayList<BookingListResponse.Data>()
-    private var compArrayList = ArrayList<BookingListResponse.Data>()
+    private var arrayList = ArrayList<MyBookingsResponse.Data>()
+    private var compArrayList = ArrayList<MyBookingsResponse.Data>()
 
     private lateinit var binding: FragmentBookingsBinding
     private lateinit var toolbarBinding: LayoutToolbarBinding
@@ -62,8 +64,8 @@ class BookingsFragment : Fragment(), Observer<RestObservable> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        CacheConstants.Current = "bookings"
         setToolbar()
-
         setAdapter()
         getBookingsApi(status)
         setOnClicks()
@@ -140,8 +142,8 @@ class BookingsFragment : Fragment(), Observer<RestObservable> {
     override fun onChanged(value: RestObservable) {
         when (value.status) {
             Status.SUCCESS -> {
-                if (value.data is BookingListResponse) {
-                    val data: BookingListResponse = value.data
+                if (value.data is MyBookingsResponse) {
+                    val data: MyBookingsResponse = value.data
                     if (data.code == AppConstant.success_code) {
                         arrayList.clear()
                         compArrayList.clear()

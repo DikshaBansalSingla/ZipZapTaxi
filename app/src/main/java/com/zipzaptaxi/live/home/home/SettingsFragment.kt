@@ -13,6 +13,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.zipzaptaxi.live.R
 import com.zipzaptaxi.live.auth.LoginActivity
+import com.zipzaptaxi.live.cache.CacheConstants
 import com.zipzaptaxi.live.cache.clearAllData
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
@@ -24,7 +25,6 @@ import com.zipzaptaxi.live.utils.extensionfunctions.showToast
 import com.zipzaptaxi.live.utils.helper.AppConstant
 import com.zipzaptaxi.live.utils.showCustomAlertWithCancel
 import com.zipzaptaxi.live.viewmodel.AuthViewModel
-
 
 class SettingsFragment : Fragment(), Observer<RestObservable> {
 
@@ -48,6 +48,7 @@ class SettingsFragment : Fragment(), Observer<RestObservable> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        CacheConstants.Current = "settings"
         setToolbar()
         setOnClicks()
         //getSupportData()

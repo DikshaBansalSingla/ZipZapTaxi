@@ -28,7 +28,7 @@ import com.zipzaptaxi.live.home.MainActivity
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
     private val TAG = "FireBasePush"
-    private var CHANNEL_ID = "v2k"
+    private var CHANNEL_ID = "Zipzap Taxi"
     private var title = ""
     private var message = ""
     private var type = ""
@@ -46,7 +46,9 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             addAction(AudioManager.ACTION_AUDIO_BECOMING_NOISY)
             addAction("STOP_MEDIA_PLAYER")
         }
-        registerReceiver(mediaPlayerBroadcastReceiver, intentFilter)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            registerReceiver(mediaPlayerBroadcastReceiver, intentFilter, RECEIVER_NOT_EXPORTED)
+        }
     }
 
     override fun onDestroy() {
@@ -60,7 +62,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+       /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notificationChannel = NotificationChannel(CHANNEL_ID, CHANNEL_ONE_NAME, NotificationManager.IMPORTANCE_HIGH).apply {
                 enableLights(true)
                 enableVibration(true)
@@ -68,7 +70,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 setShowBadge(true)
                 lockscreenVisibility = Notification.VISIBILITY_PUBLIC
             }
-        }
+        }*/
 
         Log.e(TAG, "Notification: ${remoteMessage.data}")
 
@@ -76,16 +78,16 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             remoteMessage.data?.let {
                 val title = it["title"].toString()
                 val message = it["message"].toString()
-                val type = it["notification_type"].toString()
+                type = it["notification_type"].toString()
 
                 val notificationIntent = if (type == "booking") {
-                    Intent(this, BookingDetail::class.java).apply {
+                   /* Intent(this, MainActivity::class.java).apply {
                         putExtra("id", it["booking_id"].toString())
-                    }
+                    }*/
+                    Intent(this, MainActivity::class.java)
                 } else {
                     Intent(this, MainActivity::class.java)
                 }
-
                 makePush(title, message, notificationIntent)
             }
         } catch (e: Exception) {
@@ -94,17 +96,17 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     private fun makePush(title: String, message: String, intent: Intent?) {
-        val pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            PendingIntent.getActivity(applicationContext, 0, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
-        } else {
-            PendingIntent.getActivity(applicationContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-        }
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
 
         intent?.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-
         val channelId = CHANNEL_ID
         val defaultSoundUri: Uri = if (type == "booking") {
-            Uri.parse("android.resource://" + packageName + "/" + R.raw.tring_tring)
+            Uri.parse("android.resource://" + packageName + "/" + R.raw.notification)
         } else {
             RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         }
@@ -135,7 +137,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(channelId, "Zipzap Taxi", NotificationManager.IMPORTANCE_HIGH).apply {
+            val channel = NotificationChannel(channelId, CHANNEL_ONE_NAME, NotificationManager.IMPORTANCE_HIGH).apply {
                 enableLights(true)
                 lightColor = Color.MAGENTA
                 setShowBadge(true)

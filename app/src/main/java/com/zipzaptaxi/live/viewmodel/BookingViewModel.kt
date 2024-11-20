@@ -15,10 +15,10 @@ class BookingViewModel: ViewModel() {
     var mResponse: MutableLiveData<RestObservable> = MutableLiveData()
 
     fun bookingListApi(
-        activity: Activity, showLoader: Boolean
+        activity: Activity, showLoader: Boolean,userType: String
 
     ) {
-        restApiInterface.getBookings()
+        restApiInterface.getBookings(userType)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }

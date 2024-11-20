@@ -17,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.github.chrisbanes.photoview.PhotoView
 import com.zipzaptaxi.live.R
+import com.zipzaptaxi.live.cache.CacheConstants
 import com.zipzaptaxi.live.cache.getToken
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
@@ -40,7 +41,6 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import org.json.JSONArray
 import java.io.File
-
 
 class UploadDocumentsFragment : ImagePickerFragment(), Observer<RestObservable> {
 
@@ -85,7 +85,7 @@ class UploadDocumentsFragment : ImagePickerFragment(), Observer<RestObservable> 
 
         }else if (imagePath != null && code==1) {
             mAadharBPath = imagePath
-            bodyimage = prepareMultiPart("image", File(mAadharFPath))
+            bodyimage = prepareMultiPart("image", File(mAadharBPath))
 
             map["image_name"] = mValidationClass.createPartFromString("aadhar_card_back")
             uploadDocApi(bodyimage)
@@ -93,7 +93,7 @@ class UploadDocumentsFragment : ImagePickerFragment(), Observer<RestObservable> 
                 .into(binding.ivAadhaarBack)
         }else if (imagePath != null && code==2) {
             mPanFPath = imagePath
-            bodyimage = prepareMultiPart("image", File(mAadharFPath))
+            bodyimage = prepareMultiPart("image", File(mPanFPath))
 
             map["image_name"] = mValidationClass.createPartFromString("pan_card_front")
             uploadDocApi(bodyimage)
@@ -169,6 +169,7 @@ class UploadDocumentsFragment : ImagePickerFragment(), Observer<RestObservable> 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mValidationClass= ValidationsClass.getInstance()
+        CacheConstants.Current = "docs"
         setToolbar()
         Log.i("token====", getToken(requireContext())!!)
         getAllDocs()
@@ -253,8 +254,9 @@ class UploadDocumentsFragment : ImagePickerFragment(), Observer<RestObservable> 
         }
 
         binding.btnNext.setOnClickListener {
-                if (mAadharFPath.isNullOrEmpty() || mAadharBPath.isNullOrEmpty() || mPanFPath.isNullOrEmpty() ||
-                    mPanBPath.isNullOrEmpty() || mDlFrontPath.isNullOrEmpty() || mDlBackPath.isNullOrEmpty()
+                if (mAadharFPath.isNullOrEmpty() || mAadharBPath.isNullOrEmpty()
+                    //|| mPanFPath.isNullOrEmpty() || mPanBPath.isNullOrEmpty()
+                    || mDlFrontPath.isNullOrEmpty() || mDlBackPath.isNullOrEmpty()
                 ) {
                     showErrorAlert(requireActivity(), "Please upload all the documents")
                 } else {
@@ -265,7 +267,7 @@ class UploadDocumentsFragment : ImagePickerFragment(), Observer<RestObservable> 
 
     private fun uploadAllDocs() {
         Log.i("map",imageMap.toString())
-        docViewModel.uploadDocsApi(requireActivity(),true,imageMap)
+        docViewModel.uploadDocsApi(requireActivity(),true, imageMap)
     }
 
     override fun onChanged(value: RestObservable) {
@@ -340,8 +342,8 @@ class UploadDocumentsFragment : ImagePickerFragment(), Observer<RestObservable> 
         binding.btnNext.isGone()
         Glide.with(requireContext()).load(data.aadhar_card_front).into(binding.ivAadhaarFront)
         Glide.with(requireContext()).load(data.aadhar_card_back).into(binding.ivAadhaarBack)
-        Glide.with(requireContext()).load(data.pan_card_front).into(binding.ivPanFront)
-        Glide.with(requireContext()).load(data.pan_card_back).into(binding.ivPanBack)
+//        Glide.with(requireContext()).load(data.pan_card_front).into(binding.ivPanFront)
+//        Glide.with(requireContext()).load(data.pan_card_back).into(binding.ivPanBack)
         Glide.with(requireContext()).load(data.driving_license_front).into(binding.ivDLFront)
         Glide.with(requireContext()).load(data.driving_license_back).into(binding.ivDLBack)
         if(!data.police_verification.isNullOrEmpty()){
@@ -349,7 +351,6 @@ class UploadDocumentsFragment : ImagePickerFragment(), Observer<RestObservable> 
         }else{
             Glide.with(requireContext()).load(R.drawable.placeholder).into(binding.ivCert)
         }
-
     }
 
     /**

@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_12sdp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Two Way Trip"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14sdp"
                 app:layout_constraintEnd_toStartOf="@+id/tvTripId"
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_12sdp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="TB-2000003743TT"
+                android:text=""
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14sdp"
@@ -68,7 +68,7 @@
                 android:layout_margin="@dimen/_12sdp"
                 android:drawablePadding="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Sector 9, Chandigarh"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
                 app:drawableStartCompat="@drawable/pick_up_location"
@@ -82,15 +82,15 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_12sdp"
                 android:drawablePadding="@dimen/_10sdp"
-                android:drawableTint="@color/md_grey_800"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Delhi Metro Stationmncvjdfkvhdkmndcekfc"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
                 app:drawableStartCompat="@drawable/drop_location"
                 app:layout_constraintEnd_toStartOf="@+id/ivCar"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvTripFrom" />
+                app:layout_constraintTop_toBottomOf="@+id/tvTripFrom"
+                app:drawableTint="@color/md_grey_800" />
 
             <TextView
                 android:id="@+id/tvTripTo"
@@ -99,7 +99,7 @@
                 android:layout_margin="@dimen/_12sdp"
                 android:drawablePadding="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Delhi Metro Stationmncvjdfkvhdkmndcekfc"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
                 app:drawableStartCompat="@drawable/drop_location"
@@ -115,7 +115,7 @@
                 android:layout_margin="@dimen/_12sdp"
                 android:drawablePadding="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Hyundai Toyota"
+                android:text=""
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
@@ -142,7 +142,7 @@
                 android:layout_margin="@dimen/_12sdp"
                 android:drawablePadding="@dimen/_6sdp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="700"
+                android:text=""
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14sdp"
@@ -186,7 +186,7 @@
                         android:layout_marginTop="@dimen/_12sdp"
                         android:layout_toEndOf="@+id/ivPick"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="Pick-Up Date"
+                        android:text="@string/pick_up_date"
                         android:textAlignment="textStart"
                         android:textColor="@color/quantum_grey800"
                         android:textSize="@dimen/_14sdp" />
@@ -199,7 +199,7 @@
                         android:layout_marginStart="@dimen/_10sdp"
                         android:layout_toEndOf="@+id/ivPick"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="Sunday, 20-Feb-2024"
+                        android:text=""
                         android:textAlignment="textStart"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14sdp" />
@@ -233,7 +233,7 @@
                         android:layout_marginTop="@dimen/_12sdp"
                         android:layout_toEndOf="@+id/ivPickTime"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="Pick-Up Time"
+                        android:text="@string/pick_up_time"
                         android:textAlignment="textStart"
                         android:textColor="@color/quantum_grey800"
                         android:textSize="@dimen/_14sdp" />
@@ -246,7 +246,7 @@
                         android:layout_marginStart="@dimen/_10sdp"
                         android:layout_toEndOf="@+id/ivPickTime"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="04:30AM"
+                        android:text=""
                         android:textAlignment="textStart"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14sdp" />
@@ -280,7 +280,7 @@
                         android:layout_marginStart="@dimen/_10sdp"
                         android:layout_toEndOf="@+id/ivReturn"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="Return Date"
+                        android:text="@string/return_date"
                         android:textAlignment="textStart"
                         android:textColor="@color/quantum_grey800"
                         android:textSize="@dimen/_14sdp" />
@@ -294,7 +294,7 @@
                         android:layout_marginStart="@dimen/_10sdp"
                         android:layout_toEndOf="@+id/ivReturn"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="22-Feb-2024"
+                        android:text=""
                         android:textAlignment="textStart"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14sdp" />
@@ -329,7 +329,7 @@
                         android:layout_marginStart="@dimen/_10sdp"
                         android:layout_toEndOf="@+id/ivReturnTime"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="Return Time"
+                        android:text="@string/return_time"
                         android:textAlignment="textStart"
                         android:textColor="@color/quantum_grey800"
                         android:textSize="@dimen/_14sdp" />
@@ -342,7 +342,7 @@
                         android:layout_marginStart="@dimen/_10sdp"
                         android:layout_toEndOf="@id/ivReturnTime"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="08:30AM"
+                        android:text=""
                         android:textAlignment="textStart"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14sdp" />
@@ -357,7 +357,7 @@
                 android:layout_margin="@dimen/_10sdp"
                 android:drawablePadding="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="Select Cabs"
+                android:text="@string/select_cabs"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_10sdp"
@@ -393,7 +393,7 @@
                 android:layout_margin="@dimen/_10sdp"
                 android:drawablePadding="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="Select Drivers"
+                android:text="@string/select_drivers"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_10sdp"
@@ -420,159 +420,6 @@
             </RelativeLayout>
 
 
-            <!-- <ImageView
-                android:id="@+id/ivNightCharge"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/rupees"
-               app:layout_constraintStart_toEndOf="@+id/guideline9"
-                app:layout_constraintTop_toTopOf="@+id/txtNightCharge"
-                app:layout_constraintBottom_toBottomOf="@+id/tvNightCharge"/>
-
-
-            <TextView
-                android:id="@+id/txtNightCharge"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Night Charge"
-                android:textAlignment="textStart"
-                android:textSize="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                app:layout_constraintStart_toEndOf="@+id/ivNightCharge"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rlDrivers" />
-
-
-            <TextView
-                android:id="@+id/tvNightCharge"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="120"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                app:layout_constraintStart_toEndOf="@+id/ivNightCharge"
-                app:layout_constraintTop_toBottomOf="@+id/txtNightCharge" />
-
-            <ImageView
-                android:id="@+id/ivInclude"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/include"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="@dimen/_10sdp"
-                app:layout_constraintTop_toTopOf="@+id/txtNightPickUp"
-                app:layout_constraintBottom_toBottomOf="@+id/tvNightPickUp"/>
-
-            <TextView
-                android:id="@+id/txtNightPickUp"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Night Pickup"
-                android:textAlignment="textStart"
-                android:textSize="@dimen/_10sdp"
-                app:layout_constraintStart_toEndOf="@+id/ivInclude"
-                app:layout_constraintEnd_toStartOf="@+id/guideline9"
-                app:layout_constraintTop_toBottomOf="@+id/rlDrivers" />
-
-            <TextView
-                android:id="@+id/tvNightPickUp"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Include"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12sdp"
-                app:layout_constraintStart_toStartOf="@+id/txtNightPickUp"
-                app:layout_constraintEnd_toEndOf="@+id/txtNightPickUp"
-                app:layout_constraintTop_toBottomOf="@+id/txtNightPickUp" />
-
-
-            <ImageView
-                android:id="@+id/ivNightDropCharge"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/rupees"
-                app:layout_constraintStart_toEndOf="@+id/guideline9"
-                app:layout_constraintTop_toTopOf="@+id/txtNightDropCharge"
-                app:layout_constraintBottom_toBottomOf="@+id/tvNightDropCharge"/>
-
-
-            <TextView
-                android:id="@+id/txtNightDropCharge"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Night Drop Charge"
-                android:textAlignment="textStart"
-                android:textSize="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                app:layout_constraintStart_toEndOf="@+id/ivNightDropCharge"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvNightPickUp" />
-
-
-            <TextView
-                android:id="@+id/tvNightDropCharge"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="120"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                app:layout_constraintStart_toEndOf="@+id/ivNightDropCharge"
-                app:layout_constraintTop_toBottomOf="@+id/txtNightDropCharge" />
-
-            <ImageView
-                android:id="@+id/ivDropInclude"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/include"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="@dimen/_10sdp"
-                app:layout_constraintTop_toTopOf="@+id/txtNightDrop"
-                app:layout_constraintBottom_toBottomOf="@+id/tvNightDrop"/>
-
-
-            <TextView
-                android:id="@+id/txtNightDrop"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Night Drop"
-                android:textAlignment="textStart"
-                android:textSize="@dimen/_10sdp"
-                app:layout_constraintStart_toEndOf="@+id/ivDropInclude"
-                app:layout_constraintEnd_toStartOf="@+id/guideline9"
-                app:layout_constraintTop_toBottomOf="@+id/tvNightPickUp" />
-
-            <TextView
-                android:id="@+id/tvNightDrop"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Include"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12sdp"
-                app:layout_constraintStart_toStartOf="@+id/txtNightDrop"
-                app:layout_constraintTop_toBottomOf="@+id/txtNightDrop" />
-
--->
-
             <ImageView
                 android:id="@+id/ivAcbType"
                 android:layout_width="wrap_content"
@@ -590,7 +437,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Cab Type"
+                android:text="@string/cab_type"
                 android:textAlignment="center"
                 android:textSize="@dimen/_10sdp"
                 app:layout_constraintStart_toEndOf="@+id/ivAcbType"
@@ -602,7 +449,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Petrol"
+                android:text=""
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
@@ -626,7 +473,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Roof Top Carrier"
+                android:text="@string/roof_top_carrier"
                 android:textAlignment="textStart"
                 android:textSize="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -638,7 +485,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Yes"
+                android:text=""
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
@@ -663,7 +510,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Toll Tax"
+                android:text="@string/toll_tax"
                 android:textAlignment="textStart"
                 android:textSize="@dimen/_10sdp"
 
@@ -689,7 +536,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Passengers"
+                android:text="@string/passengers"
                 android:textAlignment="textStart"
                 android:textSize="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -702,7 +549,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="2"
+                android:text=""
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
@@ -718,7 +565,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="State Tax"
+                android:text="@string/state_tax"
                 android:textAlignment="textStart"
                 android:textSize="@dimen/_10sdp"
                 app:layout_constraintStart_toEndOf="@+id/ivInclude1"
@@ -730,7 +577,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Yes"
+                android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
@@ -754,7 +601,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Yes"
+                android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
@@ -780,7 +627,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Parking"
+                android:text="@string/parking"
                 android:textAlignment="textStart"
                 android:textSize="@dimen/_10sdp"
                 app:layout_constraintStart_toEndOf="@+id/ivParking"
@@ -792,7 +639,7 @@
                 android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Incude"
+                android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
@@ -817,7 +664,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Night Pickup"
+                android:text="@string/night_pickup"
                 android:textAlignment="textStart"
                 android:textSize="@dimen/_10sdp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline9"
@@ -829,7 +676,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Include"
+                android:text=""
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
@@ -856,7 +703,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Night Drop"
+                android:text="@string/night_drop"
                 android:textAlignment="textStart"
                 android:textSize="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -868,7 +715,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Include"
+                android:text=""
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
@@ -894,7 +741,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Night Charge"
+                android:text="@string/night_charge"
                 android:textAlignment="textStart"
                 android:textSize="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -908,7 +755,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="120"
+                android:text=""
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
@@ -934,7 +781,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Night Drop Charge"
+                android:text="@string/night_drop_charge"
                 android:textAlignment="textStart"
                 android:textSize="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -948,7 +795,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="120"
+                android:text=""
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
@@ -974,7 +821,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Airport entry/parking"
+                android:text="@string/airport_entry_parking"
                 android:textAlignment="textStart"
                 android:textSize="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -987,7 +834,7 @@
                 android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="2"
+                android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
@@ -1010,42 +857,12 @@
                     android:layout_margin="@dimen/_12sdp"
                     android:drawablePadding="@dimen/_10sdp"
                     android:fontFamily="@font/poppins_bold"
-                    android:text="Amount Details:"
+                    android:text="@string/amount_details"
                     android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14sdp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/txtVendorAmount"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:drawablePadding="@dimen/_10sdp"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="Vendor Amount:"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_11sdp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtAmountcharge" />
-
-                <TextView
-                    android:id="@+id/tvVendorAmount"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:drawablePadding="@dimen/_10sdp"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="1000"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_11sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtAmountcharge" />
 
 
                 <TextView
@@ -1056,12 +873,12 @@
                     android:layout_marginTop="@dimen/_8sdp"
                     android:drawablePadding="@dimen/_10sdp"
                     android:fontFamily="@font/poppins_bold"
-                    android:text="Balance Amount:"
+                    android:text="Cash Collect:"
                     android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_11sdp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtVendorAmount" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtAmountcharge" />
 
                 <TextView
                     android:id="@+id/tvBalAmount"
@@ -1071,12 +888,164 @@
                     android:layout_marginEnd="@dimen/_12sdp"
                     android:drawablePadding="@dimen/_10sdp"
                     android:fontFamily="@font/poppins_bold"
-                    android:text="1000"
+                    android:text=""
                     android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_11sdp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtVendorAmount" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtAmountcharge" />
+
+
+                <TextView
+                    android:id="@+id/txtExtraKm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Extra KM Driven()"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtBalance" />
+
+                <TextView
+                    android:id="@+id/tvExtraKm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtBalance" />
+
+                <TextView
+                    android:id="@+id/txtExtraMin"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Extra Minutes:"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtExtraKm" />
+
+                <TextView
+                    android:id="@+id/tvExtraMin"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtExtraKm" />
+
+
+                <TextView
+                    android:id="@+id/txtOtherCharges"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Other Charges:"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtExtraMin" />
+
+                <TextView
+                    android:id="@+id/tvOtherCharges"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtExtraMin" />
+
+
+
+                <TextView
+                    android:id="@+id/txtTotalPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Total Price:"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtOtherCharges" />
+
+                <TextView
+                    android:id="@+id/tvTotalPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtOtherCharges" />
+
+
+
+                <TextView
+                    android:id="@+id/txtVendorAmount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/vendor_amount"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtTotalPrice" />
+
+                <TextView
+                    android:id="@+id/tvVendorAmount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text=""
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtTotalPrice" />
 
 
                 <TextView
@@ -1087,12 +1056,12 @@
                     android:layout_marginTop="@dimen/_8sdp"
                     android:drawablePadding="@dimen/_10sdp"
                     android:fontFamily="@font/poppins_bold"
-                    android:text="Penalty:"
+                    android:text="@string/penalty"
                     android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_11sdp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtBalance" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtVendorAmount" />
 
                 <TextView
                     android:id="@+id/tvPenalty"
@@ -1102,12 +1071,13 @@
                     android:layout_marginEnd="@dimen/_12sdp"
                     android:drawablePadding="@dimen/_10sdp"
                     android:fontFamily="@font/poppins_bold"
-                    android:text="1000"
+                    android:text=""
                     android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_11sdp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtBalance" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtVendorAmount" />
+
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1119,7 +1089,7 @@
                 android:layout_margin="@dimen/_12sdp"
                 android:drawablePadding="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="Special Note:"
+                android:text="@string/special_note"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
@@ -1138,7 +1108,7 @@
                 android:elevation="@dimen/_4sdp"
                 android:fontFamily="@font/poppins_medium"
                 android:padding="@dimen/_6sdp"
-                android:text="Toll Taxes charges extra and other fees"
+                android:text=""
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
@@ -1152,7 +1122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_12sdp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="Customer Details:"
+                android:text="@string/customer_details"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14sdp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -1192,6 +1162,7 @@
                 android:layout_marginBottom="@dimen/_16sdp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Email:"
+                android:visibility="gone"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -1205,7 +1176,7 @@
                 android:layout_marginTop="@dimen/_6sdp"
                 android:layout_marginBottom="@dimen/_16sdp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="PickUp From:"
+                android:text="@string/pickup_from"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -1219,7 +1190,7 @@
                 android:layout_marginTop="@dimen/_6sdp"
                 android:layout_marginBottom="@dimen/_16sdp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Drop At:"
+                android:text="@string/drop_at"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -1252,7 +1223,7 @@
             android:background="@drawable/button_bg_rounded"
             android:backgroundTint="@color/success_green_shade"
             android:fontFamily="@font/poppins_bold"
-            android:text="Accept"
+            android:text="@string/accept"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_20sdp"
             android:textAllCaps="false"
@@ -1268,7 +1239,7 @@
             android:background="@drawable/button_bg_rounded"
             android:backgroundTint="@color/red_color"
             android:fontFamily="@font/poppins_bold"
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:visibility="gone"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_20sdp"

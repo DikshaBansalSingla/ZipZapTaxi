@@ -11,6 +11,9 @@ data class GetBankDetailsModel(
         val bank_name: String,
         val ifsc_code: String,
         val name: String,
-        val upi: String
+        val upi: String,
+        val pan_card_front: String,
+        val bank_passbook_front: String,
+        val id: Int
     )
 }

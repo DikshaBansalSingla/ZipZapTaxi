@@ -2,16 +2,21 @@ package com.zipzaptaxi.live.home.home
 
 import BookingListResponse
 import android.Manifest
-import android.content.ContentValues
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Build
 import android.os.Bundle
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -21,16 +26,22 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
+import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
-import com.google.android.material.snackbar.Snackbar
-import com.zipzaptaxi.live.CabFreeActivity
+import com.google.android.gms.location.LocationSettingsRequest
+import com.google.android.gms.location.LocationSettingsResponse
+import com.google.android.gms.location.Priority
+import com.google.android.gms.location.SettingsClient
+import com.google.android.gms.tasks.Task
 import com.zipzaptaxi.live.R
 import com.zipzaptaxi.live.adapter.HomeAdapter
-import com.zipzaptaxi.live.bookings.BookingDetail
+import com.zipzaptaxi.live.cache.CacheConstants
+import com.zipzaptaxi.live.cache.getUser
 import com.zipzaptaxi.live.cache.saveString
-import com.zipzaptaxi.live.cache.saveToken
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
 import com.zipzaptaxi.live.databinding.FragmentHomeBinding
@@ -41,34 +52,34 @@ import com.zipzaptaxi.live.utils.extensionfunctions.isVisible
 import com.zipzaptaxi.live.utils.extensionfunctions.showToast
 import com.zipzaptaxi.live.utils.helper.AppConstant
 import com.zipzaptaxi.live.viewmodel.BookingViewModel
-import com.zipzaptaxi.live.wallet.WalletFragment
 
 class HomeFragment : Fragment(), Observer<RestObservable> {
 
-    private val viewModel: BookingViewModel
-            by lazy { ViewModelProvider(this)[BookingViewModel::class.java] }
+    private val viewModel: BookingViewModel by lazy { ViewModelProvider(this)[BookingViewModel::class.java] }
 
-    private val homeAdapter: HomeAdapter by lazy {
-        HomeAdapter(requireContext())
-    }
-    private var arrayList = ArrayList<BookingListResponse.Data>()
+    private val homeAdapter: HomeAdapter by lazy { HomeAdapter(requireContext()) }
+    private var mContext: Context? = null
+    private lateinit var locationSettingsLauncher: ActivityResultLauncher<IntentSenderRequest>
 
+    private var arrayList = ArrayList<BookingListResponse.Data.Data>()
     private lateinit var binding: FragmentHomeBinding
     private lateinit var toolbarBinding: LayoutToolbarBinding
     private lateinit var mLayoutManager: LinearLayoutManager
-    private var lastBackPressTime = 0L
     private var latitude = ""
     private var longitude = ""
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
+    // Constant for requesting settings change
+    private val REQUEST_CHECK_SETTINGS = 1001
+
+    // Location permission launcher
     private val locationPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted ->
         if (isGranted) {
-            requestCameraPermission()
+            checkLocationSettings()
         } else {
-            // Permission denied, handle accordingly
-            // You can show a message or request the permission again
+            showToast("Location permission not granted")
         }
     }
 
@@ -77,56 +88,77 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
         ActivityResultContracts.RequestPermission()
     ) { isGranted ->
         if (isGranted) {
-            // Camera permission granted, proceed with notification permission only if SDK version is 13 or higher
+            // Check if the notification permission is required for Android 13 or higher
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 requestNotificationPermission()
             } else {
-                // SDK version is lower than 13, proceed with necessary operations
+                // Directly proceed to getting location if notification permission is not needed
                 getLastKnownLocation()
             }
         } else {
-            // Permission denied, handle accordingly
+            showToast("Camera permission not granted")
         }
     }
+
+    // Notification permission launcher for Android 13 and higher
     private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission(),
+        ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean ->
         if (isGranted) {
-                getLastKnownLocation()
-            // FCM SDK (and your app) can post notifications.
+            getLastKnownLocation()
         } else {
             showToast(getString(R.string.permission_to_show_notifications_is_not_granted))
         }
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         toolbarBinding = binding.appToolbar
-
         return binding.root
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mContext = context
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        CacheConstants.Current = "home"
         setToolbar()
-        // Initialize FusedLocationProviderClient
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(mContext ?: requireActivity())
         setAdapter()
         getBookingsApi()
         setOnClicks()
         requestAllPermissions()
 
-        binding.swipeRefreshLayout.setOnRefreshListener { // Implement your refresh action here
-            // For example, fetch new data from server
+        binding.swipeRefreshLayout.setOnRefreshListener {
             fetchData()
         }
+        locationSettingsLauncher = registerForActivityResult(
+            ActivityResultContracts.StartIntentSenderForResult()
+        ) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                // User accepted the request to enable location settings
+                getLastKnownLocation()
+            } else {
+                // User denied the request to enable location settings
+                showToast("Location services are required for this feature")
+            }
+        }
+
+    }
+
+    private fun setOnClicks() {
+        binding.tvWalletBal.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_walletFragment)
+        }
+        /* binding.tvActiveRides.setOnClickListener {
+             findNavController().navigate(R.id.action_homeFragment_to_bookingsFragment)
+         }*/
     }
 
     private fun requestAllPermissions() {
@@ -134,21 +166,16 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED &&
-            ActivityCompat.checkSelfPermission(
-                requireContext(),
-                android.Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             locationPermissionLauncher.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
         } else {
-            // Location permission is already granted or denied, proceed with camera permission
+            // Location permission is granted, now request camera permission
             requestCameraPermission()
         }
     }
 
     private fun requestCameraPermission() {
-        // Request camera permission
         if (ContextCompat.checkSelfPermission(
                 requireContext(),
                 android.Manifest.permission.CAMERA
@@ -156,46 +183,70 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
         ) {
             cameraPermissionLauncher.launch(android.Manifest.permission.CAMERA)
         } else {
-            // Camera permission is already granted or denied, proceed with notification permission
+            // Camera permission already granted, now request notification permission
             requestNotificationPermission()
         }
     }
 
     private fun requestNotificationPermission() {
-        // Request notification permission
+        // Request notification permission only for Android 13 or higher
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
             ContextCompat.checkSelfPermission(
                 requireContext(),
-                Manifest.permission.POST_NOTIFICATIONS
+                android.Manifest.permission.POST_NOTIFICATIONS
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            requestPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
         } else {
-            // All permissions have been requested, proceed with the necessary operations
+            // Proceed to get location if no notification permission is needed
             getLastKnownLocation()
         }
     }
 
+    private fun checkLocationSettings() {
+        val locationRequest = LocationRequest.Builder(
+            Priority.PRIORITY_HIGH_ACCURACY, 10000
+        ).setMinUpdateIntervalMillis(5000).build()
+
+        val builder = LocationSettingsRequest.Builder()
+            .addLocationRequest(locationRequest)
+            .setAlwaysShow(true)
+
+        val client: SettingsClient = LocationServices.getSettingsClient(requireActivity())
+        val task: Task<LocationSettingsResponse> = client.checkLocationSettings(builder.build())
+
+        task.addOnSuccessListener {
+            // Location settings are satisfied
+            getLastKnownLocation()
+        }
+
+        task.addOnFailureListener { exception ->
+            if (exception is ResolvableApiException) {
+                try {
+                    // Create an IntentSenderRequest for the resolution
+                    val intentSenderRequest = IntentSenderRequest.Builder(exception.resolution).build()
+                    locationSettingsLauncher.launch(intentSenderRequest)
+                } catch (sendEx: IntentSender.SendIntentException) {
+                    showToast("Error opening settings: ${sendEx.message}")
+                }
+            } else {
+                showToast("Location settings are not correct")
+            }
+        }
+    }
+
+
     private fun fetchData() {
-        // Perform your data fetching operation here
-        // This method will be called when user swipes to refresh
-        // After completing the operation, make sure to call setRefreshing(false) to stop the refreshing animation
         getBookingsApi()
         binding.swipeRefreshLayout.isRefreshing = false
     }
 
-
-    private fun setOnClicks() {
-        binding.tvWalletBal.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_walletFragment)
-        }
-        binding.tvActiveRides.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_bookingsFragment)
-        }
-    }
-
     private fun getBookingsApi() {
-        viewModel.bookingListApi(requireActivity(), true)
+        viewModel.bookingListApi(
+            requireActivity(),
+            true,
+            getUser(requireContext()).user_type.toString()
+        )
         viewModel.mResponse.observe(viewLifecycleOwner, this)
     }
 
@@ -208,20 +259,19 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
         homeAdapter.onItemClick = {
             val bundle = Bundle()
             bundle.putInt("id", arrayList[it].id)
-            findNavController().navigate(R.id.action_homeFragment_to_bookingDetail,bundle)
+            findNavController().navigate(R.id.action_homeFragment_to_bookingDetail, bundle)
         }
 
         homeAdapter.onButtonClick = {
             val bundle = Bundle()
             bundle.putInt("id", arrayList[it].id)
-            findNavController().navigate(R.id.action_homeFragment_to_bookingDetail,bundle)
+            findNavController().navigate(R.id.action_homeFragment_to_bookingDetail, bundle)
         }
     }
 
     private fun setToolbar() {
         toolbarBinding.tvCabFree.isVisible()
         toolbarBinding.toolbar.setNavigationIcon(R.drawable.ic_baseline_menu_24)
-
         toolbarBinding.toolbar.setNavigationOnClickListener {
             (activity as MainActivity).openCloseDrawer()
         }
@@ -231,6 +281,68 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
         toolbarBinding.toolbarTitle.text = getString(R.string.app_name)
     }
 
+    private fun getLastKnownLocation() {
+        if (ActivityCompat.checkSelfPermission(
+                mContext ?: requireActivity(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            return
+        }
+
+        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+            if (location != null) {
+                latitude = location.latitude.toString()
+                longitude = location.longitude.toString()
+                saveString(requireContext(), "Lat", latitude)
+                saveString(requireContext(), "Lang", longitude)
+                showToast("Location is: Latitude: $latitude, Longitude: $longitude")
+            } else {
+                requestLocationUpdates()
+            }
+        }.addOnFailureListener { e ->
+            Log.e("Location", "Failed to get location: ${e.message}", e)
+        }
+    }
+
+    private fun requestLocationUpdates() {
+        val locationRequest = LocationRequest.Builder(
+            Priority.PRIORITY_HIGH_ACCURACY, 10000
+        ).setMinUpdateIntervalMillis(5000).build()
+
+        if (ActivityCompat.checkSelfPermission(
+                mContext ?: requireActivity(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            return
+        }
+
+        fusedLocationClient.requestLocationUpdates(locationRequest, object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult) {
+                val location = locationResult.lastLocation
+                if (location != null) {
+                    latitude = location.latitude.toString()
+                    longitude = location.longitude.toString()
+                    saveString(requireContext(), "Lat", latitude)
+                    saveString(requireContext(), "Lang", longitude)
+                    showToast("Location updated: Latitude: $latitude, Longitude: $longitude")
+                    fusedLocationClient.removeLocationUpdates(this)
+                }
+            }
+        }, Looper.getMainLooper())
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CHECK_SETTINGS) {
+            if (resultCode == Activity.RESULT_OK) {
+                getLastKnownLocation()
+            } else {
+                showToast("Location services are required for this feature")
+            }
+        }
+    }
 
     override fun onChanged(value: RestObservable) {
         when (value.status) {
@@ -238,71 +350,27 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
                 if (value.data is BookingListResponse) {
                     val data: BookingListResponse = value.data
                     if (data.code == AppConstant.success_code) {
-                        binding.tvWalletBal.text= "Wallet: ₹ "+data.data[0].wallet_balance.toString()
+                        binding.tvWalletBal.text = "Wallet: ₹ " + data.data.wallet_balance
                         arrayList.clear()
-                        if (data.data.isNullOrEmpty()) {
+                        if (data.data.data_list.isNullOrEmpty()) {
                             binding.rvBookingList.isGone()
                             binding.tvNoData.isVisible()
                         } else {
                             binding.rvBookingList.isVisible()
                             binding.tvNoData.isGone()
-
-                            arrayList.addAll(data.data)
+                            arrayList.addAll(data.data.data_list)
                             homeAdapter.notifyDataSetChanged()
                         }
                     }
                 }
             }
-
             Status.ERROR -> {
-                if (value.data != null) {
-                    showToast(value.data as String)
-                } else {
-                    showToast(value.error!!.toString())
-                }
+                showToast(value.data as String? ?: value.error.toString())
             }
+            Status.LOADING -> {  }
 
-            Status.LOADING -> {
-
-            }
-
-            else -> {}
-
+            else ->{}
         }
     }
-
-    private fun getLastKnownLocation() {
-        if (ActivityCompat.checkSelfPermission(requireContext(),
-                android.Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(requireContext(),
-                android.Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return
-        }
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener { location: Location? ->
-                // Got last known location. In some rare situations this can be null.
-                location?.let {
-                    latitude = location.latitude.toString()
-                    longitude = location.longitude.toString()
-                    saveString(requireContext(),"Lat",latitude)
-                    saveString(requireContext(),"Lang",longitude)
-                    // Do something with latitude and longitude
-                    Log.d("Location", "Latitude: $latitude, Longitude: $longitude")
-                }
-            }
-            .addOnFailureListener { e ->
-                // Failed to get location
-                Log.e("Location", "Failed to get location: ${e.message}", e)
-            }
-    }
-
 }
+

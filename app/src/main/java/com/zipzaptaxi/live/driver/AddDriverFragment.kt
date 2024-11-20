@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.zipzaptaxi.live.R
+import com.zipzaptaxi.live.cache.CacheConstants
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
 import com.zipzaptaxi.live.databinding.ActivityBookingDetailBinding
@@ -121,6 +122,7 @@ class AddDriverFragment : ImagePickerFragment(), Observer<RestObservable> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        CacheConstants.Current = "driver"
         mValidationClass=ValidationsClass.getInstance()
 
         setToolbar()
@@ -222,10 +224,8 @@ class AddDriverFragment : ImagePickerFragment(), Observer<RestObservable> {
                     if (data.code == AppConstant.success_code) {
                         AppUtils.showSuccessAlert(
                             requireActivity(),
-                            "Driver added Successfully", onBackPressed = true
+                            getString(R.string.driver_added_successfully), onBackPressed = true
                         )
-
-
                     }
                 }
 

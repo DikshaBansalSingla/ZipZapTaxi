@@ -14,7 +14,7 @@ class HomeAdapter(val context: Context): RecyclerView.Adapter<HomeAdapter.Bookin
     var onItemClick: ((id: Int) -> Unit)? = null
     var onButtonClick: ((id: Int) -> Unit)? = null
 
-    var list= ArrayList<BookingListResponse.Data>()
+    var list= ArrayList<BookingListResponse.Data.Data>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookingHolder {
@@ -24,7 +24,7 @@ class HomeAdapter(val context: Context): RecyclerView.Adapter<HomeAdapter.Bookin
 
 
     inner class BookingHolder(val binding: ItemViewHomeBinding): RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: BookingListResponse.Data) {
+        fun onBind(data: BookingListResponse.Data.Data) {
 
             if(data.trip=="oneway"){
                 binding.txtDropDate.text= "Time Estimation"

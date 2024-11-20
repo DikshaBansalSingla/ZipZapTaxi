@@ -96,6 +96,8 @@
                     app:itemRadius="12dp"
                     app:itemSpacing="15dp"
                     app:itemWidth="55dp"
+                    android:autofillHints="smsOTPCode"
+                    android:importantForAutofill="yes"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

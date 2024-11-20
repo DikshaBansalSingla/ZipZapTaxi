@@ -61,7 +61,6 @@ class TermsCondFragment() : Fragment(), Observer<RestObservable> {
 
         toolbarBinding.toolbar.setNavigationOnClickListener {
             findNavController().navigate(R.id.action_termsCondFragment_to_settingsFragment)
-
         }
         if(type=="1"){
             toolbarBinding.toolbarTitle.text= getString(R.string.terms_and_conditions)
@@ -70,7 +69,6 @@ class TermsCondFragment() : Fragment(), Observer<RestObservable> {
             toolbarBinding.toolbarTitle.text= getString(R.string.privacy_policy)
 
         }
-
     }
 
     override fun onChanged(value: RestObservable) {

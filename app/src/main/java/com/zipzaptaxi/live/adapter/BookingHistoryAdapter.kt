@@ -1,8 +1,10 @@
 package com.zipzaptaxi.live.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.zipzaptaxi.live.R
 import com.zipzaptaxi.live.databinding.ItemViewBookingHistoryBinding
 import com.zipzaptaxi.live.databinding.ItemViewHomeBinding
 import com.zipzaptaxi.live.model.GetWalletModel
@@ -10,7 +12,7 @@ import com.zipzaptaxi.live.utils.extensionfunctions.isGone
 import com.zipzaptaxi.live.utils.extensionfunctions.isVisible
 import java.util.ArrayList
 
-class BookingHistoryAdapter: RecyclerView.Adapter<BookingHistoryAdapter.BookingHistoryHolder>() {
+class BookingHistoryAdapter(val context:Context): RecyclerView.Adapter<BookingHistoryAdapter.BookingHistoryHolder>() {
 
     var onItemClick: ((id: Int) -> Unit)? = null
 
@@ -22,14 +24,12 @@ class BookingHistoryAdapter: RecyclerView.Adapter<BookingHistoryAdapter.BookingH
         return BookingHistoryHolder(view)
     }
 
-
     inner class BookingHistoryHolder(val binding: ItemViewBookingHistoryBinding): RecyclerView.ViewHolder(binding.root) {
         fun onBind(
-            data: GetWalletModel.Data.Booking
-    ) {
+            data: GetWalletModel.Data.Booking) {
 
             if(data.trip=="oneway"){
-                binding.txtDropDate.text= "Time Estimation"
+                binding.txtDropDate.text= context.getString(R.string.time_estimation)
                 binding.tvDropDate.text= data.time_to_cover
             }else{
                 binding.tvDropDate.text= data.ride_end_date+" "+data.ride_end_time
@@ -37,11 +37,13 @@ class BookingHistoryAdapter: RecyclerView.Adapter<BookingHistoryAdapter.BookingH
 
             binding.tvTripId.text="Trip ID: "+data.booking_unique_id
             binding.tvFrom.text=data.source
+            binding.tvStatus.text=data.status
             binding.tvDrop.text=data.destination
             binding.tvStartDate.text=data.ride_date+" "+data.ride_time
             binding.tvCarModel.text= data.cab_model
             binding.tvAmount.text= "₹"+data.price
             if(data.status=="cancelled"){
+                binding.tvStatus.setTextColor(context.resources.getColor(R.color.red_color))
                 binding.clCompleted.isGone()
                 binding.txtCancelDate.isVisible()
                 binding.tvCancelDate.isVisible()
@@ -51,6 +53,8 @@ class BookingHistoryAdapter: RecyclerView.Adapter<BookingHistoryAdapter.BookingH
                 binding.tvCancelDate.text= data.cancellation_time
                 binding.tvPenalty.text= data.penalty.toString()
             }else{
+                binding.tvStatus.setTextColor(context.resources.getColor(R.color.approved))
+
                 binding.clCompleted.isVisible()
                 binding.txtCancelDate.isGone()
                 binding.tvCancelDate.isGone()
@@ -60,7 +64,6 @@ class BookingHistoryAdapter: RecyclerView.Adapter<BookingHistoryAdapter.BookingH
                 binding.tvExtraPrice.text= data.extra_charge
                 binding.tvTotalPrice.text= data.total_price_with_extra_km.toString()
             }
-
 
             binding.llMain.setOnClickListener {
                 onItemClick?.invoke(adapterPosition)

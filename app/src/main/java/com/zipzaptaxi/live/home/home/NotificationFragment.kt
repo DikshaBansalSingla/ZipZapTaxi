@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.zipzaptaxi.live.R
 import com.zipzaptaxi.live.adapter.NotificationAdapter
+import com.zipzaptaxi.live.cache.CacheConstants
 import com.zipzaptaxi.live.cache.getUser
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
@@ -52,6 +53,7 @@ class NotificationFragment : Fragment(), Observer<RestObservable> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        CacheConstants.Current = "notifications"
         setToolbar()
         setAdapter()
         getData()

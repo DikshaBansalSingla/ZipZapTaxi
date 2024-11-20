@@ -16,7 +16,6 @@ class CategoryDriversAdapter (private val mContext: Activity, private val hint:S
     override fun getCount(): Int {
         return listItems.size
     }
-
     override fun getItem(position: Int): Any {
         return listItems[position]
     }

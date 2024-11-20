@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.zipzaptaxi.live.R
 import com.zipzaptaxi.live.adapter.VehicleListAdapter
+import com.zipzaptaxi.live.cache.CacheConstants
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
 import com.zipzaptaxi.live.databinding.FragmentVehicleListBinding
@@ -95,6 +96,7 @@ class VehicleListFragment : Fragment(), Observer<RestObservable> {
     override fun onResume() {
         super.onResume()
         getVehicleListApi()
+        CacheConstants.Current = "vehicleList"
     }
 
     private fun getVehicleListApi() {

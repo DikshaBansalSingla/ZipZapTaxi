@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.zipzaptaxi.live.R
 import com.zipzaptaxi.live.databinding.ItemViewHomeBinding
 import com.zipzaptaxi.live.utils.extensionfunctions.isGone
 
@@ -12,9 +13,8 @@ class ActiveBookingsAdapter(val context: Context): RecyclerView.Adapter<ActiveBo
 
     var onItemClick: ((id: Int) -> Unit)? = null
 
-    var list= ArrayList<BookingListResponse.Data>()
-
-
+    var list= ArrayList<MyBookingsResponse.Data>()
+    
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActiveBookingsHolder {
         val view = ItemViewHomeBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ActiveBookingsHolder(view)
@@ -22,10 +22,10 @@ class ActiveBookingsAdapter(val context: Context): RecyclerView.Adapter<ActiveBo
 
 
     inner class ActiveBookingsHolder(val binding: ItemViewHomeBinding): RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: BookingListResponse.Data) {
+        fun onBind(data: MyBookingsResponse.Data) {
             binding.btnAccept.isGone()
             if(data.trip=="oneway"){
-                binding.txtDropDate.text= "Time Estimation"
+                binding.txtDropDate.text= context.getString(R.string.time_estimation)
                 binding.tvDropDate.text= data.time_to_cover
             }else{
                 binding.tvDropDate.text= data.ride_end_date+" "+data.ride_end_time

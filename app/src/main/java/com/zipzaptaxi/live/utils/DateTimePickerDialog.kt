@@ -8,7 +8,7 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun getTime(textView: TextView, context: Context){
+fun getTime(textView: TextView, context: Context) {
 
     val cal = Calendar.getInstance()
 
@@ -53,6 +53,34 @@ fun getDate(textView: TextView, context: Context) {
     }
 }
 
+fun getCurrentMinDate(textView: TextView, context: Context) {
+    val cal = Calendar.getInstance()
+
+    val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+        cal.set(Calendar.YEAR, year)
+        cal.set(Calendar.MONTH, monthOfYear)
+        cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+        textView.text = formatDate(cal.time)
+    }
+
+    textView.setOnClickListener {
+        // Create DatePickerDialog with minimum date after today
+        val dialog = DatePickerDialog(
+            context, dateSetListener,
+            cal.get(Calendar.YEAR),
+            cal.get(Calendar.MONTH),
+            cal.get(Calendar.DAY_OF_MONTH)
+        )
+
+        // Set minimum date after today
+        dialog.datePicker.minDate = cal.timeInMillis // Set minimum date
+
+        // Show dialog
+        dialog.show()
+    }
+}
+
 
 
 fun getCurrentMaxDate(textView: TextView, context: Context) {
@@ -83,15 +111,47 @@ fun getCurrentMaxDate(textView: TextView, context: Context) {
     }
 }
 
-
-
 fun getCurrentTimeStamp(timeValue: String): Long {
-    var formatter: DateFormat = SimpleDateFormat("MM dd yyyy HH:mm")
+    val formatter: DateFormat = SimpleDateFormat("MM dd yyyy HH:mm", Locale.getDefault())
 
-    var date = formatter.parse(timeValue) as Date
-    var output = date.time / 1000L
-    var str = java.lang.Long.toString(output)
+    val date = formatter.parse(timeValue) as Date
+    val output = date.time / 1000L
+    val str = java.lang.Long.toString(output)
     //var timestamp = java.lang.Long.parseLong(str) * 1000
-    var timestamp = java.lang.Long.parseLong(str)
+    val timestamp = java.lang.Long.parseLong(str)
     return timestamp
+}
+
+fun getCurrentDateOnly(textView: TextView, context: Context) {
+    val cal = Calendar.getInstance()
+
+    val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+        cal.set(Calendar.YEAR, year)
+        cal.set(Calendar.MONTH, monthOfYear)
+        cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+        textView.text = formatDate(cal.time)
+    }
+
+    textView.setOnClickListener {
+        // Create DatePickerDialog set to current date
+        val dialog = DatePickerDialog(
+            context, dateSetListener,
+            cal.get(Calendar.YEAR),
+            cal.get(Calendar.MONTH),
+            cal.get(Calendar.DAY_OF_MONTH)
+        )
+
+        // Disable future dates and past dates selection
+        dialog.datePicker.minDate = cal.timeInMillis
+        dialog.datePicker.maxDate = cal.timeInMillis
+
+        // Show dialog
+        dialog.show()
+    }
+}
+
+private fun formatDate(date: Date): String {
+    val format = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+    return format.format(date)
 }

@@ -20,7 +20,6 @@ class VehicleListAdapter(val context: Context): RecyclerView.Adapter<VehicleList
 
     var list= ArrayList<VehicleListResponse.Data>()
 
-
     inner class VehicleListAdapterHolder(var binding: ItemViewVehicleListBinding): RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: VehicleListResponse.Data) {
 

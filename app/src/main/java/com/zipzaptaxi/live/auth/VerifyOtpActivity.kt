@@ -1,12 +1,21 @@
 package com.zipzaptaxi.live.auth
 
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.chaos.view.PinView
 import com.zipzaptaxi.live.R
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
+import android.view.autofill.AutofillManager
+import androidx.annotation.RequiresApi
 import com.zipzaptaxi.live.cache.getDeviceToken
 import com.zipzaptaxi.live.cache.saveToken
 import com.zipzaptaxi.live.cache.saveUser
@@ -34,6 +43,11 @@ class VerifyOtpActivity : AppCompatActivity(), Observer<RestObservable> {
     private val viewModel: AuthViewModel
             by lazy { ViewModelProvider(this)[AuthViewModel::class.java] }
 
+    lateinit var otpEditText: PinView
+    private lateinit var otpReceiver: OtpReceiver
+    private lateinit var autofillManager: AutofillManager
+
+
     private var countDownTimer:CountDownTimer?=null
     lateinit var binding: ActivityVerifyOtpBinding
     private var timeLeftInMilliseconds = 300000L // 300 seconds
@@ -41,6 +55,7 @@ class VerifyOtpActivity : AppCompatActivity(), Observer<RestObservable> {
     var user_type=""
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityVerifyOtpBinding.inflate(layoutInflater)
@@ -52,6 +67,18 @@ class VerifyOtpActivity : AppCompatActivity(), Observer<RestObservable> {
 
         setOnClicks()
 
+        otpReceiver= OtpReceiver(this)
+
+        otpEditText = findViewById(R.id.pinView) // Replace with your OTP EditText ID
+
+        // Request SMS permissions if not already granted
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.RECEIVE_SMS, Manifest.permission.READ_SMS), SMS_PERMISSION_CODE)
+        } else {
+            // Permission already granted, register the receiver
+            val intentFilter = IntentFilter("android.provider.Telephony.SMS_RECEIVED")
+            registerReceiver(otpReceiver, intentFilter)
+        }
     }
 
     private fun setOnClicks() {
@@ -120,6 +147,7 @@ class VerifyOtpActivity : AppCompatActivity(), Observer<RestObservable> {
     override fun onDestroy() {
         super.onDestroy()
         countDownTimer?.cancel()
+        unregisterReceiver(otpReceiver)
     }
 
 
@@ -165,5 +193,21 @@ class VerifyOtpActivity : AppCompatActivity(), Observer<RestObservable> {
             else -> {}
         }
     }
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == SMS_PERMISSION_CODE) {
+            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                // Permission granted
 
+                val intentFilter = IntentFilter("android.provider.Telephony.SMS_RECEIVED")
+                registerReceiver(otpReceiver, intentFilter)
+            } else {
+                // Permission denied
+            }
+        }
+    }
+
+    companion object {
+        private const val SMS_PERMISSION_CODE = 123
+    }
 }

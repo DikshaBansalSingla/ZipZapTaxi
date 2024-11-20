@@ -15,6 +15,7 @@ import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.zipzaptaxi.live.R
 import com.zipzaptaxi.live.adapter.HomeCityAdapter
+import com.zipzaptaxi.live.cache.CacheConstants
 import com.zipzaptaxi.live.cache.getUser
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
@@ -70,6 +71,7 @@ class AddHomeCityFragment : Fragment(), Observer<RestObservable> {
         if (!Places.isInitialized()) {
             Places.initialize(requireContext(), getString(R.string.map_key))
         }
+        CacheConstants.Current = "addHome"
         setToolbar()
         setOnClicks()
         setAdapter()

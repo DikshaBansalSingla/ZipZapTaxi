@@ -1,6 +1,7 @@
 package com.zipzaptaxi.live.data
 
 import BookingListResponse
+import MyBookingsResponse
 import com.zipzaptaxi.live.model.AddDeleteCityModel
 import com.zipzaptaxi.live.model.BaseResponseModel
 import com.zipzaptaxi.live.model.BookingDetailResponse
@@ -23,6 +24,7 @@ import com.zipzaptaxi.live.model.OtpResponseModel
 import com.zipzaptaxi.live.model.SignUpReqModel
 import com.zipzaptaxi.live.model.StartRideResponseModel
 import com.zipzaptaxi.live.model.SupportResponseModel
+import com.zipzaptaxi.live.model.TdsDataModel
 import com.zipzaptaxi.live.model.TermsPrivacyResponseModel
 import com.zipzaptaxi.live.model.VehicleDetailResponse
 import com.zipzaptaxi.live.model.VehicleListResponse
@@ -79,7 +81,7 @@ interface RestApiInterface {
 
 
     @GET(AppConstant.BookingList)
-    fun getBookings(): Observable<BookingListResponse>
+    fun getBookings(@Query("user_type") userType:String): Observable<BookingListResponse>
 
 //    @FormUrlEncoded
 //    @POST(AppConstant.BookingDetail)
@@ -149,7 +151,7 @@ interface RestApiInterface {
 
     @GET(AppConstant.AssignedBookingList)
     fun  getAssignedList(@Query("status") status:String,
-                         @Query("user_type") userType:String): Observable<BookingListResponse>
+                         @Query("user_type") userType:String): Observable<MyBookingsResponse>
 
     @FormUrlEncoded
     @POST(AppConstant.EnterOTP)
@@ -175,7 +177,7 @@ interface RestApiInterface {
     fun cancelRide(@Field("id") id: Int): Observable<BaseResponseModel>
 
     @GET(AppConstant.GetWalletData)
-    fun getWalletData(): Observable<GetWalletModel>
+    fun getWalletData(@Query("user_type") user_type:String): Observable<GetWalletModel>
 
     @GET(AppConstant.GetSupportData)
     fun getSupportData(): Observable<SupportResponseModel>
@@ -201,13 +203,21 @@ interface RestApiInterface {
     @GET(AppConstant.GetTransactions)
     fun getTransactions(): Observable<GetTransactionsModel>
 
+    @GET(AppConstant.TdsData)
+    fun getTdsData(): Observable<TdsDataModel>
+
     @FormUrlEncoded
     @POST(AppConstant.AddMoney)
     fun addMoney(@FieldMap map: HashMap<String,String>): Observable<BaseResponseModel>
 
+
     @FormUrlEncoded
     @POST(AppConstant.AddBankAcc)
     fun addBankAcc(@FieldMap map: HashMap<String,String>): Observable<BaseResponseModel>
+
+    @FormUrlEncoded
+    @POST(AppConstant.SendRequest)
+    fun sendRequest(@FieldMap map: HashMap<String,String>): Observable<BaseResponseModel>
 
 }
 

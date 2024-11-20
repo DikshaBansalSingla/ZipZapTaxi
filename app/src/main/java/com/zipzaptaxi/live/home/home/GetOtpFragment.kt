@@ -97,22 +97,22 @@ class GetOtpFragment(
 
         validationsClass = ValidationsClass.getInstance()
         if (rideType == "start") {
+
+            binding.tvExtraMins.isGone()
+            binding.etExtraMins.isGone()
+            binding.tvOtherCharges.isGone()
+            binding.etOtherCharges.isGone()
             binding.btnStart.setOnClickListener {
 
+
                 if(binding.pinView.text.toString().trim()!=otp){
-                    AppUtils.showErrorAlert(
-                        requireActivity(),
-                        "Wrong OTP please re-enter the otp"
-                    )
+                    AppUtils.showErrorAlert(requireActivity(), "Wrong OTP please re-enter the otp")
                     binding.pinView.text?.clear()
                     return@setOnClickListener
                 }
 
                 if (!validationsClass.isNetworkConnected) {
-                    AppUtils.showErrorAlert(
-                        requireActivity(),
-                        resources.getString(R.string.no_internet)
-                    )
+                    AppUtils.showErrorAlert(requireActivity(), resources.getString(R.string.no_internet))
                 } else if (binding.pinView.text.toString().trim().length < 4) {
                     AppUtils.showErrorAlert(
                         requireActivity(),
@@ -120,8 +120,7 @@ class GetOtpFragment(
                     )
                 } else if (mImagePath.isNullOrEmpty()) {
                     AppUtils.showErrorAlert(
-                        requireActivity(),
-                        resources.getString(R.string.please_upload_odometer_img)
+                        requireActivity(), resources.getString(R.string.please_upload_odometer_img)
                     )
                 } else if (mSelfie.isNullOrEmpty()) {
                     AppUtils.showErrorAlert(
@@ -160,7 +159,7 @@ class GetOtpFragment(
                 }
                 else {
                     hideKeyBoard(requireContext(), requireView())
-                    bookingDetail.endTrip(hashMap,binding.etReading.text.toString())
+                    bookingDetail.endTrip(hashMap,binding.etReading.text.toString(),binding.etExtraMins.text.toString(),binding.etOtherCharges.text.toString())
                     dialog?.dismiss()
                 }
             }
@@ -190,7 +189,8 @@ class GetOtpFragment(
                 captureImage("selfie")
             } else {
                 // Permission not granted, request camera permission
-                AppUtils.showErrorAlert(requireActivity(),"Please give camera permission")
+                AppUtils.showErrorAlert(requireActivity(),
+                    getString(R.string.please_give_camera_permission))
             }
 
         }
@@ -224,6 +224,9 @@ class GetOtpFragment(
 
     }
 
+    /***
+     * code to compress the image
+     */
     private fun compressImage(imageFile: File) {
         lifecycleScope.launch(Dispatchers.IO) {
             try {

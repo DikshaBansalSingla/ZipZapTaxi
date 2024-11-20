@@ -112,7 +112,6 @@ class CarDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         binding.etName.isEnabled = false
         binding.etSirName.isEnabled = false
 
-
         binding.cbIsCng.isClickable = false
         binding.cbIsPetrol.isClickable = false
         binding.cbIsDiesel.isClickable = false
@@ -253,7 +252,7 @@ class CarDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                     if (data.code == AppConstant.success_code) {
                         AppUtils.showSuccessAlert(
                             this,
-                            "Car updated Successfully"
+                            getString(R.string.car_updated_successfully)
                         )
                         finish()
 
@@ -383,15 +382,15 @@ class CarDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         if (!mValidationClass.isNetworkConnected)
             AppUtils.showErrorAlert(this, resources.getString(R.string.no_internet))
         else if (mValidationClass.checkStringNull(binding.etTaxDate.text.toString().trim()))
-            AppUtils.showErrorAlert(this, "Please enter Tax Paid date")
+            AppUtils.showErrorAlert(this, getString(R.string.please_enter_tax_paid_date))
         else if (mValidationClass.checkStringNull(binding.etInsEndDate.text.toString().trim()))
-            AppUtils.showErrorAlert(this, "Please enter Insurance Expiry date")
+            AppUtils.showErrorAlert(this, getString(R.string.please_enter_insurance_expiry_date))
         else if (mValidationClass.checkStringNull(binding.etWPermitEndDate.text.toString().trim()))
-            AppUtils.showErrorAlert(this, "Please enter Permit Expiry date")
+            AppUtils.showErrorAlert(this, getString(R.string.please_enter_permit_expiry_date))
         else if (mValidationClass.checkStringNull(binding.etFitEndDate.text.toString().trim()))
-            AppUtils.showErrorAlert(this, "Please enter Fitness Expiry date")
+            AppUtils.showErrorAlert(this, getString(R.string.please_enter_fitness_expiry_date))
         else if (mValidationClass.checkStringNull(binding.etPucEndDate.text.toString().trim()))
-            AppUtils.showErrorAlert(this, "Please enter Pollution Expiry date")
+            AppUtils.showErrorAlert(this, getString(R.string.please_enter_pollution_expiry_date))
         else
             check = true
         return check
