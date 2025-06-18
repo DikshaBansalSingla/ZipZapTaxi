@@ -1,5 +1,6 @@
 package com.zipzaptaxi.live.home.home
 
+import ProfileResponseModel
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
@@ -18,7 +19,9 @@ import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.zipzaptaxi.live.R
 import com.zipzaptaxi.live.cache.CacheConstants
+import com.zipzaptaxi.live.cache.getIsDialogOpen
 import com.zipzaptaxi.live.cache.getUser
+import com.zipzaptaxi.live.cache.saveIsDialogOpen
 import com.zipzaptaxi.live.cache.saveUser
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
@@ -33,6 +36,7 @@ import com.zipzaptaxi.live.utils.extensionfunctions.prepareMultiPart
 import com.zipzaptaxi.live.utils.extensionfunctions.showToast
 import com.zipzaptaxi.live.utils.helper.AppConstant
 import com.zipzaptaxi.live.utils.helper.AppUtils
+import com.zipzaptaxi.live.utils.showAlertWithCancel
 import com.zipzaptaxi.live.viewmodel.AuthViewModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -95,7 +99,20 @@ class ProfileFragment : ImagePickerFragment(), Observer<RestObservable> {
     private fun setOnClicks() {
 
         binding.img.setOnClickListener {
-            getImage(requireActivity(),0,false)
+
+            if(!getIsDialogOpen(requireContext())){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        getImage(requireActivity(),0,false)
+                    },{
+
+                    })
+            }else{
+                getImage(requireActivity(),0,false)
+
+            }
         }
         binding.etAddress.setOnClickListener {
             val fields = listOf(
@@ -175,6 +192,8 @@ class ProfileFragment : ImagePickerFragment(), Observer<RestObservable> {
     override fun onChanged(value: RestObservable) {
         when (value.status) {
             Status.SUCCESS -> {
+                Log.d("OnChanged", "Status: ${value.status}, Data: ${value.data}")
+
                 if (value.data is LoginResponseModel) {
                     val data: LoginResponseModel = value.data
                     if (data.code == AppConstant.success_code) {
@@ -185,6 +204,8 @@ class ProfileFragment : ImagePickerFragment(), Observer<RestObservable> {
                         )
                         findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
 
+                    }else {
+                        AppUtils.showErrorAlert(requireActivity(), data.message!!)
                     }
                 }else if (value.data is FileUploadResponse) {
                     val data: FileUploadResponse = value.data

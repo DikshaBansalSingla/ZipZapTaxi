@@ -24,6 +24,8 @@ import com.zipzaptaxi.live.databinding.LayoutToolbarBinding
 import com.zipzaptaxi.live.home.MainActivity
 import com.zipzaptaxi.live.model.AddDeleteCityModel
 import com.zipzaptaxi.live.utils.extensionfunctions.showToast
+import com.zipzaptaxi.live.utils.helper.AppConstant
+import com.zipzaptaxi.live.utils.helper.AppUtils
 import com.zipzaptaxi.live.viewmodel.OthersViewModel
 import java.util.ArrayList
 
@@ -80,7 +82,7 @@ class AddHomeCityFragment : Fragment(), Observer<RestObservable> {
     }
 
     private fun getHomeCityList() {
-        viewModel.getCitiesListApi(requireActivity(),true)
+        viewModel.getCitiesListApi(requireActivity(),true, getUser(requireContext()).user_type.toString())
         viewModel.mResponse.observe(viewLifecycleOwner,this)
     }
 
@@ -104,6 +106,7 @@ class AddHomeCityFragment : Fragment(), Observer<RestObservable> {
         val map= HashMap<String,Any>()
         map["ids"]= id
         map["delete"]= 1
+        map["user_type"] = getUser(requireContext()).user_type.toString()
         viewModel.addDeleteHomeCityApi(requireActivity(),true,map)
     }
 
@@ -150,11 +153,16 @@ class AddHomeCityFragment : Fragment(), Observer<RestObservable> {
         when (value.status) {
             Status.SUCCESS -> {
                 if (value.data is AddDeleteCityModel) {
-                    val data = value.data.data
-                    savedCityList.clear()
-                    savedCityList.addAll(data)
-                    newCityList.clear()
-                    updateAdapter()
+                    val data = value.data
+                    if (data.code == AppConstant.success_code) {
+                        savedCityList.clear()
+                        savedCityList.addAll(data.data)
+                        newCityList.clear()
+                        updateAdapter()
+                    }else {
+                        AppUtils.showErrorAlert(requireActivity(), data.message)
+                    }
+
                 }
             }
 

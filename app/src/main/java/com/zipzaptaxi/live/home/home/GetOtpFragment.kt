@@ -24,6 +24,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zipzaptaxi.live.R
 import com.zipzaptaxi.live.databinding.LayoutUserVerificationBinding
 import com.zipzaptaxi.live.bookings.BookingDetail
+import com.zipzaptaxi.live.cache.saveIsDialogOpen
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
 import com.zipzaptaxi.live.model.FileUploadResponse
@@ -32,6 +33,7 @@ import com.zipzaptaxi.live.utils.extensionfunctions.isGone
 import com.zipzaptaxi.live.utils.extensionfunctions.prepareMultiPart
 import com.zipzaptaxi.live.utils.helper.AppConstant
 import com.zipzaptaxi.live.utils.helper.AppUtils
+import com.zipzaptaxi.live.utils.showAlertWithCancel
 import com.zipzaptaxi.live.viewmodel.AuthViewModel
 import com.zoptal.vpn.util.hideKeyBoard
 import id.zelory.compressor.Compressor
@@ -49,7 +51,8 @@ import java.util.Objects
 class GetOtpFragment(
     private val bookingDetail: BookingDetail,
     private val rideType: String,
-    private  val otp: String
+    private val otp: String,
+    private val opened: Boolean
 ) :
     BottomSheetDialogFragment(), Observer<RestObservable> {
 
@@ -166,7 +169,16 @@ class GetOtpFragment(
         }
         binding.ivOdometer.setOnClickListener {
 
-            if (ContextCompat.checkSelfPermission(
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+
+                    },{
+
+                    })
+            }else if (ContextCompat.checkSelfPermission(
                     requireContext(),
                     android.Manifest.permission.CAMERA
                 ) == PackageManager.PERMISSION_GRANTED
@@ -180,7 +192,16 @@ class GetOtpFragment(
 
         }
         binding.ivSelfie.setOnClickListener {
-            if (ContextCompat.checkSelfPermission(
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+
+                    },{
+
+                    })
+            } else if (ContextCompat.checkSelfPermission(
                     requireContext(),
                     android.Manifest.permission.CAMERA
                 ) == PackageManager.PERMISSION_GRANTED

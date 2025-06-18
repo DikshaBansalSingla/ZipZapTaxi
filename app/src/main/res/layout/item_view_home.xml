@@ -79,7 +79,7 @@
             android:fontFamily="@font/poppins_bold"
             android:text=""
             android:textColor="@color/black"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_12sdp"
             app:drawableStartCompat="@drawable/pick_up_location"
             app:layout_constraintEnd_toStartOf="@id/ivCar"
             app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +96,7 @@
             android:fontFamily="@font/poppins_bold"
             android:text=""
             android:textColor="@color/black"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_12sdp"
             app:drawableStartCompat="@drawable/drop_location"
             app:layout_constraintEnd_toStartOf="@+id/ivCar"
             app:layout_constraintStart_toStartOf="parent"
@@ -217,7 +217,7 @@
             android:text=""
             android:textAlignment="textEnd"
             android:textColor="@color/black"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_12sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvDrop"
             app:layout_constraintTop_toBottomOf="@+id/txtCarModel"
@@ -252,7 +252,7 @@
             android:text=""
             android:textAlignment="textEnd"
             android:textColor="@color/black"
-            android:textSize="@dimen/_13ssp"
+            android:textSize="@dimen/_13sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtCost" />
 
@@ -271,7 +271,7 @@
             android:text=""
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvDropDate" />
+            app:layout_constraintTop_toBottomOf="@+id/tvStartDate" />
 
         <TextView
             android:id="@+id/tvPassengers"
@@ -288,7 +288,7 @@
             android:text=""
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/tvCarOilType"
-            app:layout_constraintTop_toBottomOf="@+id/tvDropDate" />
+            app:layout_constraintTop_toBottomOf="@+id/tvStartDate" />
 
         <TextView
             android:id="@+id/tvLuggage"
@@ -357,8 +357,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#F7DC6F">
-
-
 
 
                 <TextView

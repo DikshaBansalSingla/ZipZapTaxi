@@ -17,17 +17,32 @@
             android:id="@+id/ivUser"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_100sdp"
-            android:layout_marginTop="@dimen/_40sdp"
-            android:layout_marginBottom="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:padding="@dimen/_2sdp"
             android:src="@mipmap/ic_logo_round"
             app:civ_border_color="@color/white"
             app:civ_border_overlay="false"
             app:civ_border_width="@dimen/_1sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tvUserType"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tvUserType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivUser"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:textSize="@dimen/_14sdp"
+            android:fontFamily="@font/poppins_semibold"
+            tools:text="Vendor"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.zipzaptaxi.live.R
 import com.zipzaptaxi.live.adapter.DriverListAdapter
 import com.zipzaptaxi.live.cache.CacheConstants
+import com.zipzaptaxi.live.cache.getUser
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
 import com.zipzaptaxi.live.databinding.FragmentDriverListBinding
@@ -21,6 +22,7 @@ import com.zipzaptaxi.live.utils.extensionfunctions.isGone
 import com.zipzaptaxi.live.utils.extensionfunctions.isVisible
 import com.zipzaptaxi.live.utils.extensionfunctions.showToast
 import com.zipzaptaxi.live.utils.helper.AppConstant
+import com.zipzaptaxi.live.utils.helper.AppUtils
 import com.zipzaptaxi.live.utils.showCustomAlertWithCancel
 import com.zipzaptaxi.live.viewmodel.DriverViewModel
 
@@ -64,7 +66,7 @@ class DriverListFragment : Fragment(), Observer<RestObservable> {
         getDriverListApi()
     }
     private fun getDriverListApi() {
-        viewModel.driverListApi(requireActivity(),true)
+        viewModel.driverListApi(requireActivity(),true,getUser(requireContext()).user_type.toString())
         viewModel.mResponse.observe(viewLifecycleOwner,this)
     }
 
@@ -83,7 +85,7 @@ class DriverListFragment : Fragment(), Observer<RestObservable> {
                 getString(R.string.are_you_sure_you_want_to_delete_the_driver),
                 getString(R.string.yes), getString(R.string.no),{
                 position=it
-                viewModel.deleteDriverApi(requireActivity(),true,arrayList[it].id.toString())
+                viewModel.deleteDriverApi(requireActivity(),true,arrayList[it].id.toString(), getUser(requireContext()).user_type.toString())
 
             },{})
 
@@ -123,6 +125,8 @@ class DriverListFragment : Fragment(), Observer<RestObservable> {
                             arrayList.addAll(data.data)
                             driverListAdapter.notifyDataSetChanged()
                         }
+                    }else {
+                        AppUtils.showErrorAlert(requireActivity(), data.message)
                     }
                 }
 
@@ -131,6 +135,8 @@ class DriverListFragment : Fragment(), Observer<RestObservable> {
                     if (data.code == AppConstant.success_code) {
                         arrayList.removeAt(position)
                         driverListAdapter.notifyDataSetChanged()
+                    }else {
+                        AppUtils.showErrorAlert(requireActivity(), data.message)
                     }
                 }
             }

@@ -116,10 +116,9 @@
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_70sdp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/tvAddMoney"
+                        app:layout_constraintEnd_toStartOf="@id/tvPenalty"
                         app:layout_constraintTop_toBottomOf="@id/tvPaidAmt"
                         android:textAlignment="center"
-
                         android:padding="@dimen/_6sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginBottom="@dimen/_10sdp"
@@ -136,15 +135,14 @@
                         android:id="@+id/tvAddMoney"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_70sdp"
-                        app:layout_constraintStart_toEndOf="@id/tvTotalBal"
+                        app:layout_constraintStart_toStartOf="@id/tvPenalty"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvPaidAmt"
                         android:textAlignment="center"
                         android:padding="@dimen/_6sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginBottom="@dimen/_10sdp"
-                        android:layout_marginStart="@dimen/_6sdp"
-                        android:layout_marginEnd="@dimen/_6sdp"
+                        android:layout_marginEnd="@dimen/_13sdp"
                         android:fontFamily="@font/poppins_semibold"
                         android:textColor="@color/black"
                         android:text="Add Money"
@@ -162,14 +160,54 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvAddMoney"
-                        android:text="dwfdvdsvd"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTotalBal"
+                        app:layout_constraintBottom_toTopOf="@id/tvReqMoney"
+                        android:text=""
                         android:visibility="visible"
                         android:textColor="@color/red_color"
                         android:textStyle="italic"
                         android:fontFamily="@font/poppins_medium"
                         tools:visibility="visible"/>
 
+
+                    <TextView
+                        android:id="@+id/tvBlank"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_marginEnd="@dimen/_6sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTotalBal"
+                        android:text=""
+                        android:visibility="visible"
+                        android:textColor="@color/red_color"
+                        android:textStyle="italic"
+                        android:fontFamily="@font/poppins_medium"
+                        tools:visibility="gone"/>
+
+
+                    <!-- <TextView
+                         android:id="@+id/tvReqMoney"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         app:layout_constraintEnd_toEndOf="parent"
+                         app:layout_constraintTop_toBottomOf="@id/tvPaidAmt"
+                         app:layout_constraintBottom_toBottomOf="parent"
+                         app:layout_constraintWidth_percent="0.4"
+                         android:textAlignment="center"
+                         android:padding="@dimen/_8sdp"
+                         android:layout_marginTop="@dimen/_10sdp"
+                         android:layout_marginBottom="@dimen/_10sdp"
+                         android:fontFamily="@font/poppins_semibold"
+                         android:textColor="@color/black"
+                         android:text="Request Money"
+                         android:layout_marginStart="@dimen/_10sdp"
+                         android:layout_marginEnd="@dimen/_10sdp"
+                         android:textSize="@dimen/_12sdp"
+                         android:background="@drawable/rounded_edittext_bg_bluee"
+                         />-->
 
 
                     <TextView
@@ -179,8 +217,8 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvNote"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintWidth_percent="0.4"
                         android:textAlignment="center"
+                        android:visibility="visible"
                         android:padding="@dimen/_8sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginBottom="@dimen/_10sdp"
@@ -192,6 +230,7 @@
                         android:textSize="@dimen/_12sdp"
                         android:background="@drawable/rounded_edittext_bg_bluee"
                         />
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

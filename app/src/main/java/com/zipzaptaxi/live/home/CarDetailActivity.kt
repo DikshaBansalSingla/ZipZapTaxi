@@ -16,6 +16,7 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.github.chrisbanes.photoview.PhotoView
 import com.zipzaptaxi.live.R
+import com.zipzaptaxi.live.cache.getUser
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
 import com.zipzaptaxi.live.databinding.ActivityCarDetailsBinding
@@ -78,7 +79,7 @@ class CarDetailActivity : AppCompatActivity(), Observer<RestObservable> {
     }
 
     private fun getVehicleDetail(id: Int) {
-        viewModel.vehicleDetailApi(this, true, id)
+        viewModel.vehicleDetailApi(this, true, id, getUser(this).user_type.toString())
         viewModel.mResponse.observe(this, this)
     }
 
@@ -219,7 +220,7 @@ class CarDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                 finalMap["permit_expiry_date"] = binding.etWPermitEndDate.text.toString()
                 finalMap["fitness_expiry_date"] = binding.etFitEndDate.text.toString()
                 finalMap["pollution_expiry_date"] = binding.etPucEndDate.text.toString()
-
+                finalMap["user_type"] = getUser(this).user_type.toString()
                 viewModel.addUpdateVehicleApi(this, true, finalMap)
                 viewModel.mResponse.observe(this, this)
 
@@ -246,6 +247,8 @@ class CarDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                     if (data.code == AppConstant.success_code) {
                         jsonData = data.data
                         setData(data.data)
+                    }else {
+                        AppUtils.showErrorAlert(this, data.message)
                     }
                 } else if (value.data is BaseResponseModel) {
                     val data: BaseResponseModel = value.data
@@ -257,6 +260,8 @@ class CarDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                         finish()
 
 
+                    }else {
+                        AppUtils.showErrorAlert(this, data.message)
                     }
                 }
 

@@ -2,6 +2,7 @@ package com.zipzaptaxi.live.data
 
 import BookingListResponse
 import MyBookingsResponse
+import ProfileResponseModel
 import com.zipzaptaxi.live.model.AddDeleteCityModel
 import com.zipzaptaxi.live.model.BaseResponseModel
 import com.zipzaptaxi.live.model.BookingDetailResponse
@@ -97,7 +98,8 @@ interface RestApiInterface {
     fun updateProfile(@FieldMap map:HashMap<String,String>): Observable<LoginResponseModel>
 
     @GET(AppConstant.GetDrivers)
-    fun getDrivers(): Observable<DriverListResponse>
+
+    fun getDrivers(@Query("user_type") user_type:String): Observable<DriverListResponse>
 
     @FormUrlEncoded
     @POST(AppConstant.AddUpdateDriver)
@@ -112,21 +114,22 @@ interface RestApiInterface {
     ): Observable<BaseResponseModel>
 
     @GET(AppConstant.DriverDetail)
-    fun getDriverDetail(@Query("id") id:Int): Observable<DriverDetailResponse>
+    fun getDriverDetail(@Query("id") id:Int, @Query("user_type") user_type:String): Observable<DriverDetailResponse>
 
 
     @GET(AppConstant.CabDetail)
-    fun getCabDetail(@Query("id") id:Int): Observable<VehicleDetailResponse>
+    fun getCabDetail(@Query("id") id:Int, @Query("user_type") user_type:String): Observable<VehicleDetailResponse>
 
 
     @GET(AppConstant.VehicleList)
-    fun getVehicles(): Observable<VehicleListResponse>
+    fun getVehicles(@Query("user_type") user_type:String): Observable<VehicleListResponse>
 
     //delete driver
     @FormUrlEncoded
     @HTTP(method = "DELETE", path = "vendor/delete-driver", hasBody = true)
     fun deleteDriver(
-        @Field("id") id:String
+        @Field("id") id:String,
+        @Field("user_type") user_type:String
     ): Observable<BaseResponseModel>
 
 
@@ -134,11 +137,12 @@ interface RestApiInterface {
     @FormUrlEncoded
     @HTTP(method = "DELETE", path = "vendor/delete-cab", hasBody = true)
     fun deleteVehicle(
-        @Field("id") id:String
+        @Field("id") id:String,
+        @Field("user_type") user_type:String
     ): Observable<BaseResponseModel>
 
     @GET(AppConstant.GetDocuments)
-    fun geAllDocs(): Observable<DocResponseModel>
+    fun geAllDocs(@Query("user_type") user_type:String): Observable<DocResponseModel>
 
     @POST(AppConstant.Logout)
     fun logoutApp(): Observable<BaseResponseModel>
@@ -155,7 +159,7 @@ interface RestApiInterface {
 
     @FormUrlEncoded
     @POST(AppConstant.EnterOTP)
-    fun enterOtp(@Field ("id") id:Int): Observable<EnterOtpResModel>
+    fun enterOtp(@Field ("id") id:Int, @Field("user_type") user_type:String): Observable<EnterOtpResModel>
 
     @FormUrlEncoded
     @POST(AppConstant.StartRide)
@@ -166,7 +170,7 @@ interface RestApiInterface {
     fun endRide(@FieldMap map: HashMap<String,String>): Observable<EndRideResponseModel>
 
     @GET(AppConstant.GetCabFree)
-    fun getCabFreeData(): Observable<CabFreeData>
+    fun getCabFreeData(@Query("user_type") user_type:String): Observable<CabFreeData>
 
     @FormUrlEncoded
     @POST(AppConstant.PostCabFree)
@@ -174,16 +178,16 @@ interface RestApiInterface {
 
     @FormUrlEncoded
     @POST(AppConstant.CancelRide)
-    fun cancelRide(@Field("id") id: Int): Observable<BaseResponseModel>
+    fun cancelRide(@Field("id") id: Int, @Field("user_type") user_type:String): Observable<BaseResponseModel>
 
     @GET(AppConstant.GetWalletData)
     fun getWalletData(@Query("user_type") user_type:String): Observable<GetWalletModel>
 
     @GET(AppConstant.GetSupportData)
-    fun getSupportData(): Observable<SupportResponseModel>
+    fun getSupportData(@Query("user_type") user_type:String): Observable<SupportResponseModel>
 
     @GET(AppConstant.TermsPolicyData)
-    fun getTermsData(): Observable<TermsPrivacyResponseModel>
+    fun getTermsData(@Query("user_type") user_type:String?): Observable<TermsPrivacyResponseModel>
 
     @POST(AppConstant.RazorPayOrder)
     fun createOrder(@Body map: OrderRequest): Observable<OrderResponse>
@@ -192,7 +196,7 @@ interface RestApiInterface {
     fun getNotificationList(@Query("user_type") user_type:String): Observable<NotificationListModel>
 
     @GET(AppConstant.GetHomeCity)
-    fun getHomeCityList(): Observable<AddDeleteCityModel>
+    fun getHomeCityList(@Query("user_type") user_type:String): Observable<AddDeleteCityModel>
 
     @GET(AppConstant.AddDeleteHomeCity)
     fun addDeleteHomeCity(@QueryMap map: HashMap<String,Any>): Observable<AddDeleteCityModel>
@@ -201,10 +205,10 @@ interface RestApiInterface {
     fun getBankDetails(@Query("user_type") user_type:String): Observable<GetBankDetailsModel>
 
     @GET(AppConstant.GetTransactions)
-    fun getTransactions(): Observable<GetTransactionsModel>
+    fun getTransactions(@Query("user_type") user_type:String): Observable<GetTransactionsModel>
 
     @GET(AppConstant.TdsData)
-    fun getTdsData(): Observable<TdsDataModel>
+    fun getTdsData(@Query("user_type") user_type:String): Observable<TdsDataModel>
 
     @FormUrlEncoded
     @POST(AppConstant.AddMoney)

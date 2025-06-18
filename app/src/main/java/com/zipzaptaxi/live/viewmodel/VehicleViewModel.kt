@@ -16,10 +16,10 @@ class VehicleViewModel: ViewModel() {
     var mResponse: MutableLiveData<RestObservable> = MutableLiveData()
 
     fun vehicleListApi(
-        activity: Activity, showLoader: Boolean
+        activity: Activity, showLoader: Boolean, userType:String
 
     ) {
-        restApiInterface.getVehicles()
+        restApiInterface.getVehicles(userType)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
@@ -30,9 +30,9 @@ class VehicleViewModel: ViewModel() {
     }
 
     fun vehicleDetailApi(
-        activity: Activity, showLoader: Boolean, id:Int
+        activity: Activity, showLoader: Boolean, id:Int, userType: String
     ) {
-        restApiInterface.getCabDetail(id)
+        restApiInterface.getCabDetail(id, userType)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
@@ -58,10 +58,10 @@ class VehicleViewModel: ViewModel() {
     }
 
     fun deleteVehicleApi(
-        activity: Activity, showLoader: Boolean, id:String
+        activity: Activity, showLoader: Boolean, id:String, userType: String
 
     ) {
-        restApiInterface.deleteVehicle(id)
+        restApiInterface.deleteVehicle(id, userType)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }

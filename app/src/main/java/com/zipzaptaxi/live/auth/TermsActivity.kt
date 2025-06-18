@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.Observer
 import com.zipzaptaxi.live.R
+import com.zipzaptaxi.live.cache.getUser
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
 import com.zipzaptaxi.live.databinding.FragmentTermsCondBinding
@@ -47,7 +48,7 @@ class TermsActivity : AppCompatActivity(), Observer<RestObservable> {
     }
 
     private fun getData() {
-        viewModel.getTermsDataApi(this, true)
+        viewModel.getTermsDataApi(this, true, null)
         viewModel.mResponse.observe(this, this)
     }
 

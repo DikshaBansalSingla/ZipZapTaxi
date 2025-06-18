@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.Menu
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -25,12 +26,14 @@ import com.zipzaptaxi.live.cache.CacheConstants
 import com.zipzaptaxi.live.cache.getUser
 import com.zipzaptaxi.live.databinding.ActivityMainBinding
 import com.zipzaptaxi.live.model.DrawerModel
+import com.zipzaptaxi.live.utils.extensionfunctions.firstCap
 
 
 class MainActivity : AppCompatActivity(),
     ClickOnItem {
 
     private lateinit var drawerRecyclerView: RecyclerView
+    private lateinit var tvUserType: TextView
     val items = ArrayList<DrawerModel>()
 
     private lateinit var binding: ActivityMainBinding
@@ -64,6 +67,9 @@ class MainActivity : AppCompatActivity(),
         val graph = inflater.inflate(R.navigation.nav_graph)
 
         navHostFragment.navController.graph = graph
+        val headerView = binding.navView.getHeaderView(0)
+        tvUserType= headerView.findViewById(R.id.tvUserType)
+        tvUserType.text= getUser(this).user_type?.firstCap()
 
        // binding.navView.setNavigationItemSelectedListener(this)
 
@@ -173,6 +179,12 @@ class MainActivity : AppCompatActivity(),
                         findNavController(R.id.nav_host_fragment).navigate(R.id.homeFragment, null, options)
                     }
                     "addHome" -> {
+                        val options = NavOptions.Builder()
+                            .setPopUpTo(R.id.homeFragment, true)
+                            .build()
+                        findNavController(R.id.nav_host_fragment).navigate(R.id.homeFragment, null, options)
+                    }
+                    "bankDetail" -> {
                         val options = NavOptions.Builder()
                             .setPopUpTo(R.id.homeFragment, true)
                             .build()

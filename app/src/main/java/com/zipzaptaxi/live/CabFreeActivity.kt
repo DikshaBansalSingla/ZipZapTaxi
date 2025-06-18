@@ -23,6 +23,7 @@ import com.zipzaptaxi.live.adapter.CategoryCommercialAdapter
 import com.zipzaptaxi.live.adapter.CategoryDriversAdapter
 import com.zipzaptaxi.live.adapter.TimeAdapter
 import com.zipzaptaxi.live.cache.CacheConstants
+import com.zipzaptaxi.live.cache.getUser
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
 import com.zipzaptaxi.live.databinding.ActivityCabFreeBinding
@@ -172,7 +173,7 @@ class CabFreeActivity : Fragment(), Observer<RestObservable> {
     }
 
     private fun getData() {
-        viewModel.getCabFreeApi(requireActivity(),true)
+        viewModel.getCabFreeApi(requireActivity(),true, getUser(requireContext()).user_type.toString())
         viewModel.mResponse.observe(viewLifecycleOwner,this)
     }
 
@@ -228,6 +229,7 @@ class CabFreeActivity : Fragment(), Observer<RestObservable> {
                 data["to_date"]=binding.etFromDate.text.toString()
                 data["time"]=time_id
                 data["amount"]=binding.etAmount.text.toString()
+                data["user_type"] = getUser(requireContext()).user_type.toString()
 
                 viewModel.postCabFreeApi(requireActivity(),true,data)
                 viewModel.mResponse.observe(viewLifecycleOwner, this)

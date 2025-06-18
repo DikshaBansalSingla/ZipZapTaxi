@@ -26,6 +26,7 @@ fun showAlert(context: Context,message: String, buttonText: String, onClick: () 
 fun showAlertWithCancel(context: Context,message: String, buttonText: String, negativeText: String, onClick: () -> Unit, onNegativeClick: ()->Unit) {
 
     var dialog = AlertDialog.Builder(context)
+    dialog.setTitle("Permission Required")
     dialog.setMessage(message)
     dialog.setCancelable(false)
     dialog.setPositiveButton(buttonText) { dialog, which ->

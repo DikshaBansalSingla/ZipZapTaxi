@@ -39,6 +39,7 @@ data class VehicleListResponse(
         val vehicle_owner_surname: String,
         val cab_type: String,
         val vehicle_year: String,
-        val verification: String
+        val verification: String,
+        val status: String
     )
 }

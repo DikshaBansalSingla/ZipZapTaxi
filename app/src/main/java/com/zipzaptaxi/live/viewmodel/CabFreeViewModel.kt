@@ -16,9 +16,9 @@ class CabFreeViewModel: ViewModel() {
 
 
     fun getCabFreeApi(
-        activity: Activity, showLoader: Boolean
+        activity: Activity, showLoader: Boolean,userType:String
     ) {
-        restApiInterface.getCabFreeData()
+        restApiInterface.getCabFreeData(userType)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }

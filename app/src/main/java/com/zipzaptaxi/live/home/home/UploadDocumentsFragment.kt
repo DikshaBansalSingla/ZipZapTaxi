@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.PopupWindow
-import androidx.activity.addCallback
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -18,7 +17,10 @@ import com.bumptech.glide.Glide
 import com.github.chrisbanes.photoview.PhotoView
 import com.zipzaptaxi.live.R
 import com.zipzaptaxi.live.cache.CacheConstants
+import com.zipzaptaxi.live.cache.getIsDialogOpen
 import com.zipzaptaxi.live.cache.getToken
+import com.zipzaptaxi.live.cache.getUser
+import com.zipzaptaxi.live.cache.saveIsDialogOpen
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
 import com.zipzaptaxi.live.databinding.ActivityUploadDocumentsBinding
@@ -35,6 +37,7 @@ import com.zipzaptaxi.live.utils.extensionfunctions.showToast
 import com.zipzaptaxi.live.utils.helper.AppConstant
 import com.zipzaptaxi.live.utils.helper.AppUtils
 import com.zipzaptaxi.live.utils.helper.AppUtils.Companion.showErrorAlert
+import com.zipzaptaxi.live.utils.showAlertWithCancel
 import com.zipzaptaxi.live.viewmodel.AuthViewModel
 import com.zipzaptaxi.live.viewmodel.DocsViewModel
 import okhttp3.MultipartBody
@@ -52,6 +55,7 @@ class UploadDocumentsFragment : ImagePickerFragment(), Observer<RestObservable> 
     private var mDlFrontPath = ""
     private var mDlBackPath = ""
     private var mCertPath = ""
+    private var opened= false
 
     private lateinit var mValidationClass: ValidationsClass
     private var jsonArray = JSONArray()
@@ -171,13 +175,13 @@ class UploadDocumentsFragment : ImagePickerFragment(), Observer<RestObservable> 
         mValidationClass= ValidationsClass.getInstance()
         CacheConstants.Current = "docs"
         setToolbar()
-        Log.i("token====", getToken(requireContext())!!)
+        opened= getIsDialogOpen(requireContext())
         getAllDocs()
-        setOnClicks()
+        setOnClicks(opened)
     }
 
     private fun getAllDocs() {
-        docViewModel.getAllDocsApi(requireActivity(),true)
+        docViewModel.getAllDocsApi(requireActivity(),true, getUser(requireContext()).user_type.toString() )
         docViewModel.mResponse.observe(viewLifecycleOwner,this)
     }
 
@@ -190,67 +194,175 @@ class UploadDocumentsFragment : ImagePickerFragment(), Observer<RestObservable> 
         toolbarBinding.toolbarTitle.text= getString(R.string.documents)
     }
 
-    private fun setOnClicks() {
+    private fun setOnClicks(opened: Boolean) {
 
         binding.ivAadhaarFront.setOnClickListener {
-            if (verified == 1 || verified == 2) {
-                openImagePopUp(docData?.aadhar_card_front, requireContext())
-            } else {
-                getImage(requireActivity(), 0, false)
+            if(!opened){
+               showAlertWithCancel(requireContext(),
+                   "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                   {
+                       saveIsDialogOpen(requireContext(),true)
+                       if (verified == 1 || verified == 2) {
+                           openImagePopUp(docData?.aadhar_card_front, requireContext())
+                       } else {
+                           getImage(requireActivity(), 0, false)
+                       }
+                   },{
+
+                   })
+            }else{
+                if (verified == 1 || verified == 2) {
+                    openImagePopUp(docData?.aadhar_card_front, requireContext())
+                } else {
+                    getImage(requireActivity(), 0, false)
+                }
             }
+
         }
         binding.ivAadhaarBack.setOnClickListener {
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        if (verified == 1 || verified == 2) {
+                            openImagePopUp(docData?.aadhar_card_back, requireContext())
+                        } else {
+                            getImage(requireActivity(), 1, false)
+                        }
+                    },{
 
-            if (verified == 1 || verified == 2) {
-                openImagePopUp(docData?.aadhar_card_back, requireContext())
-            } else {
-                getImage(requireActivity(), 1, false)
+                    })
+            }else{
+                if (verified == 1 || verified == 2) {
+                    openImagePopUp(docData?.aadhar_card_back, requireContext())
+                } else {
+                    getImage(requireActivity(), 1, false)
+                }
             }
+
+
         }
         binding.ivPanFront.setOnClickListener {
+
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        if (verified == 1 || verified == 2) {
+                            openImagePopUp(docData?.pan_card_front, requireContext())
+                        } else {
+                            getImage(requireActivity(), 2, false)
+                        }
+                    },{
+
+                    })
+            }else{
                 if (verified == 1 || verified == 2) {
                     openImagePopUp(docData?.pan_card_front, requireContext())
                 } else {
                     getImage(requireActivity(), 2, false)
                 }
+            }
+
         }
         binding.ivPanBack.setOnClickListener {
 
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        if (verified == 1 || verified == 2) {
+                            openImagePopUp(docData?.pan_card_back, requireContext())
+                        } else {
+                            getImage(requireActivity(), 3, false)
+                        }
+                    },{
+
+                    })
+            }else{
                 if (verified == 1 || verified == 2) {
                     openImagePopUp(docData?.pan_card_back, requireContext())
                 } else {
                     getImage(requireActivity(), 3, false)
                 }
+            }
+
         }
-            /* binding.ivVoterFront.setOnClickListener {
 
-             getImage(requireActivity(), 4)
-         }
-         binding.ivVoterBack.setOnClickListener {
-
-             getImage(requireActivity(), 5)
-         }*/
         binding.ivDLFront.setOnClickListener {
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        if (verified == 1 || verified == 2) {
+                            openImagePopUp(docData?.driving_license_front, requireContext())
+                        } else {
+                            getImage(requireActivity(), 4, false)
+                        }
+                    },{
+
+                    })
+            }else{
                 if (verified == 1 || verified == 2) {
                     openImagePopUp(docData?.driving_license_front, requireContext())
                 } else {
                     getImage(requireActivity(), 4, false)
                 }
+            }
+
         }
         binding.ivDLBack.setOnClickListener {
+
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        if (verified == 1 || verified == 2) {
+                            openImagePopUp(docData?.driving_license_back, requireContext())
+                        } else {
+                            getImage(requireActivity(), 5, false)
+                        }
+                    },{
+
+                    })
+            }else{
                 if (verified == 1 || verified == 2) {
                     openImagePopUp(docData?.driving_license_back, requireContext())
                 } else {
                     getImage(requireActivity(), 5, false)
                 }
+            }
+
         }
         binding.ivCert.setOnClickListener {
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        if (verified == 1 || verified == 2) {
+                            openImagePopUp(docData?.police_verification, requireContext())
+                        } else {
+                            getImage(requireActivity(), 6, false)
+
+                        }
+                    },{
+
+                    })
+            }else{
                 if (verified == 1 || verified == 2) {
                     openImagePopUp(docData?.police_verification, requireContext())
                 } else {
                     getImage(requireActivity(), 6, false)
 
                 }
+            }
+
         }
 
         binding.btnNext.setOnClickListener {
@@ -288,6 +400,8 @@ class UploadDocumentsFragment : ImagePickerFragment(), Observer<RestObservable> 
                        AppUtils.showSuccessAlert(requireActivity(),"Documents Uploaded Successfully")
                         findNavController().navigate(R.id.action_uploadDocumentsFragment_to_homeFragment)
 
+                    }else {
+                        AppUtils.showErrorAlert(requireActivity(), data.message)
                     }
                 }
                 else if (value.data is DocResponseModel) {

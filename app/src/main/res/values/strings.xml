@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ZipZap Taxi</string>
     <string name="title_activity_login">LoginActivity</string>
-    <string name="map_key" translatable="false">AIzaSyCcTmELSehXo7fqusqkvu4FKYtkQM_5--8</string>
+    <string name="map_key" translatable="false">AIzaSyDzSnrbR_8O4UQnr3LEiZ3S3ZlCnayt2yk</string>
 
     <string name="welcome">"Welcome !"</string>
     <string name="success">Success!</string>

@@ -9,32 +9,34 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.PopupWindow
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.github.chrisbanes.photoview.PhotoView
 import com.zipzaptaxi.live.R
+import com.zipzaptaxi.live.cache.CacheConstants
+import com.zipzaptaxi.live.cache.getIsDialogOpen
 import com.zipzaptaxi.live.cache.getUser
+import com.zipzaptaxi.live.cache.saveIsDialogOpen
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
 import com.zipzaptaxi.live.databinding.FragmentBankDetailsBinding
 import com.zipzaptaxi.live.databinding.LayoutToolbarBinding
+import com.zipzaptaxi.live.home.MainActivity
 import com.zipzaptaxi.live.model.BaseResponseModel
-import com.zipzaptaxi.live.model.DocResponseModel
 import com.zipzaptaxi.live.model.FileUploadResponse
 import com.zipzaptaxi.live.model.GetBankDetailsModel
 import com.zipzaptaxi.live.utils.ImagePickerFragment
 import com.zipzaptaxi.live.utils.ValidationsClass
 import com.zipzaptaxi.live.utils.extensionfunctions.isGone
 import com.zipzaptaxi.live.utils.extensionfunctions.isVisible
-import com.zipzaptaxi.live.utils.extensionfunctions.openImagePopUp
 import com.zipzaptaxi.live.utils.extensionfunctions.prepareMultiPart
 import com.zipzaptaxi.live.utils.extensionfunctions.showToast
 import com.zipzaptaxi.live.utils.helper.AppConstant
 import com.zipzaptaxi.live.utils.helper.AppUtils
 import com.zipzaptaxi.live.utils.helper.AppUtils.Companion.showErrorAlert
+import com.zipzaptaxi.live.utils.showAlertWithCancel
 import com.zipzaptaxi.live.utils.showCustomAlertWithCancel
 import com.zipzaptaxi.live.viewmodel.AuthViewModel
 import com.zipzaptaxi.live.viewmodel.OthersViewModel
@@ -105,29 +107,64 @@ class BankDetailFragment() : ImagePickerFragment(), Observer<RestObservable> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        CacheConstants.Current = "bankDetail"
+
         mValidationClass= ValidationsClass.getInstance()
         setToolbar()
         getData()
 
-        setClicks()
+        val opened= getIsDialogOpen(requireContext())
+        setClicks(opened)
 
     }
 
-    private fun setClicks() {
+    private fun setClicks(opened: Boolean) {
 
         binding.ivPanFront.setOnClickListener {
-            if (verified == 1) {
-               openImagePopUp(data?.pan_card_front, requireContext())
-            } else {
-                getImage(requireActivity(), 0, false)
+
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        if (verified == 1) {
+                            openImagePopUp(data?.pan_card_front, requireContext())
+                        } else {
+                            getImage(requireActivity(), 0, false)
+                        }
+                    },{
+
+                    })
+            }else{
+                if (verified == 1) {
+                    openImagePopUp(data?.pan_card_front, requireContext())
+                } else {
+                    getImage(requireActivity(), 0, false)
+                }
+
             }
         }
         binding.ivBankDetail.setOnClickListener {
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        if (verified == 1) {
+                            openImagePopUp(data?.bank_passbook_front, requireContext())
+                        } else {
+                            getImage(requireActivity(), 1, false)
+                        }
+                    },{
 
-            if (verified == 1) {
-                openImagePopUp(data?.bank_passbook_front, requireContext())
-            } else {
-                getImage(requireActivity(), 1, false)
+                    })
+            }else {
+
+                if (verified == 1) {
+                    openImagePopUp(data?.bank_passbook_front, requireContext())
+                } else {
+                    getImage(requireActivity(), 1, false)
+                }
             }
         }
         binding.btnUpdate.setOnClickListener {
@@ -137,6 +174,7 @@ class BankDetailFragment() : ImagePickerFragment(), Observer<RestObservable> {
                 imageMap["account_no"]= binding.etAccNumber.text.toString().trim()
                 imageMap["bank_name"]= binding.etBankName.text.toString().trim()
                 imageMap["ifsc_code"]= binding.etIfsc.text.toString().trim()
+                imageMap["user_type"] = getUser(requireContext()).user_type.toString()
                 if(!binding.etUpi.text.toString().isNullOrEmpty()){
                     imageMap["upi"]= binding.etUpi.text.toString().trim()
                 }
@@ -185,10 +223,10 @@ class BankDetailFragment() : ImagePickerFragment(), Observer<RestObservable> {
     }
 
     private fun setToolbar() {
-        toolbarBinding.toolbar.setNavigationIcon(R.drawable.baseline_arrow_back_24)
+        toolbarBinding.toolbar.setNavigationIcon(R.drawable.ic_baseline_menu_24)
 
         toolbarBinding.toolbar.setNavigationOnClickListener {
-            findNavController().navigate(R.id.action_bankDetailFragment_to_homeFragment)
+            (activity as MainActivity).openCloseDrawer()
 
         }
         toolbarBinding.toolbarTitle.text= getString(R.string.bank_details)

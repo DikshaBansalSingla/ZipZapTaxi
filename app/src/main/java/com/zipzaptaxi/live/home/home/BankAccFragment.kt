@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.lifecycle.Observer
 import com.zipzaptaxi.live.R
+import com.zipzaptaxi.live.cache.getUser
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
 import com.zipzaptaxi.live.databinding.FragmentSupportBinding
@@ -51,7 +52,7 @@ class BankAccFragment : Fragment(), Observer<RestObservable> {
     }
 
     private fun getSupportData() {
-        viewModel.getSupportDataApi(requireActivity(),true)
+        viewModel.getSupportDataApi(requireActivity(),true, getUser(requireContext()).user_type.toString())
         viewModel.mResponse.observe(viewLifecycleOwner,this)
     }
 

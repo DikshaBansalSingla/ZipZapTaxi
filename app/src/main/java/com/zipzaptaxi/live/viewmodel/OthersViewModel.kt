@@ -16,9 +16,9 @@ class OthersViewModel: ViewModel() {
 
 
     fun getSupportDataApi(
-        activity: Activity, showLoader: Boolean
+        activity: Activity, showLoader: Boolean, userType: String
     ) {
-        restApiInterface.getSupportData()
+        restApiInterface.getSupportData(userType)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
@@ -30,9 +30,9 @@ class OthersViewModel: ViewModel() {
 
 
     fun getTermsDataApi(
-        activity: Activity, showLoader: Boolean
+        activity: Activity, showLoader: Boolean, userType: String?
     ) {
-        restApiInterface.getTermsData()
+        restApiInterface.getTermsData(userType)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
@@ -56,9 +56,9 @@ class OthersViewModel: ViewModel() {
     }
 
     fun getCitiesListApi(
-        activity: Activity, showLoader: Boolean
+        activity: Activity, showLoader: Boolean, userType: String
     ) {
-        restApiInterface.getHomeCityList()
+        restApiInterface.getHomeCityList(userType)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }

@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.zipzaptaxi.live.R
 import com.zipzaptaxi.live.cache.CacheConstants
+import com.zipzaptaxi.live.cache.getUser
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
 import com.zipzaptaxi.live.databinding.ActivityDriverDetailBinding
@@ -20,6 +21,7 @@ import com.zipzaptaxi.live.model.DriverDetailResponse
 import com.zipzaptaxi.live.utils.extensionfunctions.openImagePopUp
 import com.zipzaptaxi.live.utils.extensionfunctions.showToast
 import com.zipzaptaxi.live.utils.helper.AppConstant
+import com.zipzaptaxi.live.utils.helper.AppUtils
 import com.zipzaptaxi.live.viewmodel.DriverViewModel
 
 class DriverDetailActivity : Fragment(), Observer<RestObservable> {
@@ -74,7 +76,7 @@ class DriverDetailActivity : Fragment(), Observer<RestObservable> {
 
     private fun getDetailApi(id: Int) {
 
-        viewModel.driverDetailApi(requireActivity(),true,id)
+        viewModel.driverDetailApi(requireActivity(),true,id, getUser(requireContext()).user_type.toString())
         viewModel.mResponse.observe(viewLifecycleOwner,this)
     }
 
@@ -96,6 +98,8 @@ class DriverDetailActivity : Fragment(), Observer<RestObservable> {
                     if (data.code == AppConstant.success_code) {
                         jsonData= data.data
                         setData(data.data)
+                    }else {
+                        AppUtils.showErrorAlert(requireActivity(), data.message)
                     }
                 }
             }

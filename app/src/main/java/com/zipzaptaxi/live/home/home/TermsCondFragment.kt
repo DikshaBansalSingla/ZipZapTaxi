@@ -10,6 +10,7 @@ import androidx.core.text.HtmlCompat
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.zipzaptaxi.live.R
+import com.zipzaptaxi.live.cache.getUser
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
 import com.zipzaptaxi.live.databinding.FragmentTermsCondBinding
@@ -52,7 +53,7 @@ class TermsCondFragment() : Fragment(), Observer<RestObservable> {
     }
 
     private fun getData() {
-        viewModel.getTermsDataApi(requireActivity(),true)
+        viewModel.getTermsDataApi(requireActivity(),true, getUser(requireContext()).user_type.toString())
         viewModel.mResponse.observe(viewLifecycleOwner,this)
     }
 

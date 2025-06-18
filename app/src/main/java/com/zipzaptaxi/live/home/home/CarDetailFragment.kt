@@ -12,6 +12,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.zipzaptaxi.live.R
+import com.zipzaptaxi.live.cache.getIsDialogOpen
+import com.zipzaptaxi.live.cache.getUser
+import com.zipzaptaxi.live.cache.saveIsDialogOpen
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
 import com.zipzaptaxi.live.databinding.ActivityCarDetailsBinding
@@ -26,6 +29,7 @@ import com.zipzaptaxi.live.utils.getCurrentMaxDate
 import com.zipzaptaxi.live.utils.getDate
 import com.zipzaptaxi.live.utils.helper.AppConstant
 import com.zipzaptaxi.live.utils.helper.AppUtils
+import com.zipzaptaxi.live.utils.showAlertWithCancel
 import com.zipzaptaxi.live.viewmodel.AuthViewModel
 import com.zipzaptaxi.live.viewmodel.VehicleViewModel
 import okhttp3.MultipartBody
@@ -154,7 +158,8 @@ class CarDetailFragment : ImagePickerFragment(), Observer<RestObservable>,
         super.onViewCreated(view, savedInstanceState)
         mValidationClass = ValidationsClass.getInstance()
         setToolbar()
-        setOnClicks()
+        var opened= getIsDialogOpen(requireContext())
+        setOnClicks(opened)
 
         val carColor = ArrayAdapter.createFromResource(
             requireContext(),
@@ -207,7 +212,7 @@ class CarDetailFragment : ImagePickerFragment(), Observer<RestObservable>,
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    private fun setOnClicks() {
+    private fun setOnClicks(opened: Boolean) {
         binding.etRegEndDate.setOnTouchListener { _, _ ->
             Log.d("Touch", "EditText clicked")
             getDate(binding.etRegEndDate, requireContext())
@@ -250,34 +255,155 @@ class CarDetailFragment : ImagePickerFragment(), Observer<RestObservable>,
         }
         binding.ivLicFront.setOnClickListener {
 
-            getImage(requireActivity(), 0, false)
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        getImage(requireActivity(), 0,false)
+
+                    },{
+
+                    })
+            }else {
+
+                getImage(requireActivity(), 0, false)
+            }
         }
         binding.ivLicBack.setOnClickListener {
-            getImage(requireActivity(), 1, false)
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        getImage(requireActivity(), 1,false)
+
+                    },{
+
+                    })
+            }else {
+                getImage(requireActivity(), 1, false)
+            }
         }
         binding.ivCarLeft.setOnClickListener {
-            getImage(requireActivity(), 2, false)
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        getImage(requireActivity(), 2,false)
+
+                    },{
+
+                    })
+            }else {
+                getImage(requireActivity(), 2, false)
+            }
         }
         binding.ivCarRight.setOnClickListener {
-            getImage(requireActivity(), 3, false)
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        getImage(requireActivity(), 3,false)
+
+                    },{
+
+                    })
+            }else {
+                getImage(requireActivity(), 3, false)
+            }
         }
         binding.ivRcFront.setOnClickListener {
-            getImage(requireActivity(), 4, false)
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        getImage(requireActivity(), 4,false)
+
+                    },{
+
+                    })
+            }else {
+                getImage(requireActivity(), 4, false)
+            }
         }
         binding.ivRcBack.setOnClickListener {
-            getImage(requireActivity(), 5, false)
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        getImage(requireActivity(), 5,false)
+
+                    },{
+
+                    })
+            }else {
+                getImage(requireActivity(), 5, false)
+            }
         }
         binding.ivInsCert.setOnClickListener {
-            getImage(requireActivity(), 6, false)
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        getImage(requireActivity(), 6,false)
+
+                    },{
+
+                    })
+            }else {
+                getImage(requireActivity(), 6, false)
+            }
         }
         binding.ivWhiteCert.setOnClickListener {
-            getImage(requireActivity(), 7, false)
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        getImage(requireActivity(), 7,false)
+
+                    },{
+
+                    })
+            }else {
+                getImage(requireActivity(), 7, false)
+            }
         }
         binding.ivFitCert.setOnClickListener {
-            getImage(requireActivity(), 8, false)
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        getImage(requireActivity(), 8,false)
+
+                    },{
+
+                    })
+            }else {
+                getImage(requireActivity(), 8, false)
+            }
         }
         binding.ivPucCert.setOnClickListener {
-            getImage(requireActivity(), 9, false)
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        getImage(requireActivity(), 9,false)
+
+                    },{
+
+                    })
+            }else {
+                getImage(requireActivity(), 9, false)
+            }
         }
         binding.btnSubmit.setOnClickListener {
             if (isValid()) {
@@ -296,6 +422,7 @@ class CarDetailFragment : ImagePickerFragment(), Observer<RestObservable>,
                 finalMap["pollution_expiry_date"] = binding.etPucEndDate.text.toString()
                 finalMap["passenger"] = binding.etPass.text.toString()
                 finalMap["cab_type"] = mCabType
+                finalMap["user_type"] = getUser(requireContext()).user_type.toString()
                 //finalMap["bags"] = binding.etBags.text.toString()
                 if (binding.cbIsCng.isChecked) {
 
@@ -409,6 +536,8 @@ class CarDetailFragment : ImagePickerFragment(), Observer<RestObservable>,
                             requireActivity(),
                             "Car added Successfully"
                         )
+                    }else {
+                        AppUtils.showErrorAlert(requireActivity(), data.message)
                     }
                 }
             }

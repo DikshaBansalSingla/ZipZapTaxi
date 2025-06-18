@@ -1,35 +1,31 @@
 package com.zipzaptaxi.live.driver
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.zipzaptaxi.live.R
 import com.zipzaptaxi.live.cache.CacheConstants
+import com.zipzaptaxi.live.cache.getIsDialogOpen
+import com.zipzaptaxi.live.cache.getUser
+import com.zipzaptaxi.live.cache.saveIsDialogOpen
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
-import com.zipzaptaxi.live.databinding.ActivityBookingDetailBinding
-import com.zipzaptaxi.live.databinding.ActivityDriverDetailBinding
 import com.zipzaptaxi.live.databinding.FragmentAddDriverBinding
-import com.zipzaptaxi.live.databinding.FragmentHomeBinding
 import com.zipzaptaxi.live.databinding.LayoutToolbarBinding
-import com.zipzaptaxi.live.home.MainActivity
 import com.zipzaptaxi.live.model.BaseResponseModel
 import com.zipzaptaxi.live.model.FileUploadResponse
 import com.zipzaptaxi.live.utils.ImagePickerFragment
-import com.zipzaptaxi.live.utils.ImagePickerUtility
-import com.zipzaptaxi.live.utils.ImagePickerUtilityFragment
 import com.zipzaptaxi.live.utils.ValidationsClass
 import com.zipzaptaxi.live.utils.extensionfunctions.prepareMultiPart
 import com.zipzaptaxi.live.utils.extensionfunctions.showToast
 import com.zipzaptaxi.live.utils.helper.AppConstant
 import com.zipzaptaxi.live.utils.helper.AppUtils
+import com.zipzaptaxi.live.utils.showAlertWithCancel
 import com.zipzaptaxi.live.viewmodel.AuthViewModel
 import com.zipzaptaxi.live.viewmodel.DriverViewModel
 import okhttp3.MultipartBody
@@ -127,7 +123,8 @@ class AddDriverFragment : ImagePickerFragment(), Observer<RestObservable> {
 
         setToolbar()
 
-        setOnClicks()
+        var opened= getIsDialogOpen(requireContext())
+        setOnClicks(opened)
     }
 
     private fun uploadDocApi(bodyimage: MultipartBody.Part) {
@@ -135,28 +132,95 @@ class AddDriverFragment : ImagePickerFragment(), Observer<RestObservable> {
         viewModel.mResponse.observe(viewLifecycleOwner, this)
     }
 
-    private fun setOnClicks() {
+    private fun setOnClicks(opened: Boolean) {
         binding.btnAdd.setOnClickListener {
             addDriver()
         }
 
         binding.ivAadharFront.setOnClickListener {
-            getImage(requireActivity(), 0,false)
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        getImage(requireActivity(), 0,false)
+
+                    },{
+
+                    })
+            }else{
+                getImage(requireActivity(), 0,false)
+
+            }
         }
 
         binding.ivAadharBack.setOnClickListener {
-            getImage(requireActivity(), 1,false)
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        getImage(requireActivity(), 1,false)
+
+                    },{
+
+                    })
+            }else{
+                getImage(requireActivity(), 1,false)
+
+            }
         }
 
         binding.ivDLFront.setOnClickListener {
-            getImage(requireActivity(), 2,false)
+            if (!opened) {
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.",
+                    "Allow",
+                    "Deny",
+                    {
+                        saveIsDialogOpen(requireContext(), true)
+                        getImage(requireActivity(), 2, false)
+
+                    },
+                    {
+
+                    })
+            } else {
+
+
+                getImage(requireActivity(), 2, false)
+            }
         }
 
         binding.ivDLBack.setOnClickListener {
-            getImage(requireActivity(), 3,false)
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        getImage(requireActivity(), 3,false)
+
+                    },{
+
+                    })
+            }else {
+                getImage(requireActivity(), 3, false)
+            }
         }
         binding.img.setOnClickListener {
-            getImage(requireActivity(),4,false)
+            if(!opened){
+                showAlertWithCancel(requireContext(),
+                    "Zipzap Taxi Partner would like to access your camera and gallery to enable photos uploads. Your photos will only be use within the app and will not be shared. Please Allow to grant permission.","Allow","Deny",
+                    {
+                        saveIsDialogOpen(requireContext(),true)
+                        getImage(requireActivity(), 4,false)
+
+                    },{
+
+                    })
+            }else {
+                getImage(requireActivity(), 4, false)
+            }
         }
     }
 
@@ -168,7 +232,7 @@ class AddDriverFragment : ImagePickerFragment(), Observer<RestObservable> {
             finalMap["email"]= binding.etEmail.text.toString()
             finalMap["aadhar_card_number"]= binding.etAadharNo.text.toString()
             finalMap["driving_license_number"]= binding.etLicNo.text.toString()
-
+            finalMap["user_type"] = getUser(requireContext()).user_type.toString()
             driverViewModel.addUpdateDriverApi(requireActivity(),true,finalMap)
             driverViewModel.mResponse.observe(viewLifecycleOwner,this)
 
@@ -226,6 +290,8 @@ class AddDriverFragment : ImagePickerFragment(), Observer<RestObservable> {
                             requireActivity(),
                             getString(R.string.driver_added_successfully), onBackPressed = true
                         )
+                    }else {
+                        AppUtils.showErrorAlert(requireActivity(), data.message)
                     }
                 }
 

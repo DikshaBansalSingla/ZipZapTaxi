@@ -11,6 +11,7 @@ data class DriverListResponse(
         val aadhar_card_front: String,
         val aadhar_card_number: String,
         val created_at: String,
+        val status: String,
         val driving_license_back: String,
         val driving_license_front: String,
         val driving_license_number: String,

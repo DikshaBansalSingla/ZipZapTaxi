@@ -67,7 +67,7 @@ class TripAmtFragment : Fragment(), Observer<RestObservable> {
     }
 
     private fun getData() {
-        viewModel.getTdsDataApi(requireActivity(), true)
+        viewModel.getTdsDataApi(requireActivity(), true, getUser(requireContext()).user_type.toString())
         viewModel.mResponse.observe(viewLifecycleOwner, this)
     }
 
@@ -97,11 +97,15 @@ class TripAmtFragment : Fragment(), Observer<RestObservable> {
                     val data: TdsDataModel = value.data
                     if (data.code == AppConstant.success_code) {
                         setData(data.data)
+                    }else {
+                        AppUtils.showErrorAlert(requireActivity(), data.message)
                     }
                 }else if(value.data is BaseResponseModel){
                     val data: BaseResponseModel = value.data
                     if (data.code == AppConstant.success_code) {
                         AppUtils.showSuccessAlert(requireActivity(),data.message)
+                    }else {
+                        AppUtils.showErrorAlert(requireActivity(), data.message)
                     }
                 }
 

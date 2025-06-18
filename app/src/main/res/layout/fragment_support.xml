@@ -72,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtPhone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="00321564848778"
+        android:text=""
         android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginStart="@dimen/_12sdp"
         android:textSize="@dimen/_16sdp"

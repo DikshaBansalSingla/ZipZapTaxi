@@ -4,7 +4,7 @@ object AppConstant {
 
 
 
-    const val BASE_URL = "https://zipzaptaxi.com/api/"
+    const val BASE_URL = "https://zipzaptaxi.in/api/"
 
     val success_code = 200
     val errorCode = 401

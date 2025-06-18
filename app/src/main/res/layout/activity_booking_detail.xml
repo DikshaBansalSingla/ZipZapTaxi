@@ -87,10 +87,10 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
                 app:drawableStartCompat="@drawable/drop_location"
+                app:drawableTint="@color/md_grey_800"
                 app:layout_constraintEnd_toStartOf="@+id/ivCar"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvTripFrom"
-                app:drawableTint="@color/md_grey_800" />
+                app:layout_constraintTop_toBottomOf="@+id/tvTripFrom" />
 
             <TextView
                 android:id="@+id/tvTripTo"
@@ -985,7 +985,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/txtExtraMin" />
 
 
-
                 <TextView
                     android:id="@+id/txtTotalPrice"
                     android:layout_width="0dp"
@@ -1014,7 +1013,6 @@
                     android:textSize="@dimen/_11sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtOtherCharges" />
-
 
 
                 <TextView
@@ -1077,7 +1075,6 @@
                     android:textSize="@dimen/_11sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtVendorAmount" />
-
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1162,9 +1159,9 @@
                 android:layout_marginBottom="@dimen/_16sdp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Email:"
-                android:visibility="gone"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12ssp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
 
@@ -1196,8 +1193,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvPickUpLoc" />
-
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

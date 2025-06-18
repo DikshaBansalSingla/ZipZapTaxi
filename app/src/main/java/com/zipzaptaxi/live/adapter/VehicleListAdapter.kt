@@ -36,7 +36,7 @@ class VehicleListAdapter(val context: Context): RecyclerView.Adapter<VehicleList
                 binding.tvtVerify.setTextColor(context.resources.getColor(R.color.approved))
 
             }
-            binding.tvtVerify.text= data.verification.firstCap()
+            binding.tvtVerify.text= data.verification.firstCap()+" ("+data.status+")"
 
             binding.llMain.setOnClickListener {
                 onItemClick?.invoke(adapterPosition)

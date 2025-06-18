@@ -15,10 +15,10 @@ class DriverViewModel: ViewModel() {
     var mResponse: MutableLiveData<RestObservable> = MutableLiveData()
 
     fun driverListApi(
-        activity: Activity, showLoader: Boolean
+        activity: Activity, showLoader: Boolean, userType:String
 
     ) {
-        restApiInterface.getDrivers()
+        restApiInterface.getDrivers(userType)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
@@ -44,10 +44,10 @@ class DriverViewModel: ViewModel() {
     }
 
     fun driverDetailApi(
-        activity: Activity, showLoader: Boolean, id:Int
+        activity: Activity, showLoader: Boolean, id:Int, userType: String
 
     ) {
-        restApiInterface.getDriverDetail(id)
+        restApiInterface.getDriverDetail(id,userType)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
@@ -58,10 +58,10 @@ class DriverViewModel: ViewModel() {
     }
 
     fun deleteDriverApi(
-        activity: Activity, showLoader: Boolean, id:String
+        activity: Activity, showLoader: Boolean, id:String, userType: String
 
     ) {
-        restApiInterface.deleteDriver(id)
+        restApiInterface.deleteDriver(id,userType)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }

@@ -145,10 +145,15 @@
             app:destination="@id/homeFragment" />
         <action
             android:id="@+id/action_bookingDetail_to_carDetailFragment"
-            app:destination="@id/carDetailFragment" />
+            app:destination="@id/carDetailFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/homeFragment"/>
         <action
             android:id="@+id/action_bookingDetail_to_addDriverFragment2"
             app:destination="@id/addDriverFragment2" />
+        <action
+            android:id="@+id/action_bookingDetail_to_vehicleListFragment"
+            app:destination="@id/vehicleListFragment" />
 
     </fragment>
     <fragment

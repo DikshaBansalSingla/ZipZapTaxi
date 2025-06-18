@@ -32,7 +32,7 @@ class DriverListAdapter(val context: Context): RecyclerView.Adapter<DriverListAd
                 binding.tvStatus.setTextColor(context.resources.getColor(R.color.approved))
 
             }
-            binding.tvStatus.text= data.verification
+            binding.tvStatus.text= data.verification +" ("+data.status+")"
 
             binding.llMain.setOnClickListener {
                 onItemClick?.invoke(adapterPosition)

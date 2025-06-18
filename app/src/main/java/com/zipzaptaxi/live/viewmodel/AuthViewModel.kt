@@ -2,6 +2,7 @@ package com.zipzaptaxi.live.viewmodel
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.zipzaptaxi.live.base.AppController
@@ -117,8 +118,15 @@ class AuthViewModel: ViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
             .subscribe(
-                { mResponse.value = RestObservable.success(it) },
-                { mResponse.value = RestObservable.error(activity, it) }
+                { result ->
+                    Log.d("UpdateProfile", "Result: $result")
+
+                    mResponse.value = RestObservable.success(result) },
+                {
+                    error ->
+                    Log.e("UpdateProfile", "Error: ${error.message}")
+
+                    mResponse.value = RestObservable.error(activity, error) }
             )
     }
 

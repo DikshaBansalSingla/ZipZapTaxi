@@ -76,9 +76,9 @@ class BookingViewModel: ViewModel() {
 
     fun enterOtpApi(
         activity: Activity, showLoader: Boolean,
-        id:Int
+        id:Int, userType: String
     ) {
-        restApiInterface.enterOtp(id)
+        restApiInterface.enterOtp(id,userType)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
@@ -115,9 +115,9 @@ class BookingViewModel: ViewModel() {
     }
     fun cancelRideApi(
         activity: Activity, showLoader: Boolean,
-        id:Int
+        id:Int,userType: String
     ) {
-        restApiInterface.cancelRide(id)
+        restApiInterface.cancelRide(id,userType)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }

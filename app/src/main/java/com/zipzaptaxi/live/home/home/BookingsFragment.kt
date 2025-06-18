@@ -28,6 +28,7 @@ import com.zipzaptaxi.live.home.MainActivity
 import com.zipzaptaxi.live.utils.extensionfunctions.isGone
 import com.zipzaptaxi.live.utils.extensionfunctions.showToast
 import com.zipzaptaxi.live.utils.helper.AppConstant
+import com.zipzaptaxi.live.utils.helper.AppUtils
 import com.zipzaptaxi.live.viewmodel.BookingViewModel
 
 class BookingsFragment : Fragment(), Observer<RestObservable> {
@@ -75,7 +76,6 @@ class BookingsFragment : Fragment(), Observer<RestObservable> {
     private fun setOnClicks() {
         binding.btnActiveBookings.setOnClickListener {
             status = "active"
-
             binding.btnActiveBookings.setBackgroundResource(R.drawable.bg_white_button_corners)
             binding.btnCompleted.setBackgroundResource(R.drawable.bg_grey_unselecte)
             binding.rvActiveBookings.visibility = View.VISIBLE
@@ -178,6 +178,8 @@ class BookingsFragment : Fragment(), Observer<RestObservable> {
                                 completedBookingsAdapter.notifyDataSetChanged()
                             }
                         }
+                    }else {
+                        AppUtils.showErrorAlert(requireActivity(), data.message)
                     }
                 }
             }

@@ -30,7 +30,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/car_details"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_22ssp"
+                android:textSize="@dimen/_22sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,7 +44,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/plate_number"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvUploadDoc" />
 
@@ -61,7 +61,7 @@
                 android:minHeight="@dimen/_30sdp"
                 android:paddingStart="@dimen/_10sdp"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_12sdp"
                 android:maxLines="1"
                 android:hint="HR072246"
                 android:importantForAutofill="no"
@@ -80,7 +80,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/color"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintStart_toEndOf="@+id/etVehicleNo"
                 app:layout_constraintTop_toBottomOf="@+id/tvUploadDoc" />
 
@@ -116,7 +116,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/vehicle_model"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rlCabsColor" />
 
@@ -134,7 +134,7 @@
                 android:minHeight="@dimen/_30sdp"
                 android:paddingStart="@dimen/_10sdp"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_12sdp"
                 android:hint="Swift DZire"
                 app:layout_constraintEnd_toStartOf="@id/etYear"
                 app:layout_constraintStart_toStartOf="parent"
@@ -150,7 +150,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/vehicle_year"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintStart_toEndOf="@+id/etVehicleNo"
                 app:layout_constraintTop_toBottomOf="@+id/rlCabsColor" />
 
@@ -170,7 +170,7 @@
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_12sdp"
                 android:hint="2024"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/etModel"
@@ -185,7 +185,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="Passengers"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etYear" />
 
@@ -203,7 +203,7 @@
                 android:minHeight="@dimen/_30sdp"
                 android:paddingStart="@dimen/_10sdp"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_12sdp"
                 android:hint="4+1"
                 android:digits="0123456789+"
                 app:layout_constraintEnd_toStartOf="@id/rlCabType"
@@ -221,7 +221,7 @@
                 android:text="Cab Type"
                 android:visibility="visible"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintStart_toEndOf="@+id/etPass"
                 app:layout_constraintTop_toBottomOf="@+id/etYear" />
 
@@ -328,7 +328,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/car_with_number_plate_picture"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cbIsRoofTop" />
 
@@ -340,7 +340,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/front"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="@id/ivLicFront"
                 app:layout_constraintStart_toStartOf="@id/ivLicFront"
                 app:layout_constraintTop_toBottomOf="@+id/txtPlatePic" />
@@ -370,7 +370,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/back"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="@id/ivLicBack"
                 app:layout_constraintStart_toStartOf="@id/ivLicBack"
                 app:layout_constraintTop_toBottomOf="@+id/txtPlatePic" />
@@ -400,7 +400,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/left_optional"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="@id/ivLicFront"
                 app:layout_constraintStart_toStartOf="@id/ivLicFront"
                 app:layout_constraintTop_toBottomOf="@+id/ivLicBack" />
@@ -430,7 +430,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/right_optional"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="@id/ivLicBack"
                 app:layout_constraintStart_toStartOf="@id/ivLicBack"
                 app:layout_constraintTop_toBottomOf="@+id/ivLicBack" />
@@ -462,7 +462,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/rc_information"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_12sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ivCarRight"
 
@@ -477,7 +477,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/vehicle_owner_name"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvRCInfo" />
 
@@ -494,7 +494,7 @@
                 android:minHeight="@dimen/_30sdp"
                 android:paddingStart="@dimen/_10sdp"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_12sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvOwnerName"
@@ -508,7 +508,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/vehicle_owner_s_surname"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/etName" />
 
@@ -525,7 +525,7 @@
                 android:minHeight="@dimen/_30sdp"
                 android:paddingStart="@dimen/_10sdp"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_12sdp"
                 android:maxLength="30"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -541,7 +541,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/registration_start_date"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etSirName" />
 
@@ -559,7 +559,7 @@
                 android:minHeight="@dimen/_30sdp"
                 android:paddingStart="@dimen/_10sdp"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_12sdp"
                 android:hint="29-04-2024"
                 app:layout_constraintEnd_toStartOf="@id/etRegEndDate"
                 app:layout_constraintStart_toStartOf="parent"
@@ -575,7 +575,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/registration_end_date"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintStart_toEndOf="@+id/etRegStartDate"
                 app:layout_constraintTop_toBottomOf="@+id/etSirName" />
 
@@ -593,7 +593,7 @@
                 android:minHeight="@dimen/_30sdp"
                 android:paddingStart="@dimen/_10sdp"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_12sdp"
                 android:hint="29-04-2024"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/etRegStartDate"
@@ -609,7 +609,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/tax_paid_until_date"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etRegStartDate" />
 
@@ -627,7 +627,7 @@
                 android:minHeight="@dimen/_30sdp"
                 android:paddingStart="@dimen/_10sdp"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_12sdp"
                 android:hint="29-04-2024"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -642,7 +642,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/rc_front"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="@id/ivRcFront"
                 app:layout_constraintStart_toStartOf="@id/ivRcFront"
                 app:layout_constraintTop_toBottomOf="@+id/etTaxDate"
@@ -657,7 +657,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/rc_back"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="@id/ivRcBack"
                 app:layout_constraintStart_toStartOf="@id/ivRcBack"
                 app:layout_constraintTop_toBottomOf="@+id/etTaxDate" />
@@ -706,7 +706,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/insurance"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_11ssp"
+                android:textSize="@dimen/_11sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ivRcBack" />
 
@@ -735,7 +735,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/insurance_expiry_date"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtInsCert" />
 
@@ -753,7 +753,7 @@
                 android:minHeight="@dimen/_30sdp"
                 android:paddingStart="@dimen/_10sdp"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_12sdp"
                 android:hint="29-04-2024"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtInsEndDate"
@@ -768,7 +768,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/permit"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_11ssp"
+                android:textSize="@dimen/_11sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ivInsCert" />
 
@@ -797,7 +797,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/permit_expiry_date"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtBPermitCert" />
 
@@ -815,7 +815,7 @@
                 android:minHeight="@dimen/_30sdp"
                 android:paddingStart="@dimen/_10sdp"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_12sdp"
                 android:hint="29-04-2024"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtBPermitEndDate"
@@ -831,7 +831,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/pink_permit"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_11ssp"
+                android:textSize="@dimen/_11sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ivWhiteCert" />
 
@@ -859,7 +859,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/permit_expiry_date"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 android:layout_marginStart="@dimen/_16sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtPPermitCert" />
@@ -875,7 +875,7 @@
                 android:minHeight="@dimen/_30sdp"
                 android:paddingStart="@dimen/_10sdp"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_12sdp"
                 android:layout_marginStart="@dimen/_16sdp"
                 android:editable="false"
                 android:focusable="false"
@@ -893,7 +893,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/fitness"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_11ssp"
+                android:textSize="@dimen/_11sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ivWhiteCert" />
 
@@ -922,7 +922,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/fitness_expiry_date"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtFitCert" />
 
@@ -940,7 +940,7 @@
                 android:minHeight="@dimen/_30sdp"
                 android:paddingStart="@dimen/_10sdp"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_12sdp"
                 android:hint="29-04-2024"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtFitEndDate"
@@ -956,7 +956,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/pollution_puc_information"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_11ssp"
+                android:textSize="@dimen/_11sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ivFitCert" />
 
@@ -988,7 +988,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/puc_expiry_date"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtPucCert" />
 
@@ -1006,7 +1006,7 @@
                 android:minHeight="@dimen/_30sdp"
                 android:paddingStart="@dimen/_10sdp"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_12sdp"
                 android:hint="29-04-2024"
                 android:layout_marginBottom="@dimen/_10sdp"
 
@@ -1029,7 +1029,7 @@
                 android:text="@string/submit"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_12sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -88,8 +88,8 @@ class AddMoneyActivity : AppCompatActivity(), PaymentResultWithDataListener, Ext
         val activity: Activity = this
         val co = Checkout()
 
-      //  co.setKeyID("rzp_test_jyn3PaMKThlTXx")
-         co.setKeyID("rzp_live_4PZpiiRau2gahT")
+       co.setKeyID("rzp_test_w3D91fJXWRxGjc")
+       //  co.setKeyID("rzp_live_4PZpiiRau2gahT")
 
         try {
             val options = JSONObject()
@@ -162,6 +162,7 @@ class AddMoneyActivity : AppCompatActivity(), PaymentResultWithDataListener, Ext
         map["amount"] = amount
         map["status"] = status
         map["transactionId"] = transactionId
+        map["user_type"] = getUser(this).user_type.toString()
         viewModel.addMoneyApi(this, true, map)
         viewModel.mResponse.observe(this, this)
     }

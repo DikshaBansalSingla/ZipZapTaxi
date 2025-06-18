@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.zipzaptaxi.live.R
@@ -21,6 +22,8 @@ import com.zipzaptaxi.live.viewmodel.WalletViewModel
 import androidx.navigation.fragment.findNavController
 import com.zipzaptaxi.live.cache.CacheConstants
 import com.zipzaptaxi.live.cache.getUser
+import com.zipzaptaxi.live.utils.extensionfunctions.isGone
+import com.zipzaptaxi.live.utils.extensionfunctions.isVisible
 
 import java.util.ArrayList
 
@@ -111,6 +114,16 @@ class WalletFragment : Fragment(), Observer<RestObservable> {
                     val data: GetWalletModel = value.data
                     if (data.code == AppConstant.success_code) {
                             setData(data.data)
+                        if (binding.tvTotalBal.visibility == View.GONE && binding.tvNote.visibility == View.GONE && binding.tvAddMoney.visibility == View.GONE) {
+                            val layoutParams = binding.tvReqMoney.layoutParams as ConstraintLayout.LayoutParams
+                            layoutParams.topToBottom = R.id.tvPaidAmt
+                            binding.tvReqMoney.layoutParams = layoutParams
+                        } else {
+                            val layoutParams = binding.tvReqMoney.layoutParams as ConstraintLayout.LayoutParams
+                            layoutParams.topToBottom = R.id.tvTotalBal
+                            binding.tvReqMoney.layoutParams = layoutParams
+                        }
+
                     } else {
                         AppUtils.showErrorAlert(requireActivity(), data.message)
                     }
@@ -134,17 +147,37 @@ class WalletFragment : Fragment(), Observer<RestObservable> {
     }
 
     private fun setData(data: GetWalletModel.Data) {
-        binding.tvVendorAmt.text="Vendor Amount"+"\n₹" +data.vendor_amount
-        binding.tvCollectAmt.text="Collect Amount" +"\n₹" +data.collect_amount
-        binding.tvPaidAmt.text="Paid" +"\n₹" +data.paid
-        binding.tvPenalty.text="Penalty"+"\n₹" +data.panelty
-        binding.tvTotalBal.text="Balance"+"\n₹" + data.balance
-        binding.tvNote.text="Note*: "+"₹"+data.note_balance+" is non refundable but will remain in your wallet"
-        arrayList.clear()
-        if(data.bookings.size!=0){
-            arrayList.addAll(data.bookings)
-            adapter.notifyDataSetChanged()
+        if(getUser(requireContext()).user_type.toString()=="vendor"){
+//            binding.tvNote.isVisible()
+            binding.tvBlank.isGone()
+            binding.tvVendorAmt.text="Total Earnings"+"\n₹" +data.vendor_amount
+            binding.tvCollectAmt.text="Collect Amount" +"\n₹" +data.collect_amount
+            binding.tvPaidAmt.text="Paid" +"\n₹" +data.paid
+            binding.tvPenalty.text="Penalty"+"\n₹" +data.panelty
+            binding.tvTotalBal.text="Balance"+"\n₹" + data.balance
+            binding.tvNote.text="Note*: "+"₹"+data.note_balance+" is non refundable but will remain in your wallet"
+            arrayList.clear()
+            if(data.bookings.size!=0){
+                arrayList.addAll(data.bookings)
+                adapter.notifyDataSetChanged()
+            }
+        }else{
+            binding.tvVendorAmt.text="Total Earnings"+"\n₹ " +data.vendor_amount
+            binding.tvCollectAmt.text="Referral Amount" +"\n₹ " +data.referal_amount
+            binding.tvPaidAmt.text="Penalty" +"\n₹ " +data.panelty
+            binding.tvPenalty.text="Balance"+"\n₹ " +data.balance
+           // binding.tvTotalBal.text="Balance"+"\n₹ " + data.balance
+            binding.tvTotalBal.isGone()
+            binding.tvNote.isGone()
+            binding.tvBlank.isVisible()
+            binding.tvAddMoney.isGone()
+            arrayList.clear()
+            if(data.bookings.size!=0){
+                arrayList.addAll(data.bookings)
+                adapter.notifyDataSetChanged()
+            }
         }
+
 
     }
 }

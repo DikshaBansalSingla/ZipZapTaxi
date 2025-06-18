@@ -2,6 +2,7 @@ package com.zipzaptaxi.live.bookings
 
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ import com.zipzaptaxi.live.R
 import com.zipzaptaxi.live.adapter.CategoryCommercialAdapter
 import com.zipzaptaxi.live.adapter.CategoryDriversAdapter
 import com.zipzaptaxi.live.cache.CacheConstants
+import com.zipzaptaxi.live.cache.getIsDialogOpen
 import com.zipzaptaxi.live.cache.getSaveString
 import com.zipzaptaxi.live.cache.getUser
 import com.zipzaptaxi.live.data.RestObservable
@@ -56,6 +58,7 @@ class BookingDetail : Fragment(), Observer<RestObservable> {
 
     private var accept= 0
     var on_the_way= 0
+    var opened= false
 
     private val listC: ArrayList<CabsList> = ArrayList()
 
@@ -85,18 +88,18 @@ class BookingDetail : Fragment(), Observer<RestObservable> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         CacheConstants.Current = "bookingDetail"
+        opened= getIsDialogOpen(requireContext())
 
         setToolbar()
         val bundle = arguments
         booking_id = bundle?.getInt("id")!!
         getData(booking_id)
-        setOnClicks()
         setSpinners()
 
         latitude= getSaveString(requireContext(), "Lat").toString()
         longitude= getSaveString(requireContext(), "Lang").toString()
 
-        showToast("Location is:   Latitude: $latitude, Longitude: $longitude")
+      //  showToast("Location is:   Latitude: $latitude, Longitude: $longitude")
 
 
     }
@@ -146,6 +149,7 @@ class BookingDetail : Fragment(), Observer<RestObservable> {
     }
 
     private fun setOnClicks() {
+        Log.e("=======",jsonData?.booking_status.toString())
         binding.btnBook.setOnClickListener {
             if(jsonData?.documents==0){
                 showCustomAlert(requireActivity(),
@@ -163,11 +167,6 @@ class BookingDetail : Fragment(), Observer<RestObservable> {
                     getString(R.string.your_documents_are_rejected_kindly_upload_your_documents_again),  getString(R.string.ok)) {
                     findNavController().navigate(R.id.action_bookingDetail_to_uploadDocumentsFragment)
                 }
-            }else if(jsonData?.wallet_balance!! < 1500){
-                showCustomAlert(requireActivity(),
-                    getString(R.string.low_balance_please_add_money_into_your_wallet),  getString(R.string.ok)) {
-                    findNavController().navigate(R.id.action_bookingDetail_to_addMoneyActivity)
-                }
             }else if(jsonData?.home_city==0){
                 showCustomAlert(requireActivity(),
                     getString(R.string.please_add_home_city),  getString(R.string.ok)) {
@@ -179,7 +178,19 @@ class BookingDetail : Fragment(), Observer<RestObservable> {
              * Cases to handle the status of booking
              */
 
-            else if (jsonData?.status == "active" && jsonData?.booking_status == "active") {
+            else if(jsonData?.booking_status == "active"){
+                if(jsonData?.wallet_balance?.toInt()!! < jsonData?.min_balance?.toInt()!! && jsonData?.status=="active") {
+
+                    Log.e("======", jsonData?.wallet_balance.toString() + jsonData?.min_balance)
+                    showCustomAlert(
+                        requireActivity(),
+                        getString(R.string.low_balance_please_add_money_into_your_wallet),
+                        getString(R.string.ok)
+                    ) {
+                        findNavController().navigate(R.id.action_bookingDetail_to_addMoneyActivity)
+                    }
+
+                } else if (jsonData?.status == "active") {
                 if (cab_id == "0" || driver_id == "0") {
                     showCustomAlert(requireContext(),
                         getString(R.string.please_add_cab_or_driver_before_booking),  getString(R.string.ok)) {}
@@ -190,6 +201,7 @@ class BookingDetail : Fragment(), Observer<RestObservable> {
                     hashMap["driver_id"] = driver_id
                     hashMap["cab_id"] = cab_id
                     hashMap["status"] = status
+                    hashMap["user_type"] = getUser(requireContext()).user_type.toString()
                     viewModel.assignBookingApi(requireActivity(), true, hashMap)
                 }
             } else if (jsonData?.booking_status == "active" ) {
@@ -208,10 +220,11 @@ class BookingDetail : Fragment(), Observer<RestObservable> {
                             hashMap["driver_id"] = driver_id
                             hashMap["cab_id"] = cab_id
                             hashMap["status"] = "on_the_way"
+                            hashMap["user_type"] = getUser(requireContext()).user_type.toString()
                             viewModel.assignBookingApi(requireActivity(), true, hashMap)
                         }, {})
                 }
-            } else if (jsonData?.booking_status == "on_the_way") {
+            } }else if (jsonData?.booking_status == "on_the_way") {
                 showCustomAlertWithCancel(requireContext(),
                     getString(R.string.are_you_sure_you_have_arrived_the_location),
                     getString(R.string.ok), "Cancel", {
@@ -219,6 +232,7 @@ class BookingDetail : Fragment(), Observer<RestObservable> {
                         hashMap["booking_id"] = booking_id.toString()
                         hashMap["driver_id"] = driver_id
                         hashMap["cab_id"] = cab_id
+                        hashMap["user_type"] = getUser(requireContext()).user_type.toString()
                         hashMap["status"] = "started"
                         viewModel.assignBookingApi(requireActivity(), true, hashMap)
                     }, {})
@@ -252,10 +266,8 @@ class BookingDetail : Fragment(), Observer<RestObservable> {
             }
         }
     }
-
      fun cancelRide() {
-         viewModel.cancelRideApi(requireActivity(), true, booking_id)
-
+         viewModel.cancelRideApi(requireActivity(), true, booking_id,getUser(requireContext()).user_type.toString())
      }
 
     private fun endTripDialog() {
@@ -263,7 +275,7 @@ class BookingDetail : Fragment(), Observer<RestObservable> {
             getString(R.string.are_you_sure_you_want_to_end_this_trip),
             getString(R.string.ok), "Cancel", {
                 requireActivity().runOnUiThread {
-                    getOtpFragment = GetOtpFragment(this, "end", "1234")
+                    getOtpFragment = GetOtpFragment(this, "end", "1234",opened)
                     getOtpFragment?.show(requireActivity().supportFragmentManager, "dialog")
                 }
             }, {})
@@ -277,11 +289,12 @@ class BookingDetail : Fragment(), Observer<RestObservable> {
         hashMap["odometer_end_reading"] = metereading
         hashMap["extra_min"] = extraMin
         hashMap["other_charges"] = otherCharges
+        hashMap["user_type"] = getUser(requireContext()).user_type.toString()
         viewModel.endRideApi(requireActivity(), true, hashMap)
     }
 
     private fun sendOtp() {
-        viewModel.enterOtpApi(requireActivity(), true, booking_id)
+        viewModel.enterOtpApi(requireActivity(), true, booking_id,getUser(requireContext()).user_type.toString())
     }
 
     private fun getData(booking_id: Int) {
@@ -309,6 +322,7 @@ class BookingDetail : Fragment(), Observer<RestObservable> {
                         jsonData = data.data
                         setData(data.data)
 
+
                     } else {
                         AppUtils.showErrorAlert(requireActivity(), data.message)
                     }
@@ -328,7 +342,12 @@ class BookingDetail : Fragment(), Observer<RestObservable> {
                     val data: EnterOtpResModel = value.data
                     if (data.code == AppConstant.success_code) {
                         requireActivity().runOnUiThread {
-                            getOtpFragment = GetOtpFragment(this, "start", data.data.otp.toString())
+                            getOtpFragment = GetOtpFragment(
+                                this,
+                                "start",
+                                data.data.otp.toString(),
+                                opened
+                            )
                             getOtpFragment?.show(requireActivity().supportFragmentManager, "dialog")
                         }
                     }
@@ -386,6 +405,7 @@ class BookingDetail : Fragment(), Observer<RestObservable> {
 
     private fun setData(data: BookingDetailResponse.Data) {
 
+        setOnClicks()
         status = data.booking_status
 
         binding.tvTripType.text = data.trip
@@ -409,6 +429,7 @@ class BookingDetail : Fragment(), Observer<RestObservable> {
         binding.tvRetDate.text = data.ride_end_date
         binding.tvRetTime.text = data.ride_end_time
         binding.tvPass.text = data.passengers
+        binding.tvNightDrop.text = data.night_drop
         //  binding.tvPickupCharges.text = data.pickup_charges
         binding.tvStateToll.text = data.state_tax
         binding.tvTollTax.text = data.toll_tax
@@ -490,7 +511,7 @@ class BookingDetail : Fragment(), Observer<RestObservable> {
                 "You have no driver related to this booking. Please add new driver",
                 getString(R.string.ok)
             ) {
-                findNavController().navigate(R.id.action_bookingDetail_to_addDriverFragment2)
+                findNavController().navigate(R.id.action_bookingDetail_to_vehicleListFragment)
             }
         }
         if (data.cabs.size == 0 && data.drivers.size != 0) {
@@ -607,6 +628,7 @@ class BookingDetail : Fragment(), Observer<RestObservable> {
         hashMap["lat"] = latitude
         hashMap["lang"] = longitude
         hashMap["odometer_start_reading"] = metereading
+        hashMap["user_type"] = getUser(requireContext()).user_type.toString()
         viewModel.startRideApi(requireActivity(), true, hashMap)
     }
 }

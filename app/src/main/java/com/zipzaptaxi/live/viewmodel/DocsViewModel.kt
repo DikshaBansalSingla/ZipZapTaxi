@@ -30,9 +30,9 @@ class DocsViewModel: ViewModel() {
     }
 
     fun getAllDocsApi(
-        activity: Activity, showLoader: Boolean
+        activity: Activity, showLoader: Boolean, userType:String
     ) {
-        restApiInterface.geAllDocs()
+        restApiInterface.geAllDocs(userType)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }

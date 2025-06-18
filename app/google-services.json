@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "869378131949",
-    "project_id": "zipzaptaxi-413614",
-    "storage_bucket": "zipzaptaxi-413614.appspot.com"
+    "project_number": "526636180312",
+    "project_id": "zipzaptaxi-partner",
+    "storage_bucket": "zipzaptaxi-partner.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:869378131949:android:5a8fc0d4e4dc54af4c49e4",
+        "mobilesdk_app_id": "1:526636180312:android:1d93f2da87d3e1708e3b2d",
         "android_client_info": {
           "package_name": "com.zipzaptaxi.live"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBNQ40xuWwk5zteMOybcL4iZGL68AStzNU"
+          "current_key": "AIzaSyBaxxRrnWUZ_IxnFUX6RDzHl0axzuEtciY"
         }
       ],
       "services": {

@@ -58,9 +58,9 @@ class WalletViewModel : ViewModel() {
     }
 
     fun getTransactionsApi(
-        activity: Activity, showLoader: Boolean
+        activity: Activity, showLoader: Boolean, userType: String
     ) {
-        restApiInterface.getTransactions()
+        restApiInterface.getTransactions(userType)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
@@ -70,9 +70,9 @@ class WalletViewModel : ViewModel() {
             )
     }
     fun getTdsDataApi(
-        activity: Activity, showLoader: Boolean
+        activity: Activity, showLoader: Boolean, userType: String
     ) {
-        restApiInterface.getTdsData()
+        restApiInterface.getTdsData(userType)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }

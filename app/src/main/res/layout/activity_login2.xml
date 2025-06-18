@@ -136,10 +136,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_6sdp"
-                        android:fontFamily="@font/poppins_semibold"
+                        android:fontFamily="@font/poppins_bold"
                         android:text="+91"
                         android:textColor="@color/black"
-                        android:textSize="14dp"
+                        android:textSize="15dp"
                         app:layout_constraintBottom_toBottomOf="@id/etMobile"
                         app:layout_constraintStart_toStartOf="@id/tvMobile"
                         app:layout_constraintTop_toTopOf="@id/etMobile" />

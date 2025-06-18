@@ -51,6 +51,7 @@ import com.zipzaptaxi.live.utils.extensionfunctions.isGone
 import com.zipzaptaxi.live.utils.extensionfunctions.isVisible
 import com.zipzaptaxi.live.utils.extensionfunctions.showToast
 import com.zipzaptaxi.live.utils.helper.AppConstant
+import com.zipzaptaxi.live.utils.helper.AppUtils
 import com.zipzaptaxi.live.viewmodel.BookingViewModel
 
 class HomeFragment : Fragment(), Observer<RestObservable> {
@@ -296,7 +297,7 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
                 longitude = location.longitude.toString()
                 saveString(requireContext(), "Lat", latitude)
                 saveString(requireContext(), "Lang", longitude)
-                showToast("Location is: Latitude: $latitude, Longitude: $longitude")
+               // showToast("Location is: Latitude: $latitude, Longitude: $longitude")
             } else {
                 requestLocationUpdates()
             }
@@ -326,7 +327,7 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
                     longitude = location.longitude.toString()
                     saveString(requireContext(), "Lat", latitude)
                     saveString(requireContext(), "Lang", longitude)
-                    showToast("Location updated: Latitude: $latitude, Longitude: $longitude")
+                  //  showToast("Location updated: Latitude: $latitude, Longitude: $longitude")
                     fusedLocationClient.removeLocationUpdates(this)
                 }
             }
@@ -361,6 +362,8 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
                             arrayList.addAll(data.data.data_list)
                             homeAdapter.notifyDataSetChanged()
                         }
+                    }else {
+                        AppUtils.showErrorAlert(requireActivity(), data.message)
                     }
                 }
             }

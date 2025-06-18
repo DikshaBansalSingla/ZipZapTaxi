@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.zipzaptaxi.live.R
 import com.zipzaptaxi.live.adapter.VehicleListAdapter
 import com.zipzaptaxi.live.cache.CacheConstants
+import com.zipzaptaxi.live.cache.getUser
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
 import com.zipzaptaxi.live.databinding.FragmentVehicleListBinding
@@ -72,7 +73,8 @@ class VehicleListFragment : Fragment(), Observer<RestObservable> {
         vehicleListAdapter.onDeleteClick={
             showCustomAlertWithCancel(requireContext(),"Are you sure you want to delete "+arrayList[it].number_plate +" ?","Yes","No",{
                 pos=it
-                vehicleViewModel.deleteVehicleApi(requireActivity(),true,arrayList[it].id.toString())
+                vehicleViewModel.deleteVehicleApi(requireActivity(),true,arrayList[it].id.toString(),
+                    getUser(requireContext()).user_type.toString())
 
             },{})
         }
@@ -101,7 +103,7 @@ class VehicleListFragment : Fragment(), Observer<RestObservable> {
 
     private fun getVehicleListApi() {
 
-        vehicleViewModel.vehicleListApi(requireActivity(),true)
+        vehicleViewModel.vehicleListApi(requireActivity(),true, getUser(requireContext()).user_type.toString())
         vehicleViewModel.mResponse.observe(viewLifecycleOwner,this)
     }
 

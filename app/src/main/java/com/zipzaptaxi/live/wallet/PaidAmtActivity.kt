@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.zipzaptaxi.live.R
 import com.zipzaptaxi.live.adapter.PaidAmtAdapter
 import com.zipzaptaxi.live.cache.CacheConstants
+import com.zipzaptaxi.live.cache.getUser
 import com.zipzaptaxi.live.data.RestObservable
 import com.zipzaptaxi.live.data.Status
 import com.zipzaptaxi.live.databinding.ActivityPaidAmountBinding
@@ -21,6 +22,7 @@ import com.zipzaptaxi.live.utils.extensionfunctions.isGone
 import com.zipzaptaxi.live.utils.extensionfunctions.isVisible
 import com.zipzaptaxi.live.utils.extensionfunctions.showToast
 import com.zipzaptaxi.live.utils.helper.AppConstant
+import com.zipzaptaxi.live.utils.helper.AppUtils
 import com.zipzaptaxi.live.viewmodel.WalletViewModel
 
 class PaidAmtActivity : Fragment(), Observer<RestObservable> {
@@ -57,7 +59,7 @@ class PaidAmtActivity : Fragment(), Observer<RestObservable> {
     }
 
     private fun getData() {
-        viewModel.getTransactionsApi(requireActivity(),true)
+        viewModel.getTransactionsApi(requireActivity(),true, getUser(requireContext()).user_type.toString())
         viewModel.mResponse.observe(viewLifecycleOwner,this)
     }
 
@@ -94,6 +96,8 @@ class PaidAmtActivity : Fragment(), Observer<RestObservable> {
                             arrayList.addAll(data.data)
                             adapter.notifyDataSetChanged()
                         }
+                    }else {
+                        AppUtils.showErrorAlert(requireActivity(), data.message)
                     }
                 }
 

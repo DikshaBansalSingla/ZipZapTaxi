@@ -29,8 +29,6 @@ import com.zipzaptaxi.live.home.MainActivity
 class MyFirebaseMessagingService : FirebaseMessagingService() {
     private val TAG = "FireBasePush"
     private var CHANNEL_ID = "Zipzap Taxi"
-    private var title = ""
-    private var message = ""
     private var type = ""
     private lateinit var mediaPlayerBroadcastReceiver: BroadcastReceiver
     private lateinit var intentFilter: IntentFilter
@@ -75,19 +73,12 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         Log.e(TAG, "Notification: ${remoteMessage.data}")
 
         try {
-            remoteMessage.data?.let {
+            remoteMessage.data.let {
                 val title = it["title"].toString()
                 val message = it["message"].toString()
                 type = it["notification_type"].toString()
 
-                val notificationIntent = if (type == "booking") {
-                   /* Intent(this, MainActivity::class.java).apply {
-                        putExtra("id", it["booking_id"].toString())
-                    }*/
-                    Intent(this, MainActivity::class.java)
-                } else {
-                    Intent(this, MainActivity::class.java)
-                }
+                val notificationIntent = Intent(this, MainActivity::class.java)
                 makePush(title, message, notificationIntent)
             }
         } catch (e: Exception) {
@@ -106,7 +97,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         intent?.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val channelId = CHANNEL_ID
         val defaultSoundUri: Uri = if (type == "booking") {
-            Uri.parse("android.resource://" + packageName + "/" + R.raw.notification)
+            Uri.parse("android.resource://${packageName}/${R.raw.notification}")
+
         } else {
             RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         }
@@ -129,6 +121,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .setContentText(message)
             .setStyle(NotificationCompat.BigTextStyle().bigText(message))
             .setAutoCancel(true)
+            .setSound(defaultSoundUri)
             .setContentIntent(pendingIntent)
             .setDeleteIntent(dismissPendingIntent)
             .setDefaults(Notification.DEFAULT_LIGHTS or Notification.DEFAULT_VIBRATE)
